@@ -1,3 +1,9 @@
+---
+title: ParoParo
+layout: default
+---
+
+
 # Oops, ParoParo è offline
 
 Il sito è attualmente in manutenzione. I nostri pappagalli stanno lavorando per rendere il sito migliore, ma hanno bisogno di tempo e tanto forza di volontà.
