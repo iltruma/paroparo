@@ -1,0 +1,11 @@
+---
+layout: default
+---
+
+<section class="feed">
+    <div class="row">
+        {% for post in site.posts %}
+            {% include story.html %} 
+        {% endfor %}
+    </div>  
+</section>
