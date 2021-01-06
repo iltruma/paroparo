@@ -5,9 +5,11 @@ layout: default
 {% include jumbotron.html %}
 
 <section class="album">
-    <div class="row row-eq-height">
-        {% for post in site.posts %}
-            {% include card.html %} 
-        {% endfor %}
+    <div class="container my-4">
+        <div class="row row-eq-height">
+            {% for post in site.posts %}
+                {% include card.html %} 
+            {% endfor %}
+        </div>
     </div>
 </section>
