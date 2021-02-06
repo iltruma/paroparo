@@ -1,0 +1,26 @@
+.post-featured-image {
+    img {
+        position: relative;
+        z-index: 10;
+        margin: 0 auto;
+        left:7vh;
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        display: block;
+        width: 100%;
+        height: 66%;
+        background-image: -webkit-repeating-radial-gradient(center center, rgba($primary,0.6), rgba($primary,0.6) 2px, transparent 3px, transparent 100%);
+        background-image: -moz-repeating-radial-gradient(center center, rgba($primary,0.6), rgba($primary,0.6) 2px, transparent 3px, transparent 100%);
+        background-image: -ms-repeating-radial-gradient(center center, rgba($primary,0.6), rgba($primary,0.6) 2px, transparent 3px, transparent 100%);
+        background-image: repeating-radial-gradient(center center, rgba($primary,0.6), rgba($primary,0.6) 2px, transparent 3px, transparent 100%);
+        -webkit-background-size: 15px 15px;
+        -moz-background-size: 15px 15px;
+        background-size: 15px 15px;
+        z-index: 9;
+    }
+}
