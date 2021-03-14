@@ -3,5 +3,10 @@
 
 @import "anchor/anchor";
 @import "materialdesignicons/materialdesignicons";
-@import 'waves.css';
 @import "paroparo";
+
+.bg-tropical {
+    background-image: url('{{ site.baseurl }}/assets/img/sfondo.jpg');
+    color: #fff;
+}
+

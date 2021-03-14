@@ -4,11 +4,11 @@ layout: default
 
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
-    <div class="row row-eq-height">
-      <div class="col col-6 my-auto">
+    <div class="row">
+      <div class="col-md-6 my-auto">
           <span class="post-time"><time datetime="{{ page.date }}">{{ page.date | date_to_string }}</time></span>
           <a class="post-category"href="/tag/Graffiti" >Graffiti</a>
-          <h1 class="post-title">{{page.title}}</h1>
+          <h1 class="post-title display-4">{{page.title}}</h1>
           <a class="post-author" href="/about/" ><span>By</span> Leo Hawkins</a>
           <span>
             {% assign words = content | number_of_words %}
@@ -19,7 +19,7 @@ layout: default
             {% endif %} read
           </span>
       </div>
-      <div class="col col-6 my-auto">
+      <div class="col-md-6 mt-4">
         <div class="post-featured-image">
           <img class="shadow rounded" alt="{{post.title}}" src="{{ site.url }}{{ site.baseurl }}/assets/img/posts/{{page.featured-img}}_thumb.jpg">
         </div>
@@ -29,7 +29,7 @@ layout: default
 </div>
 
 <section class="post-content">
-  <div class="container my-10">
+  <div class="container my-5">
     <article>
 
       {{ content }}

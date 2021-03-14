@@ -56,7 +56,7 @@ $teal:    #09ebaf !default;
 $cyan:    #35bdff !default;
 $lila:    #b2a5e4 !default;
 $salmon:  #ff977a !default;
-$teal-pp: #107068 !default;
+$teal-pp: #186e64  !default;
 
 
 $colors: () !default;
@@ -305,11 +305,11 @@ $white:         $white !default;
 // $display3-size:               4.5rem !default;
 // $display4-size:               3.5rem !default;
 //
-// $display1-weight:             300 !default;
-// $display2-weight:             300 !default;
-// $display3-weight:             300 !default;
-// $display4-weight:             300 !default;
-// $display-line-height:         $headings-line-height !default;
+   $display1-weight:             700 !default;
+   $display2-weight:             700 !default;
+   $display3-weight:             700 !default;
+   $display4-weight:             700 !default;
+   $display-line-height:         $headings-line-height !default;
 //
 // $lead-font-size:              ($font-size-base * 1.25) !default;
 // $lead-font-weight:            300 !default;
