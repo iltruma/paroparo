@@ -3,6 +3,8 @@ layout: post
 title: Getting Started with Sleek
 featured-img: sleek
 mathjax: true
+date:               2017-12-01 23:22:00 +0000
+last_modified_at:   2019-03-25 8:30:00 +0000
 ---
 
 # Getting started

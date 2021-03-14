@@ -24,9 +24,9 @@
                 <span class="mdi mdi-grass"></span>
                 <h5 class="card-title">{{ post.title | strip_html | truncate: 50 }}</h5>
                 <p class="card-text">{{ post.content | strip_html | truncatewords: 20 }}</p>
-                <a href="#" class="btn btn-primary btn-sm">Read More</a>
-                <div class="d-flex justify-content-between align-items-center">
-                    <small class="text-muted">{% assign date_format = site.sleek.date_format | default: "%b %-d, %Y" %}</small>
+                <a href="{{ post.url | relative_url }}" class="btn btn-primary btn-sm">Read More</a>
+                <div class="justify-content-between align-items-center">
+                    <small class="text-muted">{{ post.last_modified_at | date: '%B %d, %Y' }}</small>
                     <small class="text-muted">9 mins</small>
                 </div>
             </div>

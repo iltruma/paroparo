@@ -10,3 +10,8 @@
     color: #fff;
 }
 
+.bg-macaw {
+    background: url('{{ site.baseurl }}/assets/img/left_macaw.png') left bottom no-repeat, url('{{ site.baseurl }}/assets/img/right_macaw.png') right bottom no-repeat;
+    background-size: 25rem;
+    background-color: #e9ecef;
+}
