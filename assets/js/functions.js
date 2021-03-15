@@ -1,11 +1,10 @@
 jQuery( document ).ready(function() {
  
-    $(window).scroll(function(){
-    $('.topnav').toggleClass('bg-white navbar-light shadow-sm scrollednav py-0', $(this).scrollTop() > 50);
+    $(window).scroll(function () {
+      var $nav = $(".navbar");
+      $nav.toggleClass('bg-primary', $(this).scrollTop() > $nav.height());
+      $nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
     });
 
-    $('#modal_newsletter').on('show.bs.modal', function () {
-      $('.downloadzip')[0].click();
-    });
-    
 });
+

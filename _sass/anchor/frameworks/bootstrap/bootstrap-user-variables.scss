@@ -56,8 +56,12 @@ $teal:    #09ebaf !default;
 $cyan:    #35bdff !default;
 $lila:    #b2a5e4 !default;
 $salmon:  #ff977a !default;
-$teal-pp: #186e64  !default;
 
+$paroparo: #186e64  !default;
+$paroparo-light: #24a798 !default;
+$paroparo-tone: #81e3d8 !default;
+$paroparo-dark: #12534c !default;
+$paroparo-gray: #dae6e3!default;
 
 $colors: () !default;
 // // stylelint-disable-next-line scss/dollar-variable-default
@@ -76,18 +80,22 @@ $colors: map-merge(
 "white":      $white,
 "gray":       $gray-600,
 "gray-dark":  $gray-800,
-"teal-pp":    $teal-pp
+"paroparo":    $paroparo,
+"paroparo-dark": $paroparo-dark,
+"paroparo-light": $paroparo-light,
+"paroparo-tone": $paroparo-tone,
+"paroparo-gray": $paroparo-gray
 ),
 $colors
 );
 
-$primary:       $teal-pp !default;
+$primary:       $paroparo !default;
 $secondary:     $gray-800 !default;
 $success:       $green !default;
 $info:          $teal !default;
 $warning:       $yellow !default;
 $danger:        $red !default;
-$light:         $gray-100 !default;
+$light:         $gray-200 !default;
 $dark:          $gray-800 !default;
 $white:         $white !default;
 
@@ -111,10 +119,16 @@ $white:         $white !default;
      "gray":       $gray-400,
      "indigo":     $indigo,
      "orange":     $orange,
-     "teal-pp":   $teal-pp
+     "paroparo":   $paroparo,
+     "paroparo-dark": $paroparo-dark,
+     "paroparo-light": $paroparo-light,
+     "paroparo-tone": $paroparo-tone,
+     "paroparo-gray": $paroparo-gray
    ),
    $theme-colors
  );
+
+
 //
 // // Set a specific jump point for requesting color jumps
 // $theme-color-interval:      8% !default;
