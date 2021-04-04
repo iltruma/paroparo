@@ -14,9 +14,9 @@ sass:
 
 # THEME SETTINGS
 navigation: # Navigation links
-  - {name: 'Projects', link: '/'}
-  - {name: 'Feed', link: '/feed'}
-  - {name: 'About', link: '/about'}
+  - {name: 'Blog', link: '/blog'}
+  - {name: 'Chi Siamo', link: '/chi-siamo'}
+  - {name: 'Contatti', link: '/contatti'}
 
 email: your-email@domain.com # email for form submission
 

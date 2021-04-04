@@ -1,0 +1,31 @@
+<div class="loader">
+  <div class="loading-animation"></div>
+</div>
+
+<div class="navbar-container">
+  <nav class="navbar navbar-expand-lg navbar-dark" data-overlay data-sticky="top">
+    <div class="container">
+      <a class="navbar-brand fade-page" href="{{ '/' | relative_url }}">
+        <!-- <img src="{{ '/assets/img/logo-white.svg' | relative_url }}" alt="ParoParo"> -->
+        Paroparo
+      </a>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+        <img class="icon navbar-toggler-open" src="{{ '/assets/img/icons/interface/menu.svg' | relative_url }}" alt="menu interface icon" data-inject-svg />
+        <img class="icon navbar-toggler-close" src="{{ '/assets/img/icons/interface/cross.svg' | relative_url }}" alt="cross interface icon" data-inject-svg />
+      </button>
+
+      <div class="collapse navbar-collapse justify-content-between">
+        <div class="py-lg-0">
+          <ul class="navbar-nav">
+              {% for item in site.navigation %}
+              <li class="nav-item dropdown">
+                <a href="{{ item.link | relative_url }}" class="nav-link" aria-expanded="false" aria-haspopup="true">{{ item.name }}</a>
+              </li>
+              {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
