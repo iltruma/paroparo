@@ -9,20 +9,19 @@
 // Uncomment the variables below and change the hex values.
 
 $paroparo: #186e64  !default;
-$paroparo-light: #24a798 !default;
-$paroparo-tone: #81e3d8 !default;
-$paroparo-dark: #12534c !default;
-$paroparo-gray: #dae6e3 !default;
-$paroparo-orange: #ff7746 !default;
-$paroparo-orange-light: #ffb194 !default;
-$paroparo-orange-tone: #ffb194 !default;
+$paroparo-tone: #2DE0CB !default; //torquoise
+$paroparo-dark: #021C19 !default; //dark jungle
+
+$paroparo-orange: #FF6933 !default;
+$paroparo-orange-tone: #6600FF !default;
+$paroparo-orange-dark: #242331 !default; 
 
 $primary:      $paroparo;
 $primary-2:    $paroparo-orange;
 $primary-3:    $paroparo-tone;
 $primary-4:    $paroparo-orange-tone;
 $primary-dark: $paroparo-dark;
-$primary-light: $paroparo-light;
+$primary-orange-dark: $paroparo-orange-dark;
 
 // Do not change or remove the $theme-color-scheme or $theme-colors maps below
 
@@ -32,8 +31,7 @@ $theme-color-scheme: (
     "primary-3":  $primary-3,
     "primary-4":  $primary-4,
     "primary-dark": $primary-dark,
-    "primary-light": $primary-light,
-    "primary-2-light": $paroparo-orange-light,
+    "primary-2-dark": $primary-orange-dark
 );
 
 $theme-colors: (
@@ -42,6 +40,5 @@ $theme-colors: (
     "primary-3":  $primary-3,
     "primary-4":  $primary-4,
     "primary-dark": $primary-dark,
-    "primary-light": $primary-light,
-    "primary-2-light": $paroparo-orange-light,
+    "primary-2-dark": $primary-orange-dark
 );

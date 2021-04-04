@@ -2,14 +2,14 @@
 layout: default
 ---
 
-<section class="has-divider text-light jarallax bg-dark" data-jarallax data-speed="0.5">
-    <img src="{{ '/assets/img/article-9.jpg' | relative_url }}" alt="" class="jarallax-img opacity-50">
+<section class="has-divider text-light jarallax bg-dark" data-jarallax data-speed="0.5" data-overlay>
+    <img src="{{ '/assets/img/sfondo_macaw.png' | relative_url }}" alt="" class="jarallax-img opacity-50">
     <div class="container">
         <div class="row">
-        <div class="col-xl-5 col-lg-6 col-md-8">
-            <h1 class="display-4">Blog</h1>
-            <p class="lead mb-0">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium.</p>
-        </div>
+            <div class="col-xl-5 col-lg-6 col-md-8">
+                <h1 class="display-4">Blog</h1>
+                <p class="lead mb-0">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium.</p>
+            </div>
         </div>
     </div>
     <div class="divider">
@@ -20,6 +20,68 @@ layout: default
 <section>
     <div class="container">
         <div class="row mb-4">
+            {% for post in site.posts %}
+            {% if post.featured-img %}
+            <div class="col-md-6 col-lg-4 d-flex" data-aos="fade-up" data-aos-delay="200">
+                <div class="card">
+                <a href="{{ post.url | relative_url }}">
+                    <img src="{{ site.url }}{{ site.baseurl }}/assets/img/posts/{{post.featured-img}}_thumb.jpg" alt="Image" class="card-img-top">
+                </a>
+                <div class="card-body d-flex flex-column">
+                    <div class="d-flex justify-content-between mb-3">
+                    <div class="text-small d-flex">
+                        <div class="mr-2">
+                            {% for cat in post.categories %}
+                                <a href="#">{{cat}}</a>
+                            {% endfor %}
+                        </div>
+                        <span class="text-muted">{{ post.date | date_to_string }}</span>
+                    </div>
+                    <span class="badge bg-primary-alt text-primary">
+                        <img class="icon icon-sm bg-primary" src="{{ '/assets/img/icons/interface/heart.svg' | relative_url }}" alt="heart interface icon" data-inject-svg />12
+                    </span>
+                    </div>
+                    <a href="{{ post.url | relative_url }}">
+                    <h4>{{ post.title | strip_html | truncate: 50 }}</h4>
+                    </a>
+                    <p class="flex-grow-1">
+                        {{ post.content | strip_html | truncatewords: 20 }}
+                    </p>
+                    <div class="d-flex align-items-center mt-3">
+                    <img src="{{ '/assets/img/avatars/female-3.jpg' | relative_url }}" alt="Image" class="avatar avatar-sm">
+                    <div class="ml-1">
+                        <span class="text-small text-muted">By</span>
+                        <span class="text-small">Abby Sims</span>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            {% else %}
+            <div class="col-md-6 col-lg-4 d-flex" data-aos="fade-up" data-aos-delay="100">
+                <a href="{{ post.url | relative_url }}" class="card card-body justify-content-between bg-primary text-light">
+                <div class="d-flex justify-content-between mb-3">
+                    <div class="text-small d-flex">
+                    <div class="mr-2">
+                        {% for cat in post.categories %}
+                            <a href="#">{{cat}}</a>
+                        {% endfor %}
+                    </div>
+                    <span class="opacity-70">{{ post.date | date_to_string }}</span>
+                    </div>
+                    <span class="badge bg-primary-alt text-primary">
+                    <img class="icon icon-sm bg-primary" src="{{ '/assets/img/icons/interface/heart.svg' | relative_url }}" alt="heart interface icon" data-inject-svg />27
+                    </span>
+                </div>
+                <div>
+                    <h2>{{ post.title | strip_html | truncate: 50 }}</h2>
+                    <span class="text-small opacity-70">http://www.website.io/link</span>
+                </div>
+                </a>
+            </div>
+            {% endif %}
+            {% endfor %}
+
         <div class="col-md-6 col-lg-4 d-flex" data-aos="fade-up" data-aos-delay="100">
             <a href="#" class="card card-body justify-content-between bg-primary text-light">
             <div class="d-flex justify-content-between mb-3">
