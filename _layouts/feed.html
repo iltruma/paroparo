@@ -1,0 +1,44 @@
+---
+layout: default
+---
+
+<section class="has-divider text-light jarallax bg-dark" data-jarallax data-speed="0.5" data-overlay>
+    <img src="{{ '/assets/img/sfondo_macaw.png' | relative_url }}" alt="" class="jarallax-img opacity-50">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-5 col-lg-6 col-md-8">
+                <h1 class="display-4">Feed</h1>
+                <p class="lead mb-0">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium.</p>
+            </div>
+        </div>
+    </div>
+    <div class="divider">
+        <img src="{{ '/assets/img/dividers/divider-2.svg' | relative_url }}" alt="graphical divider" data-inject-svg />
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h2>Gallery Example</h2>
+                <p>Questo è un esempio del feed gallery</p>
+            </div>
+        </div>
+            <div class="row justify-content-center">
+                <div class="col">
+                    <div class="row" data-isotope-collection data-isotope-id="example-2">
+                        {% for f in site.data.feed %}
+                        <div data-isotope-item class="col-3" data-category="Feed">
+                            <div class="card shadow-3d">
+                                <a href="{{f.image_small}}" data-fancybox="Feed" data-options="{'loop':true}">
+                                    <img class="card-img"  src="{{f.image_small}}" alt="{{f.caption}}" class="rounded">
+                                </a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+    </div>
+</section>

@@ -129,13 +129,13 @@ layout: default
             <div class="col-xl-10 col-lg-11">
               <h3 class="display-4">Learn, Share, Immerse.</h3>
               <p class="lead">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa.</p>
-              <a href="#" class="lead hover-arrow">View 2018 Highlights</a>
+              <a href="#" class="lead hover-arrow">Vai al nostro Feed!</a>
             </div>
           </div>
         </div>
         <div class="col-md-5 col-lg-6 mb-3 mb-md-0">
           <div class="image-collage">
-            <a href="{{ '/assets/img/article-3.jpg' | relative_url }}" data-fancybox="Collage Gallery" class="d-none d-lg-block">
+            <a href="{{ '/assets/img/article-3.jpg' | relative_url }}" data-fancybox="Collage Gallery">
               <div data-jarallax-element="0 12">
                 <img src="{{ '/assets/img/article-3.jpg' | relative_url }}" alt="Image" class="rounded" data-aos="fade-right">
               </div>
@@ -145,15 +145,17 @@ layout: default
                 <img src="{{ '/assets/img/inner-3.jpg' | relative_url }}" alt="Image" class="rounded" data-aos="fade-up">
               </div>
             </a>
-            <a href="{{ '/assets/img/inner-4.jpg' | relative_url }}" data-fancybox="Collage Gallery" class="d-none d-lg-block">
+            <a href="{{ '/assets/img/inner-4.jpg' | relative_url }}" data-fancybox="Collage Gallery">
               <div data-jarallax-element="0 -12">
                 <img src="{{ '/assets/img/inner-4.jpg' | relative_url }}" alt="Image" class="rounded" data-aos="fade-left">
               </div>
             </a>
           </div>
-          <div class="decoration middle-x top mt-6 opacity-80 scale-3">
-            <img class="bg-primary" src="{{ '/assets/img/decorations/deco-dots-1.svg' | relative_url }}"
-                alt="deco-dots-1 decoration" data-inject-svg />
+          <div class="decorations-wrapper d-none d-lg-block">
+            <div class="decoration middle-x top mt-6 opacity-80 scale-3">
+              <img class="bg-primary" src="{{ '/assets/img/decorations/deco-dots-1.svg' | relative_url }}"
+                  alt="deco-dots-1 decoration" data-inject-svg />
+            </div>
           </div>
         </div>
       </div>
@@ -168,33 +170,33 @@ layout: default
         </div>
         <div class="row my-6 justify-content-center">
           <div class="col-xl-3 col-lg-4 col-md-6 layer-2" data-aos="fade-up" data-aos-delay="100">
-            <div class="card card-lg card-body align-items-center shadow-3d">
+            <div class="card card-lg card-body align-items-center shadow-3d hover-shadow-3d">
               <span class="badge badge-primary badge-top">Pappagallo Verde</span>
               <img src="{{ '/assets/img/avatars/female-1.jpg' | relative_url }}" alt="Niccolò Casini" class="avatar avatar-xlg mb-3">
               <h5 class="mb-0">Niccolò Casini</h5>
-              <span>CEO</span>
+              <span>Founder</span>
             </div>
           </div>
           <div class="col-xl-3 col-lg-4 col-md-6 layer-2" data-aos="fade-up" data-aos-delay="200">
-            <div class="card card-lg card-body align-items-center shadow-3d">
+            <div class="card card-lg card-body align-items-center shadow-3d hover-shadow-3d">
               <span class="badge badge-primary-2 badge-top">Pappagallo Arancio</span>
               <img src="{{ '/assets/img/avatars/male-2.jpg' | relative_url }}" alt="Cosimo Casini" class="avatar avatar-xlg mb-3">
               <h5 class="mb-0">Cosimo Casini</h5>
-              <span>CTO</span>
+              <span>Founder</span>
             </div>
           </div>
-          <div class="decoration mt-6 opacity-20 scale-3" data-aos-delay="300">
-            <img class="bg-primary" src="{{ '/assets/img/decorations/deco-blob-6.svg' | relative_url }}"
-                alt="deco-blob-6 decoration" data-inject-svg />
+          <div class="decorations-wrapper d-none d-lg-block">
+            <div class="decoration mt-6 middle-x opacity-20 scale-3" data-aos-delay="300">
+              <img class="bg-primary" src="{{ '/assets/img/decorations/deco-blob-6.svg' | relative_url }}"
+                  alt="deco-blob-6 decoration" data-inject-svg />
+            </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col">
+        <div class="row text-center justify-content-center">
             <p>Sei interessato a noi? Vieni a scoprirci!</p>
-          </div>
         </div>
-        <div class="row text-center">
-            <a class="btn bg-primary-2 btn-lg text-white" href="#">Chi Siamo</a>
+        <div class="row text-center justify-content-center">
+          <a class="btn bg-primary btn-lg text-white" href="#">Chi Siamo</a>
         </div>
       </div>
     </section>

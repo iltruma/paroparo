@@ -15,6 +15,7 @@ sass:
 # THEME SETTINGS
 navigation: # Navigation links
   - {name: 'Blog', link: '/blog'}
+  - {name: 'Feed', link: '/feed'}
   - {name: 'Chi Siamo', link: '/chi-siamo'}
   - {name: 'Contatti', link: '/contatti'}
 
@@ -26,7 +27,7 @@ instagram_username: iltruma # replace with your_instagram_username or comment to
 
 # BUILD SETTINGS
 markdown: kramdown
-highlighter: rouge # or pygments or null
+#highlighter: rouge # or pygments or null
 # theme: jekyll-sleek # Uncomment if you're using the theme as a ruby gem
 exclude:
   - README.md
@@ -45,12 +46,14 @@ permalink: /:title/
 compress_html:
   clippings: all
 
-paginate: 2
-paginate_path: "/page:num/"
-
 plugins:
   - jekyll-spaceship
-  - jekyll-paginate
-  - jekyll-feed
-  - jekyll-sitemap
+  #- jekyll-paginate
+  #- jekyll-feed
+  #- jekyll-sitemap
   - jekyll-watch
+  - jekyll-get-json
+
+jekyll_get_json:
+  - data: feed
+    json: 'https://profilepageimages.usecue.com/images/casini.cosimo/images.json'
