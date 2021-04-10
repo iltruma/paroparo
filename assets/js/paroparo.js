@@ -22,13 +22,12 @@ $(document).ready(function () {
 			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
 		id: 'mapbox/streets-v11',
 		tileSize: 512,
-		zoomOffset: -1,
-        fillColor: '#186e64'
+		zoomOffset: -1
 	}).addTo(mymap);
 
     var circle = L.circle([43.598508, 11.468536], {
-        color: '#186e64',
-        fillColor: '#186e64',
+        color: '#FF6933',
+        fillColor: '#FF6933',
         fillOpacity: 0.3,
         radius: 2000
     }).addTo(mymap);
