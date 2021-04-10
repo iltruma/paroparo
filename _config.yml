@@ -1,12 +1,11 @@
 # SITE CONFIGURATION
 title: Paroparo # your site title
 author: iltruma # You :P
-description: > # Meta description of Homepage
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+description: "Paroparo description"
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
+address: "Foresta di Figline Valdarno"
+city: "Firenze, Italia"
 
 sass:
     sass_dir: _sass
@@ -19,11 +18,9 @@ navigation: # Navigation links
   - {name: 'Chi Siamo', link: '/chi-siamo'}
   - {name: 'Contatti', link: '/contatti'}
 
-email: your-email@domain.com # email for form submission
-
-twitter_username: iltruma # replace with your_twitter_username or comment to remove link from footer
-github_username:  iltruma # replace with your_github_username or comment to remove link from footer
-instagram_username: iltruma # replace with your_instagram_username or comment to remove link from footer
+email: info@paroparo.it
+email_1: niccolo@paroparo.it
+email_2: cosimo@paroparo.it
 
 # BUILD SETTINGS
 markdown: kramdown
@@ -53,6 +50,7 @@ plugins:
   #- jekyll-sitemap
   - jekyll-watch
   - jekyll-get-json
+  - jekyll-minifier
 
 jekyll_get_json:
   - data: feed

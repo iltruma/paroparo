@@ -6,7 +6,7 @@ layout: default
     <img src="{{ '/assets/img/sfondo_macaw.png' | relative_url }}" alt="" class="jarallax-img opacity-50">
     <div class="container">
         <div class="row">
-            <div class="col-xl-5 col-lg-6 col-md-8">
+            <div class="col-xl-6 col-md-8">
                 <h1 class="display-4">Blog</h1>
                 <p class="lead mb-0">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium.</p>
             </div>
@@ -22,7 +22,7 @@ layout: default
         <div class="row mb-4">
             {% for post in site.posts %}
             {% if post.featured-img %}
-            <div class="col-md-6 col-lg-4 d-flex" data-aos="fade-up" data-aos-delay="200">
+            <div class="col-md-6 col-xl-4 d-flex" data-aos="fade-up" data-aos-delay="200">
                 <div class="card">
                 <a href="{{ post.url | relative_url }}">
                     <img src="{{ site.url }}{{ site.baseurl }}/assets/img/posts/{{post.featured-img}}_thumb.jpg" alt="Image" class="card-img-top">
@@ -58,7 +58,7 @@ layout: default
                 </div>
             </div>
             {% else %}
-            <div class="col-md-6 col-lg-4 d-flex" data-aos="fade-up" data-aos-delay="100">
+            <div class="col-md-6 col-xl-4 d-flex" data-aos="fade-up" data-aos-delay="100">
                 <a href="{{ post.url | relative_url }}" class="card card-body justify-content-between bg-primary text-light">
                 <div class="d-flex justify-content-between mb-3">
                     <div class="text-small d-flex">
@@ -82,7 +82,7 @@ layout: default
             {% endif %}
             {% endfor %}
 
-        <div class="col-md-6 col-lg-4 d-flex" data-aos="fade-up" data-aos-delay="100">
+        <div class="col-md-6 col-xl-4 d-flex" data-aos="fade-up" data-aos-delay="100">
             <a href="#" class="card card-body justify-content-between bg-primary text-light">
             <div class="d-flex justify-content-between mb-3">
                 <div class="text-small d-flex">
@@ -101,7 +101,7 @@ layout: default
             </div>
             </a>
         </div>
-        <div class="col-md-6 col-lg-4 d-flex" data-aos="fade-up" data-aos-delay="200">
+        <div class="col-md-6 col-xl-4 d-flex" data-aos="fade-up" data-aos-delay="200">
             <div class="card">
             <a href="#">
                 <img src="{{ '/assets/img/article-1.jpg' | relative_url }}" alt="Image" class="card-img-top">
@@ -134,7 +134,7 @@ layout: default
             </div>
             </div>
         </div>
-        <div class="col-md-6 col-lg-4 d-flex" data-aos="fade-up" data-aos-delay="300">
+        <div class="col-md-6 col-xl-4 d-flex" data-aos="fade-up" data-aos-delay="300">
             <div class="card">
             <a href="#">
                 <img src="{{ '/assets/img/article-2.jpg' | relative_url }}" alt="Image" class="card-img-top">
@@ -167,7 +167,7 @@ layout: default
             </div>
             </div>
         </div>
-        <div class="col-md-6 col-lg-4 d-flex" data-aos="fade-up" data-aos-delay="400">
+        <div class="col-md-6 col-xl-4 d-flex" data-aos="fade-up" data-aos-delay="400">
             <div class="card">
             <a href="#">
                 <img src="{{ '/assets/img/article-3.jpg' | relative_url }}" alt="Image" class="card-img-top">
@@ -200,7 +200,7 @@ layout: default
             </div>
             </div>
         </div>
-        <div class="col-md-6 col-lg-4 d-flex" data-aos="fade-up" data-aos-delay="500">
+        <div class="col-md-6 col-xl-4 d-flex" data-aos="fade-up" data-aos-delay="500">
             <div class="card card-body justify-content-between bg-primary-2 text-light">
             <div class="d-flex justify-content-between mb-3">
                 <div class="text-small d-flex">
@@ -219,7 +219,7 @@ layout: default
             </div>
             </div>
         </div>
-        <div class="col-md-6 col-lg-4 d-flex" data-aos="fade-up" data-aos-delay="600">
+        <div class="col-md-6 col-xl-4 d-flex" data-aos="fade-up" data-aos-delay="600">
             <div class="card">
             <a href="#">
                 <img src="{{ '/assets/img/article-4.jpg' | relative_url }}" alt="Image" class="card-img-top">
@@ -252,7 +252,7 @@ layout: default
             </div>
             </div>
         </div>
-        <div class="col-md-6 col-lg-4 d-flex" data-aos="fade-up" data-aos-delay="700">
+        <div class="col-md-6 col-xl-4 d-flex" data-aos="fade-up" data-aos-delay="700">
             <div class="card">
             <a href="#">
                 <img src="{{ '/assets/img/article-5.jpg' | relative_url }}" alt="Image" class="card-img-top">
@@ -285,7 +285,7 @@ layout: default
             </div>
             </div>
         </div>
-        <div class="col-md-6 col-lg-4 d-flex" data-aos="fade-up" data-aos-delay="800">
+        <div class="col-md-6 col-xl-4 d-flex" data-aos="fade-up" data-aos-delay="800">
             <div class="card">
             <a href="#">
                 <img src="{{ '/assets/img/article-6.jpg' | relative_url }}" alt="Image" class="card-img-top">
@@ -318,7 +318,7 @@ layout: default
             </div>
             </div>
         </div>
-        <div class="col-md-6 col-lg-4 d-flex" data-aos="fade-up" data-aos-delay="900">
+        <div class="col-md-6 col-xl-4 d-flex" data-aos="fade-up" data-aos-delay="900">
             <div class="card card-body justify-content-between bg-primary-3 text-light">
             <img src="{{ '/assets/img/article-7.jpg' | relative_url }}" alt="Image" class="bg-image opacity-20">
             <div class="d-flex justify-content-between mb-3 position-relative">
@@ -345,7 +345,7 @@ layout: default
             </div>
             </div>
         </div>
-        <div class="col-md-6 col-lg-4 d-flex" data-aos="fade-up" data-aos-delay="1000">
+        <div class="col-md-6 col-xl-4 d-flex" data-aos="fade-up" data-aos-delay="1000">
             <div class="card card-body bg-primary-2 text-light">
             <div class="d-flex justify-content-between mb-3">
                 <div class="text-small d-flex">

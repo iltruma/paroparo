@@ -5,7 +5,7 @@
         <div class="card card-body border-0 o-hidden mb-0 bg-primary text-light">
           <div class="position-relative d-flex flex-column flex-md-row justify-content-between align-items-center">
             <div class="h3 text-center mb-md-0">Vuoi collaborare con noi?</div>
-            <a href="#" class="btn btn-lg btn-white"> Contattaci </a>
+            <a href="{{'/contatti' | relative_url}}" class="btn btn-lg btn-white">Contattaci</a>
           </div>
           <div class="decoration layer-0">
             <img class="bg-primary-2" src="{{ '/assets/img/decorations/deco-blob-1.svg' | relative_url }}" alt="deco-blob-1 decoration" data-inject-svg />
@@ -15,7 +15,34 @@
       </div>
     </div>
     <div class="row mb-5">
-      <div class="col-6 col-lg-3 col-xl-2">
+      <div class="col-8 col-xl-10">
+        <h5>Contatti</h5>
+        <ul class="list-unstyled">
+          <li class="mb-3 d-flex">
+            <span class="h4 m-0 mdi mdi-map-marker text-white"></span>
+            <div class="ml-3">
+              <span class="nav-link p-0">
+                {{site.address}}<br>
+                {{site.city}}
+              </span>
+            </div>
+          </li>
+          <li class="mb-3 d-flex">
+            <span class="h4 m-0 mdi mdi-email text-white"></span>
+            <div class="ml-3">
+              <a  class="nav-link p-0" href="mailto:{{site.email}}">{{site.email}}</a>
+            </div>
+          </li>
+          <li class="mb-3 d-flex">
+            <span class="h4 m-0 mdi mdi-bird text-white"></span>
+            <div class="ml-3">
+              <a class="nav-link p-0" href="mailto:{{site.email_1}}">{{site.email_1}}</a>
+              <a class="nav-link p-0" href="mailto:{{site.email_1}}">{{site.email_2}}</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="col-4 col-xl-2">
         <h5>Naviga</h5>
         <ul class="nav flex-column">
           {% for item in site.navigation %}
@@ -24,59 +51,6 @@
           </li>
           {% endfor %}
         </ul>
-      </div>
-      <div class="col-6 col-lg">
-        <h5>Contact</h5>
-        <ul class="list-unstyled">
-          <li class="mb-3 d-flex">
-            <img class="icon" src="{{ '/assets/img/icons/theme/map/marker-1.svg' | relative_url }}" alt="marker-1 icon" data-inject-svg />
-            <div class="ml-3">
-              <span>348 Greenpoint Avenue
-                <br />Brooklyn, NY</span>
-            </div>
-          </li>
-          <li class="mb-3 d-flex">
-            <img class="icon" src="{{ '/assets/img/icons/theme/communication/call-1.svg' | relative_url }}" alt="call-1 icon" data-inject-svg />
-            <div class="ml-3">
-              <span>+61 3928 3324</span>
-              <span class="d-block text-muted text-small">Mon - Fri 9am - 5pm</span>
-            </div>
-          </li>
-          <li class="mb-3 d-flex">
-            <img class="icon" src="{{ '/assets/img/icons/theme/communication/mail.svg' | relative_url }}" alt="mail icon" data-inject-svg />
-            <div class="ml-3">
-              <a href="#">hello@company.io</a>
-            </div>
-          </li>
-        </ul>
-      </div>
-      <div class="col-lg-5 col-xl-4 mt-3 mt-lg-0">
-        <h5>Subscribe</h5>
-        <p>The latest Leap news, articles, and resources, sent straight to your inbox every month.</p>
-        <form action="/forms/mailchimp.php" data-form-email novalidate>
-          <div class="form-row">
-            <div class="col-12">
-              <input type="email" class="form-control mb-2" placeholder="Email Address" name="email" required>
-            </div>
-            <div class="col-12">
-              <div class="d-none alert alert-success" role="alert" data-success-message>
-                Thanks, a member of our team will be in touch shortly.
-              </div>
-              <div class="d-none alert alert-danger" role="alert" data-error-message>
-                Please fill all fields correctly.
-              </div>
-              <div data-recaptcha data-sitekey="6Leu1qIaAAAAAAHVkFU6GyrMau8yW9sVeohNEknc" data-size="invisible" data-badge="bottomleft">
-              </div>
-              <button type="submit" class="btn btn-primary btn-loading btn-block" data-loading-text="Sending">
-                <img class="icon" src="{{ '/assets/img/icons/theme/code/loading.svg' | relative_url }}" alt="loading icon" data-inject-svg />
-                <span>Subscribe</span>
-              </button>
-            </div>
-          </div>
-        </form>
-        <small class="text-muted form-text">We’ll never share your details. See our <a href="#">Privacy Policy</a>
-        </small>
-
       </div>
     </div>
     <div class="row justify-content-center mb-2">
@@ -112,7 +86,7 @@
     </div>
     <div class="row justify-content-center">
       <div class="col col-md-auto text-center">
-        <small class="text-muted">&copy;2020 This page is protected by reCAPTCHA and is subject to the Google <a href="https://www.google.com/policies/privacy/">Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service.</a>
+        <small class="text-muted">&copy;2021 This page is protected by reCAPTCHA and is subject to the Google <a href="https://www.google.com/policies/privacy/">Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service.</a>
         </small>
       </div>
     </div>
@@ -166,6 +140,11 @@
 <script type="text/javascript" src="{{ '/assets/js/typed.min.js' | relative_url }}"></script>
 <!-- Required theme scripts (Do not remove) -->
 <script type="text/javascript" src="{{ '/assets/js/theme.js' | relative_url }}"></script>
+<!-- Leaflet js -->
+<script type="text/javascript" src="{{ '/assets/js/leaflet.js' | relative_url }}"></script>
+<!-- Pageclip js -->
+<script type="text/javascript" src="{{ '/assets/js/pageclip.js' | relative_url }}" charset="utf-8"></script>
+<!-- Paroparo js -->
 <script type="text/javascript" src="{{ '/assets/js/paroparo.js' | relative_url }}"></script>
 <!-- Removes page load animation when window is finished loading -->
 <script type="text/javascript">
