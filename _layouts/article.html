@@ -8,7 +8,6 @@ layout: default
   {% else %}
     <img src="{{ '/assets/img/sfondo_macaw.png' | relative_url }}" alt="" class="jarallax-img opacity-50">
   {% endif %}
-
   <div class="container pt-6">
     <div class="row justify-content-center">
       <div class="col-xl-8">
@@ -43,6 +42,38 @@ layout: default
     <img src="{{ '/assets/img/dividers/divider-2.svg' | relative_url }}"  alt="graphical divider" data-inject-svg />
 </div>
 </section>
+
+<div class="article-progress" data-sticky="below-nav">
+  <progress class="reading-position" value="-20"></progress>
+  <div class="article-progress-wrapper">
+    <div class="container">
+      <div class="row">
+        <div class="col py-2">
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex">
+              <div class="text-small text-muted mr-1">Stai leggendo:</div>
+              <div class="text-small">{{page.title}}</div>
+            </div>
+            <div class="d-flex align-items-center">
+              <span class="text-small text-muted">Condividi:</span>
+              <div class="d-flex ml-1">
+                <a href="#" class="mx-1 btn btn-sm btn-round btn-primary-3">
+                  <span class="m-0 mdi mdi-twitter text-light" alt="twitter social icon"></span>
+                </a>
+                <a href="#" class="mx-1 btn btn-sm btn-round btn-primary-3">
+                  <span class="m-0 mdi mdi-instagram text-light" alt="instagram social icon"></span>
+                </a>
+                <a href="#" class="mx-1 btn btn-sm btn-round btn-primary-3">
+                  <span class="m-0 mdi mdi-facebook text-light" alt="facebook social icon"></span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <section data-reading-position>
   <div class="container">
