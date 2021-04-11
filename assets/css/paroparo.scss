@@ -4,21 +4,21 @@
 @import "theme";
 
 .hljs {
-    @extend .bg-primary-alt, .rounded, .p-2, .mb-2
+    @extend .bg-primary-alt, .rounded, .p-2, .mb-2;
 }
 
 blockquote {
     > p {
-        @extend .h5,.m-0
+        @extend .h5,.m-0;
     }
-    @extend .bg-primary-alt
+    @extend .bg-primary-alt;
 }
 
 div.highlight, pre.highlight {
-    @extend .bg-primary-alt
+    @extend .bg-primary-alt;
 }
 
-article{
+article {
     ol {
       > li{
         &:not(:last-child){
@@ -28,5 +28,10 @@ article{
     }
     table {
         @extend .table;
+    }
+    a {
+        > img {
+            @extend .rounded, .mx-auto, .d-block, .shadow-3d;
+        }
     }
 }

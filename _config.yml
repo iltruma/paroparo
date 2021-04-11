@@ -68,3 +68,15 @@ plugins:
 jekyll_get_json:
   - data: feed
     json: 'https://profilepageimages.usecue.com/images/casini.cosimo/images.json'
+
+image:
+  output: generated
+  presets:
+    users:
+      attr:
+        class: user-portrait
+        itemprop: image
+      width: 350
+    half:
+      width: 400
+      height: 400
