@@ -4,8 +4,6 @@ author: iltruma # You :P
 description: "Paroparo description"
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
-address: "Foresta di Figline Valdarno"
-city: "Firenze, Italia"
 
 sass:
     sass_dir: _sass
@@ -18,9 +16,24 @@ navigation: # Navigation links
   - {name: 'Chi Siamo', link: '/chi-siamo'}
   - {name: 'Contatti', link: '/contatti'}
 
+#SEO
+#tagline: "" # A short description title | tagline header
+#facebook:
+#  app_id: 1234
+#  publisher: 1234
+#  admins: 1234
+#logo: 
+#social:
+#  name: Paroparo
+#  links:
+#    - https://instagram.com/paroparo
+#google_site_verification: 
 email: info@paroparo.it
 email_1: niccolo@paroparo.it
 email_2: cosimo@paroparo.it
+address: "Foresta di Figline Valdarno"
+city: "Firenze, Italia"
+locale: it_IT
 
 # BUILD SETTINGS
 markdown: kramdown
@@ -45,12 +58,10 @@ compress_html:
 
 plugins:
   - jekyll-spaceship
-  #- jekyll-paginate
-  #- jekyll-feed
-  #- jekyll-sitemap
   - jekyll-watch
   - jekyll-get-json
   - jekyll-minifier
+  - jekyll-seo-tag
 
 jekyll_get_json:
   - data: feed
