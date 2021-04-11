@@ -18,3 +18,5 @@ gem "jekyll-sitemap", "~> 1.4"
 gem "jekyll-feed", "~> 0.15.1"
 
 gem "rouge", "~> 3.26"
+
+gem "jekyll-paginate-v2", "~> 3.0"
