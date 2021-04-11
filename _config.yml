@@ -62,6 +62,8 @@ plugins:
   - jekyll-get-json
   - jekyll-minifier
   - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-feed
 
 jekyll_get_json:
   - data: feed

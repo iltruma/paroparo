@@ -6,7 +6,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["iltruma"]
   spec.email         = ["casini.cosimo@gmail.com"]
 
-  spec.summary       = "Paroparo Project"
+  spec.summary       = "Paroparo"
   spec.homepage      = "https://paroparo.it"
   spec.license       = "MIT"
 
@@ -18,4 +18,6 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "jekyll-get-json"
   spec.add_runtime_dependency "jekyll-minifier"
   spec.add_runtime_dependency "jekyll-seo-tag"
+  spec.add_runtime_dependency "jekyll-sitemap"
+  spec.add_runtime_dependency "jekyll-feed"
 end
