@@ -20,4 +20,5 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "jekyll-seo-tag"
   spec.add_runtime_dependency "jekyll-sitemap"
   spec.add_runtime_dependency "jekyll-feed"
+  spec.add_runtime_dependency "rouge"
 end

@@ -16,3 +16,5 @@ gem "jekyll-watch", "~> 2.2"
 gem "jekyll-sitemap", "~> 1.4"
 
 gem "jekyll-feed", "~> 0.15.1"
+
+gem "rouge", "~> 3.26"

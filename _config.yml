@@ -37,7 +37,7 @@ locale: it_IT
 
 # BUILD SETTINGS
 markdown: kramdown
-#highlighter: rouge # or pygments or null
+highlighter: rouge
 # theme: jekyll-sleek # Uncomment if you're using the theme as a ruby gem
 exclude:
   - README.md

@@ -2,9 +2,13 @@
 layout: default
 ---
 
-<section class="bg-dark text-light overlay has-divider" data-jarallax data-speed="0.5" data-overlay>
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/img/posts/{{page.featured-img}}.jpg" alt="Image"
-    class="bg-image opacity-50">
+<section class="has-divider text-light jarallax bg-dark" data-jarallax data-speed="0.5" data-overlay data-img-position="30% 60%">
+  {% if page.featured-img %}
+    <img src="{{ site.url }}{{ site.baseurl }}/assets/img/posts/{{page.featured-img}}.jpg" alt="Image" class="jarallax-img opacity-50">
+  {% else %}
+    <img src="{{ '/assets/img/sfondo_macaw.png' | relative_url }}" alt="" class="jarallax-img opacity-50">
+  {% endif %}
+
   <div class="container pt-6">
     <div class="row justify-content-center">
       <div class="col-xl-8">
@@ -19,7 +23,7 @@ layout: default
             <img src="{{ '/assets/img/avatars/male-1.jpg' | relative_url }}" alt="Avatar" class="avatar mr-2">
           </a>
           <div>
-            <div>by <a href="#">Benjamin Cameron</a>
+            <div>by <a href="#">{{page.author}}</a>
             </div>
             <div class="text-small text-muted">{{ page.date | date_to_string }}</div>
             <span>
