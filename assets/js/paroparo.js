@@ -7,7 +7,7 @@ $(document).ready(function () {
         var caption = $(this).data('caption') || '';
         var permalink = $(this).data('permalink') || '';
         if ( item.type === 'image' ) {
-            caption = '<h4 class=\"text-white\">' + (caption.length ? caption : '') + '</h6><p><a href="' + permalink + '">Link Instagram</a></p>' ;
+            caption = '<h4 class=\"text-light\">' + (caption.length ? caption : '') + '</h6><p><a href="' + permalink + '">Link Instagram</a></p>' ;
         }
         return caption;
         }
