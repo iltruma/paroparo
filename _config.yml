@@ -1,10 +1,7 @@
 # SITE CONFIGURATION
 title: Paroparo # your site title
 author: iltruma # You :P
-description: > # Meta description of Homepage
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+description: "Paroparo description"
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 
@@ -14,19 +11,33 @@ sass:
 
 # THEME SETTINGS
 navigation: # Navigation links
-  - {name: 'Projects', link: '/'}
+  - {name: 'Blog', link: '/blog'}
   - {name: 'Feed', link: '/feed'}
-  - {name: 'About', link: '/about'}
+  - {name: 'Chi Siamo', link: '/chi-siamo'}
+  - {name: 'Contatti', link: '/contatti'}
 
-email: your-email@domain.com # email for form submission
-
-twitter_username: iltruma # replace with your_twitter_username or comment to remove link from footer
-github_username:  iltruma # replace with your_github_username or comment to remove link from footer
-instagram_username: iltruma # replace with your_instagram_username or comment to remove link from footer
+#SEO
+#tagline: "" # A short description title | tagline header
+#facebook:
+#  app_id: 1234
+#  publisher: 1234
+#  admins: 1234
+#logo: 
+#social:
+#  name: Paroparo
+#  links:
+#    - https://instagram.com/paroparo
+#google_site_verification: 
+email: info@paroparo.it
+email_1: niccolo@paroparo.it
+email_2: cosimo@paroparo.it
+address: "Foresta di Figline Valdarno"
+city: "Firenze, Italia"
+locale: it_IT
 
 # BUILD SETTINGS
 markdown: kramdown
-highlighter: rouge # or pygments or null
+highlighter: rouge
 # theme: jekyll-sleek # Uncomment if you're using the theme as a ruby gem
 exclude:
   - README.md
@@ -45,13 +56,24 @@ permalink: /:title/
 compress_html:
   clippings: all
 
-paginate: 2
-paginate_path: "/page:num/"
+#PAGINATION
+pagination:
+  enabled: true
+  per_page: 10
+  trail: 
+    before: 2 # The number of links before the current page
+    after: 2  # The number of links after the current page
 
+jekyll_get_json:
+  - data: feed
+    json: 'https://profilepageimages.usecue.com/images/casini.cosimo/images.json'
 
 plugins:
   - jekyll-spaceship
-  - jekyll-paginate
-  - jekyll-feed
-  - jekyll-sitemap
   - jekyll-watch
+  - jekyll-get-json
+  - jekyll-minifier
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-feed
+  - jekyll-paginate-v2

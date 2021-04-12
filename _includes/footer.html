@@ -1,53 +1,97 @@
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1440 126" style="enable-background:new 0 0 1440 126;" xml:space="preserve">
-  <path style="fill:var(--light);" d="M685.6,38.8C418.7-11.1,170.2,9.9,0,30v96h1440V30C1252.7,52.2,1010,99.4,685.6,38.8z"></path>
-  </svg>
-  <footer class="bg-light pb-5">
+<footer class="pb-4 bg-primary-dark text-light" id="footer">
   <div class="container">
-    <div class="row">
-      <div class="col-12 col-md mr-4">
-        <i class="fas fa-copyright text-dark"></i>
-        <small class="d-block mt-3 mb-3 text-muted">© 2021 Anchor Bootstrap</small>
+    <div class="row mb-5">
+      <div class="col">
+        <div class="card card-body border-0 o-hidden mb-0 bg-primary text-light">
+          <div class="position-relative d-flex flex-column flex-md-row justify-content-between align-items-center">
+            <div class="h3 text-center mb-md-0">Vuoi collaborare con noi?</div>
+            <a href="{{'/contatti' | relative_url}}" class="btn btn-lg btn-white">Contattaci</a>
+          </div>
+          <div class="decoration layer-0">
+            <img class="bg-primary-2" src="{{ '/assets/img/decorations/deco-blob-1.svg' | relative_url }}" alt="deco-blob-1 decoration" data-inject-svg />
+          </div>
+        </div>
+
       </div>
-      <div class="col-6 col-md">
-        <h5 class="mb-4 text-dark">Features</h5>
-        <ul class="list-unstyled text-small">
-          <li><a class="text-muted" href="#">Cool stuff</a></li>
-          <li><a class="text-muted" href="#">Random feature</a></li>
-          <li><a class="text-muted" href="#">Team feature</a></li>
-          <li><a class="text-muted" href="#">Stuff for developers</a></li>
+    </div>
+    <div class="row mb-5">
+      <div class="col-8 col-xl-10">
+        <h5>Contatti</h5>
+        <ul class="list-unstyled">
+          <li class="mb-3 d-flex">
+            <span class="h4 m-0 mdi mdi-map-marker text-light"></span>
+            <div class="ml-3">
+              <span class="nav-link p-0">
+                {{site.address}}<br>
+                {{site.city}}
+              </span>
+            </div>
+          </li>
+          <li class="mb-3 d-flex">
+            <span class="h4 m-0 mdi mdi-email text-light"></span>
+            <div class="ml-3">
+              <a  class="nav-link p-0" href="mailto:{{site.email}}">{{site.email}}</a>
+            </div>
+          </li>
+          <li class="mb-3 d-flex">
+            <span class="h4 m-0 mdi mdi-bird text-light"></span>
+            <div class="ml-3">
+              <a class="nav-link p-0" href="mailto:{{site.email_1}}">{{site.email_1}}</a>
+              <a class="nav-link p-0" href="mailto:{{site.email_1}}">{{site.email_2}}</a>
+            </div>
+          </li>
         </ul>
       </div>
-      <div class="col-6 col-md">
-        <h5 class="mb-4 text-dark">Resources</h5>
-        <ul class="list-unstyled text-small">
-          <li><a class="text-muted" href="#">Resource</a></li>
-          <li><a class="text-muted" href="#">Resource name</a></li>
-          <li><a class="text-muted" href="#">Another resource</a></li>
-          <li><a class="text-muted" href="#">Final resource</a></li>
-        </ul>
-      </div>
-      <div class="col-6 col-md">
-        <h5 class="mb-4 text-dark">Utilities</h5>
-        <ul class="list-unstyled text-small">
-          <li><a class="text-muted" href="#">Business</a></li>
-          <li><a class="text-muted" href="#">Education</a></li>
-          <li><a class="text-muted" href="#">Government</a></li>
-          <li><a class="text-muted" href="#">Gaming</a></li>
-        </ul>
-      </div>
-      <div class="col-6 col-md">
-        <h5 class="mb-4 text-dark">About</h5>
-        <ul class="list-unstyled text-small">
-          <li><a class="text-muted" href="#">Team</a></li>
-          <li><a class="text-muted" href="#">Locations</a></li>
-          <li><a class="text-muted" href="#">Privacy</a></li>
-          <li><a class="text-muted" href="#">Terms</a></li>
+      <div class="col-4 col-xl-2">
+        <h5>Naviga</h5>
+        <ul class="nav flex-column">
+          {% for item in site.navigation %}
+          <li class="nav-item">
+            <a href="{{ item.link | relative_url }}" class="nav-link">{{ item.name }}</a>
+          </li>
+          {% endfor %}
         </ul>
       </div>
     </div>
+    <div class="row justify-content-center mb-2">
+      <div class="col-auto">
+        <ul class="nav">
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <span class="h3 mdi mdi-instagram" alt="instagram social icon"></span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <span class="h3 mdi mdi-twitter" alt="twitter social icon"></span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <span class="h3 mdi mdi-youtube" alt="youtube social icon"></span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <span class="h3 mdi mdi-linkedin" alt="linkedin social icon"></span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <span class="h3 mdi mdi-facebook" alt="facebook social icon"></span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col col-md-auto text-center">
+        <p class="small text-muted mb-1">&copy; {{'now' | date: "%Y"}} {{site.title}}</p>
+        <p class="small text-muted mb-0">Questo sito è protetto con reCAPTCHA ed è soggetto alla Google "<a href="https://www.google.com/policies/privacy/">Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service".</a></p>
+      </div>
+    </div>
   </div>
-  </footer>
-
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</footer>
+<a href="#" class="btn back-to-top btn-primary btn-round" data-smooth-scroll data-aos="fade-up" data-aos-offset="1000" data-aos-mirror="true" data-aos-once="false">
+  <span class="m-0 mdi mdi-arrow-up"></span>
+</a>

@@ -2,12 +2,200 @@
 layout: default
 ---
 
-{% include jumbotron.html %}
-
-<section class="album">
-    <div class="row row-eq-height">
-        {% for post in site.posts %}
-            {% include card.html %} 
-        {% endfor %}
+<section class="bg-primary text-light o-hidden has-divider jarallax" data-jarallax data-speed="0.5">
+  <img src="{{ '/assets/img/sfondo.jpg' | relative_url }}" alt="" class="jarallax-img opacity-80">
+    <div class="container">
+      <div class="row align-items-center min-vh-50">
+        <div class="col-xl-6 text-center text-lg-left mb-4 mb-lg-0">
+          <h1 class="display-3">Push to greater heights.</h1>
+          <div class="my-2">
+            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+          </div>
+          <a href="#" class="btn btn-lg btn-primary-2">Start a trial</a>
+        </div>
+        <div class="col-xl-6 text-center" data-aos="fade-left">
+          
+        </div>
+      </div>
     </div>
-</section>
+    <div class="divider">
+      <img src="{{ '/assets/img/dividers/divider-2.svg' | relative_url }}" alt="graphical divider" data-inject-svg />
+    </div>
+ </section>
+
+  <section>
+    <div class="container">
+      <div class="row align-items-center justify-content-around">
+        <div class="col-md-5 col-xl-6 mb-4 mb-md-0" data-aos="fade-right" data-aos-delay="100">
+          <img src="{{ '/assets/img/inner-2.jpg' | relative_url }}" alt="Image" class="rounded shadow-3d layer-2">
+          <div class="decoration mt-6 top opacity-20 scale-2">
+            <img class="bg-primary" src="{{ '/assets/img/decorations/deco-blob-10.svg' | relative_url }}"
+                alt="deco-blob-2 decoration" data-inject-svg />
+          </div>
+          <div class="decoration bottom left opacity-80 scale-2">
+              <img class="bg-primary-3" src="{{ '/assets/img/decorations/deco-dots-6.svg' | relative_url }}"
+                  alt="deco-dots-6 decoration" data-inject-svg />
+          </div>
+          <div class="decoration bottom right opacity-80 scale-2">
+            <img class="bg-primary-3" src="{{ '/assets/img/decorations/deco-dots-6.svg' | relative_url }}"
+                alt="deco-dots-6 decoration" data-inject-svg />
+          </div>
+        </div>
+        <div class="col-md-7 col-xl-6" data-aos="fade-left" data-aos-delay="200">
+          <div class="row justify-content-center">
+            <div class="col-xl-8">
+              <span class="badge badge-primary">La nostra missione</span>
+              <div class="my-3">
+                <span class="h1">Paro? Paro Paro!</span>
+              </div>
+              <p class="lead">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati.</p>
+              <p class="lead mb-0">Cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="row mb-4">
+        <div class="col">
+          <h2 class="h1">Le nostre passioni smodate</h2>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
+          <div class="card card-body hover-shadow-3d">
+            <div class="icon-round mb-3 mb-md-4 bg-primary">
+              <span class="h4 m-0 mdi mdi-printer-3d-nozzle text-primary"></span>
+            </div>
+            <h4>Stampa 3D</h4>
+            <p>
+              Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.
+            </p>
+            <a href="#">Learn More</a>
+          </div>
+        </div>
+        <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
+          <div class="card card-body hover-shadow-3d">
+            <div class="icon-round mb-3 mb-md-4 bg-primary-2">
+              <span class="h4 m-0 mdi mdi-hammer-wrench text-primary-2"></span>
+            </div>
+            <h4>Ingegneria</h4>
+            <p>
+              Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.
+            </p>
+            <a href="#">Learn More</a>
+          </div>
+        </div>
+        <div class="col-md-3" data-aos="fade-up" data-aos-delay="300">
+          <div class="card card-body hover-shadow-3d">
+            <div class="icon-round mb-3 mb-md-4 bg-primary-3">
+              <span class="h4 m-0 mdi mdi-chef-hat text-primary-3"></span>
+            </div>
+            <h4>Cucina</h4>
+            <p>
+              Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.
+            </p>
+            <a href="#">Learn More</a>
+          </div>
+        </div>
+        <div class="col-md-3" data-aos="fade-up" data-aos-delay="400">
+          <div class="card card-body hover-shadow-3d">
+            <div class="icon-round mb-3 mb-md-4 bg-primary-4">
+              <span class="h4 m-0 mdi mdi-rocket-launch text-primary-4"></span>
+            </div>
+            <h4>Spazio</h4>
+            <p>
+              Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.
+            </p>
+            <a href="#">Learn More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-primary-alt has-divider">
+    <div class="divider flip-y">
+      <img src="{{ '/assets/img/dividers/divider-3.svg' | relative_url }}" alt="graphical divider" data-inject-svg />
+    </div>
+    <div class="container">
+      <div class="row align-items-center justify-content-around">
+        <div class="col-md-6 col-xl-5 mb-3 mb-md-0">
+          <div class="row justify-content-center">
+            <div class="col-xl-10">
+              <h3 class="display-4">Learn, Share, Immerse.</h3>
+              <p class="lead">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa.</p>
+              <a href="{{ '/feed' | relative_url}}" class="btn bg-primary btn-lg text-light hover-arrow">Vai al nostro Feed!</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 mb-3 mt-6 mt-md-0 mb-md-0">
+          <div class="image-collage">
+            <a href="{{ '/assets/img/article-3.jpg' | relative_url }}" data-fancybox="Collage Gallery">
+              <div data-jarallax-element="0 12">
+                <img src="{{ '/assets/img/article-3.jpg' | relative_url }}" alt="Image" class="rounded" data-aos="fade-right">
+              </div>
+            </a>
+            <a href="{{ '/assets/img/inner-3.jpg' | relative_url }}" data-fancybox="Collage Gallery">
+              <div>
+                <img src="{{ '/assets/img/inner-3.jpg' | relative_url }}" alt="Image" class="rounded" data-aos="fade-up">
+              </div>
+            </a>
+            <a href="{{ '/assets/img/inner-4.jpg' | relative_url }}" data-fancybox="Collage Gallery">
+              <div data-jarallax-element="0 -12">
+                <img src="{{ '/assets/img/inner-4.jpg' | relative_url }}" alt="Image" class="rounded" data-aos="fade-left">
+              </div>
+            </a>
+          </div>
+          <div class="decorations-wrapper d-none d-lg-block">
+            <div class="decoration middle-x top mt-6 opacity-80 scale-3">
+              <img class="bg-primary" src="{{ '/assets/img/decorations/deco-dots-1.svg' | relative_url }}"
+                  alt="deco-dots-1 decoration" data-inject-svg />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="p-0">
+      <div class="container">
+        <div class="row mb-4">
+          <div class="col">
+            <h2 class="h1">Il team di Paroparo</h2>
+          </div>
+        </div>
+        <div class="row my-6 justify-content-center">
+          <div class="col-xl-3 col-md-6 layer-2" data-aos="fade-up" data-aos-delay="100">
+            <div class="card card-lg card-body align-items-center shadow-3d hover-shadow-3d">
+              <span class="badge badge-primary badge-top">Pappagallo Verde</span>
+              <img src="{{ '/assets/img/avatars/female-1.jpg' | relative_url }}" alt="Niccolò Casini" class="avatar avatar-xlg mb-3">
+              <h5 class="mb-0">Niccolò Casini</h5>
+              <span>Creatore</span>
+            </div>
+          </div>
+          <div class="col-xl-3 col-md-6 layer-2" data-aos="fade-up" data-aos-delay="200">
+            <div class="card card-lg card-body align-items-center shadow-3d hover-shadow-3d">
+              <span class="badge badge-primary-2 badge-top">Pappagallo Arancio</span>
+              <img src="{{ '/assets/img/avatars/male-2.jpg' | relative_url }}" alt="Cosimo Casini" class="avatar avatar-xlg mb-3">
+              <h5 class="mb-0">Cosimo Casini</h5>
+              <span>Creatore</span>
+            </div>
+          </div>
+          <div class="decoration mt-6 opacity-20 scale-3 d-none d-lg-block" data-aos-delay="300">
+            <img class="bg-primary" src="{{ '/assets/img/decorations/deco-blob-6.svg' | relative_url }}"
+                alt="deco-blob-6 decoration" data-inject-svg />
+          </div>
+        </div>
+        <div class="row text-center justify-content-center">
+            <p>Sei interessato a noi? Vieni a scoprirci!</p>
+        </div>
+        <div class="row text-center justify-content-center">
+          <a class="btn bg-primary btn-lg text-light hover-arrow" href="{{ '/chi-siamo' | relative_url }}">Chi Siamo</a>
+        </div>
+      </div>
+    </section>
+  </section>

@@ -1,0 +1,115 @@
+---
+layout: default
+---
+
+  <section class="has-divider text-light jarallax bg-dark" data-jarallax data-speed="0.5" data-overlay data-img-position="30% 60%">
+    <img src="{{ '/assets/img/sfondo_macaw.png' | relative_url }}" alt="" class="jarallax-img opacity-50">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-6 col-md-8">
+                <h1 class="display-4">Contatti</h1>
+                <p class="lead mb-0">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium.</p>
+            </div>
+        </div>
+    </div>
+    <div class="divider">
+        <img src="{{ '/assets/img/dividers/divider-2.svg' | relative_url }}"  alt="graphical divider" data-inject-svg />
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-sm-4 mb-3 mb-sm-0">
+          <div class="mb-2 icon-round icon-round-sm bg-primary d-inline-flex">
+            <span class="h4 m-0 mdi mdi-map-marker text-primary"></span>
+          </div>
+          <h3 class="h2">Indirizzo</h3>
+          <span class="lead">
+            {{site.address}}<br>
+            {{site.city}}
+          </span>
+        </div>
+        <div class="col-sm-4 mb-3 mb-sm-0">
+          <div class="mb-2 icon-round icon-round-sm bg-primary d-inline-flex">
+            <span class="h4 m-0 mdi mdi-email text-primary "></span>
+          </div>
+          <h3 class="h2">Email</h3>
+          <a href="mailto:{{site.email}}" class="lead">{{site.email}}</a>
+        </div>
+        <div class="col-sm-4 mb-3 mb-sm-0">
+          <div class="mb-2 icon-round icon-round-sm bg-primary d-inline-flex">
+            <span class="h4 m-0 mdi mdi-bird text-primary"></span>
+          </div>
+          <h3 class="h2">Email dei Pappagalli</h3>
+          <a href="mailto:{{site.email_1}}" class="lead">{{site.email_1}}</a><br>
+          <a href="mailto:{{site.email_2}}" class="lead text-primary-2">{{site.email_2}}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="p-0">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div class="min-vh-50 w-100 rounded shadow-3d" id="mapid">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="text-center mb-4">
+            <h2 class="h1">Lasciaci un messaggio!</h2>
+            <p class="lead">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.
+            </p>
+          </div>
+          <form action="https://send.pageclip.co/HyK0A8mzWVrDfTMxLFR0XudFA9FQHaCE/Contatti" class="pageclip-form" id="pageclip-form" method="post">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Nome Cognome *</label>
+                  <input name="nome" type="text" placeholder="Parrot Jones" class="form-control" required>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Indirizzo Email *</label>
+                  <input name="email" type="email" placeholder="pjones@yoursite.com" class="form-control" required>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Nome Azienda</label>
+                  <input name="azienda" type="text" placeholder="Parrot Inc." class="form-control">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Telefono</label>
+                  <input name="telefono" type="tel" placeholder="+39 333 11 22 345" class="form-control">
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-group">
+                  <label>Messaggio:</label>
+                  <textarea class="form-control" name="contact-message" rows="10" placeholder="Cosa vuoi scriverci?"></textarea>
+                </div>
+              </div>
+              <div class="col-12">
+                <div data-recaptcha data-sitekey="6Lf_baQaAAAAALU1DsTY2rz88lH_xRAIjPLnc_eQ"></div>
+              </div>
+              <div class="col">
+                <button type="submit" class="btn btn-primary btn-loading pageclip-form__submit" >
+                  <span>Invia Messaggio</span><span class="ml-1 mdi mdi-send"></span>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
