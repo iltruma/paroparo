@@ -35,3 +35,31 @@ article {
         }
     }
 }
+
+.parrots-leaves{
+    display: flex;
+    justify-content: right;
+    right: -$spacer;
+
+    .leaves {
+        position: absolute;
+        transition: transform $transition-time linear;
+        bottom: 0;
+        pointer-events: none;
+    }
+
+    &:hover {
+        .leaves {
+            opacity: 0.75;
+        }
+        #leaves_1 {
+            transform: translateY(50%);
+        }
+        #leaves_2 {
+            transform: rotateZ(-15deg) translateY(40%);
+        }
+        #leaves_3 {
+            transform: rotateZ(15deg) translateY(40%);
+        }
+    }
+  }
