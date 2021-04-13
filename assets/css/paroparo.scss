@@ -1,7 +1,7 @@
 ---
 ---
 
-@import "theme";
+@import "theme.min";
 
 .hljs {
     @extend .bg-primary-alt, .rounded, .p-2, .mb-2;
@@ -39,11 +39,11 @@ article {
 .parrots-leaves{
     display: flex;
     justify-content: right;
-    right: -$spacer;
+    right: -1rem;
 
     .leaves {
         position: absolute;
-        transition: transform $transition-time linear;
+        transition: transform 0.2s linear;
         bottom: 0;
         pointer-events: none;
     }
