@@ -28,7 +28,7 @@ layout: default
             <div class="row justify-content-center">
                 <div class="col">
                     <div class="row" data-isotope-collection data-isotope-id="example-2">
-                        {% for f in site.data.feed %}
+                        {% for f in site.data.feed reversed %}
                         <div data-isotope-item class="col-3" data-category="images">
                             <div class="card shadow-3d">
                                 <a href="{{f.image_small}}" data-fancybox="images" data-options="{'loop':true}" data-caption="{{f.caption | escape}}" data-permalink="{{f.permalink}}">
