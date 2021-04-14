@@ -16,7 +16,6 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "jekyll-spaceship", "~> 0.9.7"
   spec.add_runtime_dependency "jekyll-watch"
   spec.add_runtime_dependency "jekyll-get-json"
-  spec.add_runtime_dependency "jekyll-minifier"
   spec.add_runtime_dependency "jekyll-seo-tag"
   spec.add_runtime_dependency "jekyll-sitemap"
   spec.add_runtime_dependency "jekyll-feed"

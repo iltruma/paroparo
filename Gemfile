@@ -5,8 +5,6 @@ gemspec
 
 gem "jekyll-get-json", "~> 1.0"
 
-gem "jekyll-minifier", "~> 0.1.10"
-
 gem "jekyll-seo-tag", "~> 2.7"
 
 gem "jekyll-spaceship", "~> 0.9.8"
