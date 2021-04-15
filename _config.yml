@@ -50,7 +50,7 @@ exclude:
   - vendor
   - npm-debug.log
   - gulpfile.js
-  - assets
+  - assets/vendor
 
 include: ['_pages']
 permalink: /:title/
