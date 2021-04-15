@@ -11,9 +11,10 @@ const sourcemaps   = require('gulp-sourcemaps');
 const concatCss    = require('gulp-concat-css');
 const merge        = require('merge2');
 
+//Task che compila i file SASS, li unisce con le gli altri CSS (Leaflet, hightlight, ...) e li minimizza
 gulp.task('style', function () {
   return merge(
-      gulp.src("assets/css/theme.scss")
+      gulp.src("assets/sass/theme.scss")
       .pipe(sass({
           includePaths: ['assets/css'],
           onError: browserSync.notify
@@ -25,7 +26,6 @@ gulp.task('style', function () {
     .pipe(autoprefixer())
     .pipe(concat("paroparo.min.css"))
     .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest('_site/assets/css'))
     .pipe(browserSync.reload({stream:true}))
     .pipe(gulp.dest('assets/css'));
 });
