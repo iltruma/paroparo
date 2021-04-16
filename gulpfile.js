@@ -57,24 +57,31 @@ gulp.task('build:scripts:optional', function() {
 // Task che compila tutti i JS
 gulp.task('build:scripts',  gulp.series('build:scripts:critical', 'build:scripts:optional'));
 
-// gulp.task('scripts', function() {
-//   return gulp.src
-//       ([
-//       'assets/src/js/jquery/*.js', 
-//       'assets/src/js/vendor/*.js', 
-//       'assets/src/js/plugins/*.js',
-//       'assets/src/js/custom/*.js',
-//       ])
+// Place fonts in proper location
+gulp.task('build:fonts', function() {
+  return gulp.src('assets/fonts/*')
+    .pipe(gulp.dest('public/fonts'))
+    .pipe(browserSync.stream())
+});
 
-//   .pipe(concat('bundle.js'))
-//   .pipe(rename({suffix: '.min'}))
-//   .pipe(uglify())
-//   .pipe(gulp.dest('assets/dist/js/'));
+// // Place fonts in proper location
+// gulp.task('build:fonts', function() {
+//   return gulp.src(paths.fontFiles + '/**/**.*')
+//     .pipe(rename(function(path) {path.dirname = '';}))
+//     .pipe(gulp.dest(paths.jekyllFontFiles))
+//     .pipe(gulp.dest(paths.siteFontFiles))
+//     .pipe(browserSync.stream())
+//     .on('error', gutil.log);
 // });
-// // Define task to optimize images in project
+
+// gulp.task('copy-fonts', function () {
+//   return gulp.src('source/fonts/**/*')
+//     .pipe(gulp.dest('assets/fonts'))
+// })
 
 // gulp.task('images', function() {
 //   return gulp.src('assets/src/img/**/*')
 //   .pipe(cache(imagemin({ optimizationLevel:5, progressive: true, interlaced: true })))
 //   .pipe(gulp.dest('assets/dist/img'));
 // });
+
