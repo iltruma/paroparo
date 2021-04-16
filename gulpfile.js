@@ -27,7 +27,8 @@ gulp.task('build:styles', function () {
     .pipe(sourcemaps.init())
     .pipe(cleanCSS())
     .pipe(autoprefixer())
-    .pipe(concat("paroparo.min.css"))
+    .pipe(concat("paroparo.css"))
+    .pipe(rename({suffix: '.min'}))
     .pipe(sourcemaps.write('.'))
     .pipe(reload({stream: true}))
     .pipe(gulp.dest('public/css'));
@@ -35,8 +36,9 @@ gulp.task('build:styles', function () {
 
 //Task che compila i file JS critici (Bootstrap, Popper e Jquery)
 gulp.task('build:scripts:critical', function() {
-  return gulp.src('assets/js/vendor/critical/*.js')
-    .pipe(concat('paroparo-critical.min.js'))
+  return gulp.src(['assets/js/vendor/critical/jquery.min.js', 'assets/js/vendor/critical/popper.min.js', 'assets/js/vendor/critical/bootstrap.js'])
+    .pipe(concat('paroparo-critical.js'))
+    .pipe(rename({suffix: '.min'}))
     .pipe(uglify())
     .pipe(reload({stream: true}))
     .pipe(gulp.dest('public/js'))
@@ -45,7 +47,8 @@ gulp.task('build:scripts:critical', function() {
 //Task che compila i file JS opzionali e quelli custom del sito
 gulp.task('build:scripts:optional', function() {
   return gulp.src(['assets/js/vendor/!(leap)*.js', 'assets/js/vendor/leap.min.js', 'assets/js/app/custom.js'])
-    .pipe(concat('paroparo.min.js'))
+    .pipe(concat('paroparo.js'))
+    .pipe(rename({suffix: '.min'}))
     .pipe(uglify())
     .pipe(reload({stream: true}))
     .pipe(gulp.dest('public/js'))
@@ -53,3 +56,25 @@ gulp.task('build:scripts:optional', function() {
 
 // Task che compila tutti i JS
 gulp.task('build:scripts',  gulp.series('build:scripts:critical', 'build:scripts:optional'));
+
+// gulp.task('scripts', function() {
+//   return gulp.src
+//       ([
+//       'assets/src/js/jquery/*.js', 
+//       'assets/src/js/vendor/*.js', 
+//       'assets/src/js/plugins/*.js',
+//       'assets/src/js/custom/*.js',
+//       ])
+
+//   .pipe(concat('bundle.js'))
+//   .pipe(rename({suffix: '.min'}))
+//   .pipe(uglify())
+//   .pipe(gulp.dest('assets/dist/js/'));
+// });
+// // Define task to optimize images in project
+
+// gulp.task('images', function() {
+//   return gulp.src('assets/src/img/**/*')
+//   .pipe(cache(imagemin({ optimizationLevel:5, progressive: true, interlaced: true })))
+//   .pipe(gulp.dest('assets/dist/img'));
+// });
