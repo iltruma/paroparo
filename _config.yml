@@ -47,7 +47,6 @@ exclude:
   - package-lock.json
   - Gemfile
   - Gemfile.lock
-  - vendor
   - npm-debug.log
   - gulpfile.js
   - assets/vendor

@@ -1,6 +1,3 @@
----
----
-
 $(document).ready(function () {
     //Fancybox Feed
     $('[data-fancybox="images"]').fancybox({
