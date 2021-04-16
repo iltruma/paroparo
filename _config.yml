@@ -5,10 +5,6 @@ description: "Paroparo description"
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://paroparo.it" # the base hostname & protocol for your site, e.g. http://example.com
 
-#sass:
-#    sass_dir: _sass
-#    style: compressed
-
 # THEME SETTINGS
 navigation: # Navigation links
   - {name: 'Blog', link: '/blog'}
@@ -38,7 +34,6 @@ locale: it_IT
 # BUILD SETTINGS
 markdown: kramdown
 highlighter: rouge
-# theme: jekyll-sleek # Uncomment if you're using the theme as a ruby gem
 exclude:
   - README.md
   - node_modules
@@ -51,7 +46,6 @@ exclude:
   - gulpfile.js
   - assets/vendor
 
-include: ['_pages']
 permalink: /:title/
 
 compress_html:

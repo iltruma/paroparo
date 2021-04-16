@@ -30,7 +30,7 @@ gulp.task('build:styles', function () {
     .pipe(concat("paroparo.min.css"))
     .pipe(sourcemaps.write('.'))
     .pipe(reload({stream: true}))
-    .pipe(gulp.dest('_dist/css'));
+    .pipe(gulp.dest('public/css'));
 });
 
 //Task che compila i file JS critici (Bootstrap, Popper e Jquery)
@@ -39,7 +39,7 @@ gulp.task('build:scripts:critical', function() {
     .pipe(concat('paroparo-critical.min.js'))
     .pipe(uglify())
     .pipe(reload({stream: true}))
-    .pipe(gulp.dest('_dist/js'))
+    .pipe(gulp.dest('public/js'))
 });
 
 //Task che compila i file JS opzionali e quelli custom del sito
@@ -48,7 +48,7 @@ gulp.task('build:scripts:optional', function() {
     .pipe(concat('paroparo.min.js'))
     .pipe(uglify())
     .pipe(reload({stream: true}))
-    .pipe(gulp.dest('_dist/js'))
+    .pipe(gulp.dest('public/js'))
 });
 
 // Task che compila tutti i JS
