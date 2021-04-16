@@ -1,0 +1,60 @@
+.hljs {
+    @extend .bg-primary-alt, .rounded, .p-2, .mb-2;
+}
+
+blockquote {
+    > p {
+        @extend .h5,.m-0;
+    }
+    @extend .bg-primary-alt;
+}
+
+div.highlight, pre.highlight {
+    @extend .bg-primary-alt;
+}
+
+article {
+    ol {
+      > li{
+        &:not(:last-child){
+            @extend .mb-2;
+        }
+      }
+    }
+    table {
+        @extend .table;
+    }
+    a {
+        > img {
+            @extend .rounded, .mx-auto, .d-block, .shadow-3d;
+        }
+    }
+}
+
+.parrots-leaves{
+    display: flex;
+    justify-content: right;
+    right: -1rem;
+
+    .leaves {
+        position: absolute;
+        transition: transform 0.2s linear;
+        bottom: 0;
+        pointer-events: none;
+    }
+
+    &:hover {
+        .leaves {
+            opacity: 0.75;
+        }
+        #leaves_1 {
+            transform: translateY(50%);
+        }
+        #leaves_2 {
+            transform: rotateZ(-15deg) translateY(40%);
+        }
+        #leaves_3 {
+            transform: rotateZ(15deg) translateY(40%);
+        }
+    }
+  }
