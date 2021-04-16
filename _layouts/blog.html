@@ -3,7 +3,7 @@ layout: default
 ---
 
 <section class="has-divider text-light jarallax bg-dark" data-jarallax data-speed="0.5" data-overlay data-img-position="30% 60%">
-    <img src="{{ '/_assets/img/sfondo_macaw.png' | relative_url }}" alt="" class="jarallax-img opacity-50">
+    <img src="{{ '/public/img/sfondo_macaw.png' | relative_url }}" alt="" class="jarallax-img opacity-50">
     <div class="container">
         <div class="row">
             <div class="col-xl-6 col-md-8">
@@ -13,7 +13,7 @@ layout: default
         </div>
     </div>
     <div class="divider">
-        <img src="{{ '/_assets/img/dividers/divider-2.svg' | relative_url }}" alt="graphical divider" data-inject-svg />
+        <img src="{{ '/public/img/dividers/divider-2.svg' | relative_url }}" alt="graphical divider" data-inject-svg />
     </div>
 </section>
 
@@ -25,7 +25,7 @@ layout: default
                     <div class="col-md-6 col-xl-4 d-flex" data-aos="fade-up" data-aos-delay="{{forloop.index | times:100}}">
                         <div class="card shadow-3d">
                             <a href="{{ post.url | relative_url }}">
-                                <img src="{{ site.url }}{{ site.baseurl }}/_assets/img/{{post.featured-img}}" alt="Image" class="card-img-top">
+                                <img src="{{ site.url }}{{ site.baseurl }}/public/img/{{post.featured-img}}" alt="Image" class="card-img-top">
                                 <div class="card-body d-flex flex-column">
                                     <div class="d-flex justify-content-between mb-3">
                                     <div class="text-small d-flex">
@@ -43,7 +43,7 @@ layout: default
                                     <h4>{{ post.title | strip_html | truncate: 50 }}</h4>
                                     <p class="flex-grow-1">{{ post.content | strip_html | truncatewords: 20 }}</p>
                                     <div class="d-flex align-items-center mt-3">
-                                    <img src="{{ '/_assets/img/avatars/female-3.jpg' | relative_url }}" alt="Image" class="avatar avatar-sm">
+                                    <img src="{{ '/public/img/avatars/female-3.jpg' | relative_url }}" alt="Image" class="avatar avatar-sm">
                                     <div class="ml-1">
                                         <span class="text-small text-muted">By</span>
                                         <span class="text-small">{{ post.author }}</span>
@@ -57,7 +57,7 @@ layout: default
                     <div class="col-md-6 col-xl-4 d-flex" data-aos="fade-up" data-aos-delay="{{forloop.index | times:100}}">
                         {% assign mod = forloop.index | modulo : 2 %}
                         <a href="{{ post.url | relative_url }}" class="card card-body justify-content-between text-light shadow-3d {% if mod == 0%}bg-primary{% else %}bg-primary-2{%endif%}">
-                            <img src="{{ '/_assets/img/sfondo_blog.png' | relative_url }}" alt="Image" class="bg-image opacity-20" />
+                            <img src="{{ '/public/img/sfondo_blog.png' | relative_url }}" alt="Image" class="bg-image opacity-20" />
                             <div class="d-flex justify-content-between mb-3 position-relative layer-2">
                                 <div class="text-small d-flex position-relative">
                                     <div class="mr-2">
