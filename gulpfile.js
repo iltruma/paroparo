@@ -5,6 +5,7 @@ const concat       = require('gulp-concat');
 const cleanCSS     = require('gulp-clean-css');
 const del          = require('del');
 const gulp         = require('gulp');
+const reload       = browserSync.reload;
 const rename       = require('gulp-rename');
 const run          = require('gulp-run');
 const sass         = require('gulp-sass');
@@ -12,10 +13,9 @@ const sourcemaps   = require('gulp-sourcemaps');
 const concatCss    = require('gulp-concat-css');
 const merge        = require('merge2');
 const uglify       = require('gulp-uglify');
-const reload       = browserSync.reload;
 
 //Task che compila i file SASS, li unisce con le gli altri CSS dei vendor (Leaflet, hightlight, ...) e li minimizza nel file paroparo.min.css
-gulp.task('build:style', function () {
+gulp.task('build:styles', function () {
   return merge(
       gulp.src("assets/sass/app/theme.scss")
       .pipe(sass({
@@ -44,7 +44,7 @@ gulp.task('build:scripts:critical', function() {
 
 //Task che compila i file JS opzionali e quelli custom del sito
 gulp.task('build:scripts:optional', function() {
-  return gulp.src(['assets/js/vendor/*.js', 'assets/js/app/custom.js'])
+  return gulp.src(['assets/js/vendor/!(leap)*.js', 'assets/js/vendor/leap.min.js', 'assets/js/app/custom.js'])
     .pipe(concat('paroparo.min.js'))
     .pipe(uglify())
     .pipe(reload({stream: true}))
