@@ -17,12 +17,12 @@ const uglify       = require('gulp-uglify');
 //Task che compila i file SASS, li unisce con le gli altri CSS dei vendor (Leaflet, hightlight, ...) e li minimizza nel file paroparo.min.css
 gulp.task('build:styles', function () {
   return merge(
-      gulp.src("assets/sass/app/leap.scss")
+      gulp.src("_assets/sass/app/leap.scss")
       .pipe(sass({
-          includePaths: ['assets/sass/app'],
+          includePaths: ['_assets/sass/app'],
           onError: browserSync.notify
       })),
-      gulp.src("assets/css/vendor/*.css")
+      gulp.src("_assets/css/vendor/*.css")
     )
     .pipe(sourcemaps.init())
     .pipe(cleanCSS())
@@ -36,7 +36,7 @@ gulp.task('build:styles', function () {
 
 //Task che compila i file JS critici (Bootstrap, Popper e Jquery)
 gulp.task('build:scripts:critical', function() {
-  return gulp.src(['assets/js/vendor/critical/jquery.min.js', 'assets/js/vendor/critical/popper.min.js', 'assets/js/vendor/critical/bootstrap.js'])
+  return gulp.src(['_assets/js/vendor/critical/jquery.min.js', '_assets/js/vendor/critical/popper.min.js', '_assets/js/vendor/critical/bootstrap.js'])
     .pipe(concat('paroparo-critical.js'))
     .pipe(rename({suffix: '.min'}))
     .pipe(uglify())
@@ -46,7 +46,7 @@ gulp.task('build:scripts:critical', function() {
 
 //Task che compila i file JS opzionali e quelli custom del sito
 gulp.task('build:scripts:optional', function() {
-  return gulp.src(['assets/js/vendor/plugins/*.js', 'assets/js/vendor/leap.min.js', 'assets/js/app/custom.js'])
+  return gulp.src(['_assets/js/vendor/plugins/*.js', '_assets/js/vendor/leap.min.js', '_assets/js/app/custom.js'])
     .pipe(concat('paroparo.js'))
     .pipe(rename({suffix: '.min'}))
     .pipe(uglify())
@@ -59,29 +59,14 @@ gulp.task('build:scripts',  gulp.series('build:scripts:critical', 'build:scripts
 
 // Place fonts in proper location
 gulp.task('build:fonts', function() {
-  return gulp.src('assets/fonts/*')
+  return gulp.src('_assets/fonts/*')
     .pipe(gulp.dest('public/fonts'))
     .pipe(browserSync.stream())
 });
 
-// // Place fonts in proper location
-// gulp.task('build:fonts', function() {
-//   return gulp.src(paths.fontFiles + '/**/**.*')
-//     .pipe(rename(function(path) {path.dirname = '';}))
-//     .pipe(gulp.dest(paths.jekyllFontFiles))
-//     .pipe(gulp.dest(paths.siteFontFiles))
-//     .pipe(browserSync.stream())
-//     .on('error', gutil.log);
-// });
-
-// gulp.task('copy-fonts', function () {
-//   return gulp.src('source/fonts/**/*')
-//     .pipe(gulp.dest('assets/fonts'))
-// })
-
 // gulp.task('images', function() {
-//   return gulp.src('assets/src/img/**/*')
+//   return gulp.src('_assets/src/img/**/*')
 //   .pipe(cache(imagemin({ optimizationLevel:5, progressive: true, interlaced: true })))
-//   .pipe(gulp.dest('assets/dist/img'));
+//   .pipe(gulp.dest('_assets/dist/img'));
 // });
 
