@@ -17,7 +17,7 @@ const uglify       = require('gulp-uglify');
 //Task che compila i file SASS, li unisce con le gli altri CSS dei vendor (Leaflet, hightlight, ...) e li minimizza nel file paroparo.min.css
 gulp.task('build:styles', function () {
   return merge(
-      gulp.src("assets/sass/app/theme.scss")
+      gulp.src("assets/sass/app/leap.scss")
       .pipe(sass({
           includePaths: ['assets/sass/app'],
           onError: browserSync.notify
