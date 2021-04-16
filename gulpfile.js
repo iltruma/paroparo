@@ -1,3 +1,4 @@
+//Import dipendenze
 const autoprefixer = require('gulp-autoprefixer');
 const browserSync  = require('browser-sync').create();
 const concat       = require('gulp-concat');
@@ -11,7 +12,7 @@ const sourcemaps   = require('gulp-sourcemaps');
 const concatCss    = require('gulp-concat-css');
 const merge        = require('merge2');
 
-//Task che compila i file SASS, li unisce con le gli altri CSS (Leaflet, hightlight, ...) e li minimizza
+//Task che compila i file SASS, li unisce con le gli altri CSS dei vendor (Leaflet, hightlight, ...) e li minimizza nel file paroparo.min.css
 gulp.task('style', function () {
   return merge(
       gulp.src("assets/sass/theme.scss")
