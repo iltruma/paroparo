@@ -70,3 +70,4 @@ gulp.task('build:fonts', function() {
 //   .pipe(gulp.dest('_assets/dist/img'));
 // });
 
+gulp.task('build',  gulp.series('build:styles', 'build:scripts', 'build:fonts'));
