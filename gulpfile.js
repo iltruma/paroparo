@@ -46,7 +46,7 @@ gulp.task('build:scripts:critical', function() {
 
 //Task che compila i file JS opzionali e quelli custom del sito
 gulp.task('build:scripts:optional', function() {
-  return gulp.src(['assets/js/vendor/!(leap)*.js', 'assets/js/vendor/leap.min.js', 'assets/js/app/custom.js'])
+  return gulp.src(['assets/js/vendor/plugins/*.js', 'assets/js/vendor/leap.min.js', 'assets/js/app/custom.js'])
     .pipe(concat('paroparo.js'))
     .pipe(rename({suffix: '.min'}))
     .pipe(uglify())
