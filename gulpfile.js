@@ -11,13 +11,15 @@ const sass         = require('gulp-sass');
 const sourcemaps   = require('gulp-sourcemaps');
 const concatCss    = require('gulp-concat-css');
 const merge        = require('merge2');
+const uglify       = require('gulp-uglify');
+const reload       = browserSync.reload;
 
 //Task che compila i file SASS, li unisce con le gli altri CSS dei vendor (Leaflet, hightlight, ...) e li minimizza nel file paroparo.min.css
-gulp.task('style', function () {
+gulp.task('build:style', function () {
   return merge(
-      gulp.src("assets/sass/theme.scss")
+      gulp.src("assets/sass/app/theme.scss")
       .pipe(sass({
-          includePaths: ['assets/css'],
+          includePaths: ['assets/sass/app'],
           onError: browserSync.notify
       })),
       gulp.src("assets/css/vendor/*.css")
@@ -27,6 +29,27 @@ gulp.task('style', function () {
     .pipe(autoprefixer())
     .pipe(concat("paroparo.min.css"))
     .pipe(sourcemaps.write('.'))
-    .pipe(browserSync.reload({stream:true}))
-    .pipe(gulp.dest('assets/css'));
+    .pipe(reload({stream: true}))
+    .pipe(gulp.dest('_dist/css'));
 });
+
+//Task che compila i file JS critici (Bootstrap, Popper e Jquery)
+gulp.task('build:scripts:critical', function() {
+  return gulp.src('assets/js/vendor/critical/*.js')
+    .pipe(concat('paroparo-critical.min.js'))
+    .pipe(uglify())
+    .pipe(reload({stream: true}))
+    .pipe(gulp.dest('_dist/js'))
+});
+
+//Task che compila i file JS opzionali e quelli custom del sito
+gulp.task('build:scripts:optional', function() {
+  return gulp.src(['assets/js/vendor/*.js', 'assets/js/app/custom.js'])
+    .pipe(concat('paroparo.min.js'))
+    .pipe(uglify())
+    .pipe(reload({stream: true}))
+    .pipe(gulp.dest('_dist/js'))
+});
+
+// Task che compila tutti i JS
+gulp.task('build:scripts',  gulp.series('build:scripts:critical', 'build:scripts:optional'));
