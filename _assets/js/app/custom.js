@@ -30,7 +30,8 @@ $(document).ready(function () {
         fillOpacity: 0.3,
         radius: 2000
     }).addTo(mymap);
-    circle.bindPopup('<div class="container"><div class="row"><div class="col-12"><h4>{{site.title}}</h4><p class="mt-0 mb-2">{{site.description | escape}}</p><h6 class="mb-0">Indirizzo</h6><address>{{site.address}}<br>{{site.city}}</address><a target="_blank" href="{{site.url}}">Sito Web</a></div></div></div>').openPopup();
+    circle.bindPopup('<div class="container"><div class="row"><div class="col-12"><h4>' + site_title + '</h4><p class="mt-0 mb-2">'
+    + site_description + '</p><h6 class="mb-0">Indirizzo</h6><address>' + site_address + '<br>' + site_city + '</address><a target="_blank" href="' + site_url + '">Sito Web</a></div></div></div>').openPopup();
   }
 
   //Pageclip form
