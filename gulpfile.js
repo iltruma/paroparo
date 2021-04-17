@@ -14,6 +14,8 @@ const merge        = require('merge2');
 const uglify       = require('gulp-uglify');
 const imagemin     = require('gulp-imagemin');
 const cache        = require('gulp-cache');
+const size         = require('gulp-size');
+const babel        = require('gulp-babel');
 
 // Lista delle path necesarie ai tasks
 var paths = {
@@ -60,9 +62,33 @@ var paths = {
       root: '_assets/fonts',
       all: '_assets/fonts/**/*',
       output: 'public/fonts'
+    },
+    html: {
+      _layouts: {
+        root: '_layouts',
+        all: '_layouts/**/*.html'
+      },
+      _includes: {
+        root: '_includes',
+        all: '_includes/**/*.html'
+      }
     }
   }
 };
+
+// Task che cancella la cartella _site
+gulp.task('clean:jekyll', function(callback) {
+  del([paths._site.root]);
+  callback();
+});
+
+// Task che cancella la cartella public
+gulp.task('clean:assets', function(callback) {
+  del([paths.public.root]);
+  callback();
+});
+
+gulp.task('clean',  gulp.series('clean:jekyll', 'clean:assets'));
 
 //Task che compila i file SASS, li unisce con le gli altri CSS dei vendor (Leaflet, hightlight, ...) e li minimizza nel file paroparo.min.css
 gulp.task('build:styles', function () {
@@ -81,26 +107,35 @@ gulp.task('build:styles', function () {
     .pipe(rename({suffix: '.min'}))
     .pipe(sourcemaps.write('.'))
     .pipe(browserSync.stream())
+    .pipe(size())
     .pipe(gulp.dest(paths._assets.sass.output));
 });
 
 //Task che compila i file JS critici (Bootstrap, Popper e Jquery)
 gulp.task('build:scripts:critical', function() {
   return gulp.src(paths._assets.js.critical)
+    .pipe(sourcemaps.init())
     .pipe(concat('paroparo-critical.js'))
     .pipe(rename({suffix: '.min'}))
+    .pipe(babel({ presets: ['@babel/preset-env'] }))
     .pipe(uglify())
+    .pipe(sourcemaps.write('.'))
     .pipe(browserSync.reload({stream: true}))
+    .pipe(size())
     .pipe(gulp.dest(paths._assets.js.output))
 });
 
 //Task che compila i file JS opzionali e quelli custom del sito
 gulp.task('build:scripts:optional', function() {
   return gulp.src(paths._assets.js.optional)
+    .pipe(sourcemaps.init())
     .pipe(concat('paroparo.js'))
+    .pipe(babel({ presets: ['@babel/preset-env'] }))
     .pipe(rename({suffix: '.min'}))
     .pipe(uglify())
+    .pipe(sourcemaps.write('.'))
     .pipe(browserSync.reload({stream: true}))
+    .pipe(size())
     .pipe(gulp.dest(paths._assets.js.output))
 });
 
@@ -110,6 +145,7 @@ gulp.task('build:scripts',  gulp.series('build:scripts:critical', 'build:scripts
 // Task che copia i font in public
 gulp.task('build:fonts', function() {
   return gulp.src(paths._assets.fonts.all)
+    .pipe(size())
     .pipe(gulp.dest(paths._assets.fonts.output))
     .pipe(browserSync.reload({stream: true}))
 });
@@ -118,12 +154,13 @@ gulp.task('build:fonts', function() {
 gulp.task('build:images', function() {
   return gulp.src(paths._assets.img.all)
   .pipe(cache(imagemin({ optimizationLevel:5, progressive: true, interlaced: true })))
+  .pipe(size())
   .pipe(gulp.dest(paths._assets.img.output))
   .pipe(browserSync.reload({stream: true}))
 });
 
 // Task completo degli assets
-gulp.task('build:assets',  gulp.series('build:styles', 'build:scripts', 'build:fonts', 'build:images'));
+gulp.task('build:assets',  gulp.series('clean', 'build:styles', 'build:scripts', 'build:fonts', 'build:images'));
 
 // Task per il build Jekyll. Crea la cartella _site
 gulp.task('build:jekyll', function() {
@@ -139,18 +176,6 @@ gulp.task('build:jekyll:watch', gulp.series('build:jekyll', function(callback) {
 
 // Build task completo (assets + jekyll)
 gulp.task('build', gulp.series('build:assets', 'build:jekyll'));
-
-// Task che cancella la cartella _site
-gulp.task('clean:jekyll', function(callback) {
-  del([paths._site.root]);
-  callback();
-});
-
-// Task che cancella la cartella public
-gulp.task('clean:assets', function(callback) {
-  del([paths.public.root]);
-  callback();
-});
 
 // Task che fa il build e fa partire browsersync
 gulp.task('serve', gulp.series('build', function() {
