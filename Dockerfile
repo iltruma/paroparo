@@ -1,11 +1,14 @@
 FROM jekyll/builder
 WORKDIR /paroparo
-COPY . .
 
 RUN apk update && apk add \
 	npm;
 
-RUN npm install -g gulp
+ADD package.json /tmp
+RUN cd /tmp && npm install --no-optional && npm cache clean --force
+RUN mv /tmp/node_modules /paroparo
+COPY . /paroparo
+RUN cd ..
 
 RUN gulp serve
 
