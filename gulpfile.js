@@ -8,7 +8,6 @@ const gulp         = require('gulp');
 const rename       = require('gulp-rename');
 const run          = require('gulp-run');
 const sass         = require('gulp-sass');
-const concatCss    = require('gulp-concat-css');
 const merge        = require('merge2');
 const uglify       = require('gulp-uglify');
 const imagemin     = require('gulp-imagemin');
