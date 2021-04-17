@@ -4,6 +4,6 @@
 .sass-cache
 _site
 Gemfile.lock
-assets/sass/vendor/bootstrap
-assets/sass/vendor/leap
 node_modules
+_assets/sass/vendor/bootstrap/*
+_assets/sass/vendor/leap/*

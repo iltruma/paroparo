@@ -204,7 +204,7 @@ Bob -> Alice : hello
 
 # Special media links
 
-![]( {{ "/assets/devstories.webm" | relative_url }} )
+![]( {{ "/public/devstories.webm" | relative_url }} )
 
 [![w:1100](https://i.imgur.com/bc9HOJU.png)](https://www.youtube.com/watch?v=kCHGDRHZ4eU)
 

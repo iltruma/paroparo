@@ -1,0 +1,44 @@
+// 
+// 
+// user-variables.scss
+//
+// Place your own variable overrides here, these will override any Bootstrap and theme variables.
+
+
+// Color Scheme
+// Uncomment the variables below and change the hex values.
+
+$paroparo: #186e64  !default;
+$paroparo-tone: #2DE0CB !default; //torquoise
+$paroparo-dark: #021C19 !default; //dark jungle
+
+$paroparo-orange: #FF6933 !default;
+$paroparo-orange-tone: #6600FF !default;
+$paroparo-orange-dark: #242331 !default; 
+
+$primary:      $paroparo;
+$primary-2:    $paroparo-orange;
+$primary-3:    $paroparo-tone;
+$primary-4:    $paroparo-orange-tone;
+$primary-dark: $paroparo-dark;
+$primary-orange-dark: $paroparo-orange-dark;
+
+// Do not change or remove the $theme-color-scheme or $theme-colors maps below
+
+$theme-color-scheme: (
+    "primary":    $primary,
+    "primary-2":  $primary-2,
+    "primary-3":  $primary-3,
+    "primary-4":  $primary-4,
+    "primary-dark": $primary-dark,
+    "primary-2-dark": $primary-orange-dark
+);
+
+$theme-colors: (
+    "primary":    $primary,
+    "primary-2":  $primary-2,
+    "primary-3":  $primary-3,
+    "primary-4":  $primary-4,
+    "primary-dark": $primary-dark,
+    "primary-2-dark": $primary-orange-dark
+);

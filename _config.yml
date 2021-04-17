@@ -3,11 +3,7 @@ title: Paroparo # your site title
 author: iltruma # You :P
 description: "Paroparo description"
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
-
-sass:
-    sass_dir: _sass
-    style: compressed
+url: "http://paroparo.it" # the base hostname & protocol for your site, e.g. http://example.com
 
 # THEME SETTINGS
 navigation: # Navigation links
@@ -38,7 +34,6 @@ locale: it_IT
 # BUILD SETTINGS
 markdown: kramdown
 highlighter: rouge
-# theme: jekyll-sleek # Uncomment if you're using the theme as a ruby gem
 exclude:
   - README.md
   - node_modules
@@ -47,10 +42,10 @@ exclude:
   - package-lock.json
   - Gemfile
   - Gemfile.lock
-  - vendor
   - npm-debug.log
+  - gulpfile.js
+  - _assets/vendor
 
-include: ['_pages']
 permalink: /:title/
 
 compress_html:
@@ -72,7 +67,6 @@ plugins:
   - jekyll-spaceship
   - jekyll-watch
   - jekyll-get-json
-  - jekyll-minifier
   - jekyll-seo-tag
   - jekyll-sitemap
   - jekyll-feed
