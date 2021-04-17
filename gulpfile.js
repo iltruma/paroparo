@@ -54,7 +54,8 @@ var paths = {
     },
     img: {
       root: '_assets/img',
-      all: '_assets/img/**/*',
+      all: ['_assets/img/**/*', '!_assets/img/**/*.svg'],
+      svg: '_assets/img/**/*.svg',
       output: 'public/img'
     },
     fonts: {
@@ -63,14 +64,8 @@ var paths = {
       output: 'public/fonts'
     },
     html: {
-      _layouts: {
-        root: '_layouts',
-        all: '_layouts/**/*.html'
-      },
-      _includes: {
-        root: '_includes',
-        all: '_includes/**/*.html'
-      }
+      root: ['_layouts', '_includes'],
+      all: ['_layouts/**/*.html', '_includes/**/*.html']
     }
   }
 };
@@ -156,8 +151,16 @@ gulp.task('build:images', function() {
   .pipe(browserSync.reload({stream: true}))
 });
 
+// Task di ottimizzazione delle svg. E' sepratato dal task delle immagini perchè imagemin non ottimizza bene gli svg dei dividers e decorations
+gulp.task('build:svg', function() {
+  return gulp.src(paths._assets.img.svg)
+  .pipe(size())
+  .pipe(gulp.dest(paths._assets.img.output))
+  .pipe(browserSync.reload({stream: true}))
+});
+
 // Task completo degli assets
-gulp.task('build:assets',  gulp.series('clean', 'build:styles', 'build:scripts', 'build:fonts', 'build:images'));
+gulp.task('build:assets',  gulp.series('clean', 'build:styles', 'build:scripts', 'build:fonts', 'build:images', 'build:svg'));
 
 // Task per il build Jekyll. Crea la cartella _site
 gulp.task('build:jekyll', function() {
