@@ -13,6 +13,7 @@ const sourcemaps   = require('gulp-sourcemaps');
 const concatCss    = require('gulp-concat-css');
 const merge        = require('merge2');
 const uglify       = require('gulp-uglify');
+const imagemin     = require('gulp-imagemin');
 
 //Task che compila i file SASS, li unisce con le gli altri CSS dei vendor (Leaflet, hightlight, ...) e li minimizza nel file paroparo.min.css
 gulp.task('build:styles', function () {
@@ -64,10 +65,11 @@ gulp.task('build:fonts', function() {
     .pipe(browserSync.stream())
 });
 
-// gulp.task('images', function() {
-//   return gulp.src('_assets/src/img/**/*')
-//   .pipe(cache(imagemin({ optimizationLevel:5, progressive: true, interlaced: true })))
-//   .pipe(gulp.dest('_assets/dist/img'));
-// });
+gulp.task('build:images', function() {
+  return gulp.src('_assets/img/**/*')
+  .pipe(imagemin({ optimizationLevel:5, progressive: true, interlaced: true }))
+  .pipe(gulp.dest('public/img'))
+  .pipe(browserSync.stream());
+});
 
-gulp.task('build',  gulp.series('build:styles', 'build:scripts', 'build:fonts'));
+gulp.task('build',  gulp.series('build:styles', 'build:scripts', 'build:fonts', 'build:images'));
