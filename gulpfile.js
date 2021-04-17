@@ -1,11 +1,11 @@
 //Import dipendenze
 const autoprefixer = require('gulp-autoprefixer');
 const browserSync  = require('browser-sync').create();
+const reload       = browserSync.reload;
 const concat       = require('gulp-concat');
 const cleanCSS     = require('gulp-clean-css');
 const del          = require('del');
 const gulp         = require('gulp');
-const reload       = browserSync.reload;
 const rename       = require('gulp-rename');
 const run          = require('gulp-run');
 const sass         = require('gulp-sass');
@@ -14,6 +14,7 @@ const concatCss    = require('gulp-concat-css');
 const merge        = require('merge2');
 const uglify       = require('gulp-uglify');
 const imagemin     = require('gulp-imagemin');
+const cache        = require('gulp-cache');
 
 //Task che compila i file SASS, li unisce con le gli altri CSS dei vendor (Leaflet, hightlight, ...) e li minimizza nel file paroparo.min.css
 gulp.task('build:styles', function () {
@@ -62,14 +63,63 @@ gulp.task('build:scripts',  gulp.series('build:scripts:critical', 'build:scripts
 gulp.task('build:fonts', function() {
   return gulp.src('_assets/fonts/*')
     .pipe(gulp.dest('public/fonts'))
-    .pipe(browserSync.stream())
+    .pipe(reload({stream: true}))
 });
 
+// Task di ottimizzazione delle immagini
 gulp.task('build:images', function() {
   return gulp.src('_assets/img/**/*')
-  .pipe(imagemin({ optimizationLevel:5, progressive: true, interlaced: true }))
+  .pipe(cache(imagemin({ optimizationLevel:5, progressive: true, interlaced: true })))
   .pipe(gulp.dest('public/img'))
-  .pipe(browserSync.stream());
+  .pipe(reload({stream: true}))
 });
 
-gulp.task('build',  gulp.series('build:styles', 'build:scripts', 'build:fonts', 'build:images'));
+gulp.task('build:assets',  gulp.series('build:styles', 'build:scripts', 'build:fonts', 'build:images'));
+
+// Run jekyll build command
+gulp.task('build:jekyll', function() {
+  return gulp.src('.')
+  .pipe(run('jekyll build --config _config.yml'))
+});
+
+// Special tasks for building and reloading BrowserSync
+gulp.task('build:jekyll:watch', gulp.series('build:jekyll', function(callback) {
+  reload();
+  callback();
+}));
+
+// Build site
+gulp.task('build', gulp.series('build:assets', 'build:jekyll'));
+
+// Delete the entire _site directory
+gulp.task('clean:jekyll', function(callback) {
+  del(['_site']);
+  callback();
+});
+
+// Serve site and watch files
+gulp.task('serve', gulp.series('build', function() {
+  browserSync.init({
+    server: {
+      baseDir: '_site'
+    },
+    ghostMode: false, // Toggle to mirror clicks, reloads etc (performance)
+    logFileChanges: true,
+    logLevel: 'debug',
+    open: true       // Toggle to auto-open page when starting
+  });
+  //Watch _config.yml
+  gulp.watch(['_config.yml'], gulp.series('build:jekyll:watch'));
+  // Watch css files and pipe changes to browserSync
+  gulp.watch('_assets/css/**/*', gulp.series('build:styles'));
+  // Watch sass files and pipe changes to browserSync
+  gulp.watch('_assets/sass/**/*', gulp.series('build:styles'));
+  // Watch .js files
+  gulp.watch('_assets/js/**/*', gulp.series('build:scripts'));
+  // Watch image files and pipe changes to browserSync
+  gulp.watch('_assets/img/**/*', gulp.series('build:images'));
+  // Watch posts
+  gulp.watch('_posts/**/*.+(md|markdown|MD)', gulp.series('build:jekyll:watch'));
+  // Watch data files
+  //gulp.watch('_data/**.*+(yml|yaml|csv|json)', ['build:jekyll:watch']);
+}));
