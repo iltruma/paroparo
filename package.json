@@ -324,7 +324,6 @@
     "gulp-run": "^1.7.1",
     "gulp-sass": "^4.1.0",
     "gulp-size": "^3.0.0",
-    "gulp-sourcemaps": "^3.0.0",
     "gulp-uglify": "^3.0.2",
     "gulp-uglify-es": "^2.0.0",
     "gulp-util": "^3.0.8",
