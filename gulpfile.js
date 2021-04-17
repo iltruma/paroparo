@@ -8,7 +8,6 @@ const gulp         = require('gulp');
 const rename       = require('gulp-rename');
 const run          = require('gulp-run');
 const sass         = require('gulp-sass');
-const sourcemaps   = require('gulp-sourcemaps');
 const concatCss    = require('gulp-concat-css');
 const merge        = require('merge2');
 const uglify       = require('gulp-uglify');
@@ -100,12 +99,10 @@ gulp.task('build:styles', function () {
       })),
       gulp.src(paths._assets.css.vendor + "/*.css")
     )
-    .pipe(sourcemaps.init())
     .pipe(cleanCSS())
     .pipe(autoprefixer())
     .pipe(concat("paroparo.css"))
     .pipe(rename({suffix: '.min'}))
-    .pipe(sourcemaps.write('.'))
     .pipe(browserSync.stream())
     .pipe(size())
     .pipe(gulp.dest(paths._assets.sass.output));
@@ -114,12 +111,12 @@ gulp.task('build:styles', function () {
 //Task che compila i file JS critici (Bootstrap, Popper e Jquery)
 gulp.task('build:scripts:critical', function() {
   return gulp.src(paths._assets.js.critical)
-    .pipe(sourcemaps.init())
-    .pipe(babel({ presets: ['@babel/preset-env'] }))
+    .pipe(babel({ 
+      presets: [["@babel/preset-env", { modules: false }]],
+      compact: false  }))
     .pipe(concat('paroparo-critical.js'))
     .pipe(rename({suffix: '.min'}))
     .pipe(uglify())
-    .pipe(sourcemaps.write('.'))
     .pipe(browserSync.reload({stream: true}))
     .pipe(size())
     .pipe(gulp.dest(paths._assets.js.output))
@@ -128,12 +125,12 @@ gulp.task('build:scripts:critical', function() {
 //Task che compila i file JS opzionali e quelli custom del sito
 gulp.task('build:scripts:optional', function() {
   return gulp.src(paths._assets.js.optional)
-    .pipe(sourcemaps.init())
-    .pipe(babel({ presets: ['@babel/preset-env'] }))
+    .pipe(babel({ 
+      presets: [["@babel/preset-env", { modules: false }]],
+      compact: false  }))
     .pipe(concat('paroparo.js'))
     .pipe(rename({suffix: '.min'}))
     .pipe(uglify())
-    .pipe(sourcemaps.write('.'))
     .pipe(browserSync.reload({stream: true}))
     .pipe(size())
     .pipe(gulp.dest(paths._assets.js.output))
