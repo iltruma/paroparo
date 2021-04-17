@@ -735,7 +735,7 @@
     "semver-regex": "^2.0.0",
     "semver-truncate": "^1.1.2",
     "send": "^0.16.2",
-    "serialize-javascript": "^2.1.2",
+    "serialize-javascript": "^3.1.0",
     "serve-index": "^1.9.1",
     "serve-static": "^1.14.1",
     "server-destroy": "^1.0.1",
