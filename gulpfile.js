@@ -115,9 +115,9 @@ gulp.task('build:styles', function () {
 gulp.task('build:scripts:critical', function() {
   return gulp.src(paths._assets.js.critical)
     .pipe(sourcemaps.init())
+    .pipe(babel({ presets: ['@babel/preset-env'] }))
     .pipe(concat('paroparo-critical.js'))
     .pipe(rename({suffix: '.min'}))
-    .pipe(babel({ presets: ['@babel/preset-env'] }))
     .pipe(uglify())
     .pipe(sourcemaps.write('.'))
     .pipe(browserSync.reload({stream: true}))
@@ -129,8 +129,8 @@ gulp.task('build:scripts:critical', function() {
 gulp.task('build:scripts:optional', function() {
   return gulp.src(paths._assets.js.optional)
     .pipe(sourcemaps.init())
-    .pipe(concat('paroparo.js'))
     .pipe(babel({ presets: ['@babel/preset-env'] }))
+    .pipe(concat('paroparo.js'))
     .pipe(rename({suffix: '.min'}))
     .pipe(uglify())
     .pipe(sourcemaps.write('.'))
