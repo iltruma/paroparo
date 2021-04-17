@@ -1,7 +1,6 @@
 //Import dipendenze
 const autoprefixer = require('gulp-autoprefixer');
 const browserSync  = require('browser-sync').create();
-const reload       = browserSync.reload;
 const concat       = require('gulp-concat');
 const cleanCSS     = require('gulp-clean-css');
 const del          = require('del');
@@ -16,15 +15,64 @@ const uglify       = require('gulp-uglify');
 const imagemin     = require('gulp-imagemin');
 const cache        = require('gulp-cache');
 
+// Lista delle path necesarie ai tasks
+var paths = {
+  here: './',
+  _site: {
+    root: '_site'
+  },
+  _posts: {
+    root: '_posts'
+  },
+  public: {
+    root: 'public'
+  },
+  _assets: {
+    root: '_assets',
+    sass: {
+      root: '_assets/sass',
+      all: '_assets/sass/**/*',
+      app: '_assets/sass/app',
+      vendor: '_assets/sass/vendor',
+      output: 'public/css'
+    },
+    css: {
+      root:'_assets/css',
+      all: '_assets/css/**/*',
+      vendor: '_assets/css/vendor',
+      output: 'public/css'
+    },
+    js: {
+      root:'_assets/js',
+      all: '_assets/js/**/*',
+      app: '_assets/js/app',
+      vendor: '_assets/js/vendor',
+      critical: ['_assets/js/vendor/critical/jquery.min.js', '_assets/js/vendor/critical/popper.min.js', '_assets/js/vendor/critical/bootstrap.js'],
+      optional: ['_assets/js/vendor/plugins/*.js', '_assets/js/vendor/leap.min.js', '_assets/js/app/custom.js'],
+      output: 'public/js'
+    },
+    img: {
+      root: '_assets/img',
+      all: '_assets/img/**/*',
+      output: 'public/img'
+    },
+    fonts: {
+      root: '_assets/fonts',
+      all: '_assets/fonts/**/*',
+      output: 'public/fonts'
+    }
+  }
+};
+
 //Task che compila i file SASS, li unisce con le gli altri CSS dei vendor (Leaflet, hightlight, ...) e li minimizza nel file paroparo.min.css
 gulp.task('build:styles', function () {
   return merge(
-      gulp.src("_assets/sass/app/leap.scss")
+      gulp.src(paths._assets.sass.app + "/leap.scss")
       .pipe(sass({
-          includePaths: ['_assets/sass/app'],
+          includePaths: [paths._assets.sass.app],
           onError: browserSync.notify
       })),
-      gulp.src("_assets/css/vendor/*.css")
+      gulp.src(paths._assets.css.vendor + "/*.css")
     )
     .pipe(sourcemaps.init())
     .pipe(cleanCSS())
@@ -32,94 +80,100 @@ gulp.task('build:styles', function () {
     .pipe(concat("paroparo.css"))
     .pipe(rename({suffix: '.min'}))
     .pipe(sourcemaps.write('.'))
-    .pipe(reload({stream: true}))
-    .pipe(gulp.dest('public/css'));
+    .pipe(browserSync.stream())
+    .pipe(gulp.dest(paths._assets.sass.output));
 });
 
 //Task che compila i file JS critici (Bootstrap, Popper e Jquery)
 gulp.task('build:scripts:critical', function() {
-  return gulp.src(['_assets/js/vendor/critical/jquery.min.js', '_assets/js/vendor/critical/popper.min.js', '_assets/js/vendor/critical/bootstrap.js'])
+  return gulp.src(paths._assets.js.critical)
     .pipe(concat('paroparo-critical.js'))
     .pipe(rename({suffix: '.min'}))
     .pipe(uglify())
-    .pipe(reload({stream: true}))
-    .pipe(gulp.dest('public/js'))
+    .pipe(browserSync.reload({stream: true}))
+    .pipe(gulp.dest(paths._assets.js.output))
 });
 
 //Task che compila i file JS opzionali e quelli custom del sito
 gulp.task('build:scripts:optional', function() {
-  return gulp.src(['_assets/js/vendor/plugins/*.js', '_assets/js/vendor/leap.min.js', '_assets/js/app/custom.js'])
+  return gulp.src(paths._assets.js.optional)
     .pipe(concat('paroparo.js'))
     .pipe(rename({suffix: '.min'}))
     .pipe(uglify())
-    .pipe(reload({stream: true}))
-    .pipe(gulp.dest('public/js'))
+    .pipe(browserSync.reload({stream: true}))
+    .pipe(gulp.dest(paths._assets.js.output))
 });
 
 // Task che compila tutti i JS
 gulp.task('build:scripts',  gulp.series('build:scripts:critical', 'build:scripts:optional'));
 
-// Place fonts in proper location
+// Task che copia i font in public
 gulp.task('build:fonts', function() {
-  return gulp.src('_assets/fonts/*')
-    .pipe(gulp.dest('public/fonts'))
-    .pipe(reload({stream: true}))
+  return gulp.src(paths._assets.fonts.all)
+    .pipe(gulp.dest(paths._assets.fonts.output))
+    .pipe(browserSync.reload({stream: true}))
 });
 
 // Task di ottimizzazione delle immagini
 gulp.task('build:images', function() {
-  return gulp.src('_assets/img/**/*')
+  return gulp.src(paths._assets.img.all)
   .pipe(cache(imagemin({ optimizationLevel:5, progressive: true, interlaced: true })))
-  .pipe(gulp.dest('public/img'))
-  .pipe(reload({stream: true}))
+  .pipe(gulp.dest(paths._assets.img.output))
+  .pipe(browserSync.reload({stream: true}))
 });
 
+// Task completo degli assets
 gulp.task('build:assets',  gulp.series('build:styles', 'build:scripts', 'build:fonts', 'build:images'));
 
-// Run jekyll build command
+// Task per il build Jekyll. Crea la cartella _site
 gulp.task('build:jekyll', function() {
-  return gulp.src('.')
+  return gulp.src(paths.here)
   .pipe(run('jekyll build --config _config.yml'))
 });
 
-// Special tasks for building and reloading BrowserSync
+// Task watch per far ricompilare i file in _site
 gulp.task('build:jekyll:watch', gulp.series('build:jekyll', function(callback) {
-  reload();
+  browserSync.reload({stream: true});
   callback();
 }));
 
-// Build site
+// Build task completo (assets + jekyll)
 gulp.task('build', gulp.series('build:assets', 'build:jekyll'));
 
-// Delete the entire _site directory
+// Task che cancella la cartella _site
 gulp.task('clean:jekyll', function(callback) {
-  del(['_site']);
+  del([paths._site.root]);
   callback();
 });
 
-// Serve site and watch files
+// Task che cancella la cartella public
+gulp.task('clean:assets', function(callback) {
+  del([paths.public.root]);
+  callback();
+});
+
+// Task che fa il build e fa partire browsersync
 gulp.task('serve', gulp.series('build', function() {
   browserSync.init({
     server: {
-      baseDir: '_site'
+      baseDir: paths._site.root
     },
     ghostMode: false, // Toggle to mirror clicks, reloads etc (performance)
     logFileChanges: true,
-    logLevel: 'debug',
     open: true       // Toggle to auto-open page when starting
   });
   //Watch _config.yml
   gulp.watch(['_config.yml'], gulp.series('build:jekyll:watch'));
   // Watch css files and pipe changes to browserSync
-  gulp.watch('_assets/css/**/*', gulp.series('build:styles'));
+  gulp.watch(paths._assets.css.all, gulp.series('build:styles'));
   // Watch sass files and pipe changes to browserSync
-  gulp.watch('_assets/sass/**/*', gulp.series('build:styles'));
+  gulp.watch(paths._assets.sass.all, gulp.series('build:styles'));
   // Watch .js files
-  gulp.watch('_assets/js/**/*', gulp.series('build:scripts'));
+  gulp.watch(paths._assets.js.all, gulp.series('build:scripts'));
   // Watch image files and pipe changes to browserSync
-  gulp.watch('_assets/img/**/*', gulp.series('build:images'));
+  gulp.watch(paths._assets.img.all, gulp.series('build:images'));
   // Watch posts
-  gulp.watch('_posts/**/*.+(md|markdown|MD)', gulp.series('build:jekyll:watch'));
+  gulp.watch(paths._posts.root + '**/*.+(md|markdown|MD)', gulp.series('build:jekyll:watch'));
   // Watch data files
   //gulp.watch('_data/**.*+(yml|yaml|csv|json)', ['build:jekyll:watch']);
 }));
