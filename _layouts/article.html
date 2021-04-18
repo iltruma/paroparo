@@ -4,9 +4,9 @@ layout: default
 
 <section class="has-divider text-light jarallax bg-dark" data-jarallax data-speed="0.5" data-overlay data-img-position="30% 60%">
   {% if page.featured-img %}
-    <img src="{{ site.url }}{{ site.baseurl }}/public/img/posts/{{page.featured-img}}.jpg" alt="Image" class="jarallax-img opacity-50">
+    <img src="{{ site.url }}{{ site.baseurl }}/assets/img/posts/{{page.featured-img}}.jpg" alt="Image" class="jarallax-img opacity-50">
   {% else %}
-    <img src="{{ '/public/img/sfondo_macaw.png' | relative_url }}" alt="" class="jarallax-img opacity-50">
+    <img src="{{ '/assets/img/sfondo_macaw.png' | relative_url }}" alt="" class="jarallax-img opacity-50">
   {% endif %}
   <div class="container pt-6">
     <div class="row justify-content-center">
@@ -19,7 +19,7 @@ layout: default
         <h1>{{page.title}}</h1>
         <div class="d-flex align-items-center">
           <a href="#">
-            <img src="{{ '/public/img/avatars/male-1.jpg' | relative_url }}" alt="Avatar" class="avatar mr-2">
+            <img src="{{ '/assets/img/avatars/male-1.jpg' | relative_url }}" alt="Avatar" class="avatar mr-2">
           </a>
           <div>
             <div>by <a href="#">{{page.author}}</a>
@@ -39,7 +39,7 @@ layout: default
     </div>
   </div>
   <div class="divider">
-    <img src="{{ '/public/img/dividers/divider-2.svg' | relative_url }}"  alt="graphical divider" data-inject-svg />
+    <img src="{{ '/assets/img/dividers/divider-2.svg' | relative_url }}"  alt="graphical divider" data-inject-svg />
 </div>
 </section>
 
