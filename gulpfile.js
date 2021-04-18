@@ -19,13 +19,17 @@ const babel        = require('gulp-babel');
 var paths = {
   here: './',
   _site: {
-    root: '_site'
+    root: '_site',
+    assets: {
+      root: '_site/assets',
+      css: '_site/assets/css',
+      js: '_site/assets/js',
+      fonts: '_site/assets/fonts',
+      img: '_site/assets/img'
+    }
   },
   _posts: {
     root: '_posts'
-  },
-  public: {
-    root: 'public'
   },
   _assets: {
     root: '_assets',
@@ -33,14 +37,12 @@ var paths = {
       root: '_assets/sass',
       all: '_assets/sass/**/*',
       app: '_assets/sass/app',
-      vendor: '_assets/sass/vendor',
-      output: 'public/css'
+      vendor: '_assets/sass/vendor'
     },
     css: {
       root:'_assets/css',
       all: '_assets/css/**/*',
-      vendor: '_assets/css/vendor',
-      output: 'public/css'
+      vendor: '_assets/css/vendor'
     },
     js: {
       root:'_assets/js',
@@ -48,19 +50,16 @@ var paths = {
       app: '_assets/js/app',
       vendor: '_assets/js/vendor',
       critical: ['_assets/js/vendor/critical/jquery.min.js', '_assets/js/vendor/critical/popper.min.js', '_assets/js/vendor/critical/bootstrap.js'],
-      optional: ['_assets/js/vendor/plugins/*.js', '_assets/js/vendor/leap.min.js', '_assets/js/app/custom.js'],
-      output: 'public/js'
+      optional: ['_assets/js/vendor/plugins/*.js', '_assets/js/vendor/leap.min.js', '_assets/js/app/custom.js']
     },
     img: {
       root: '_assets/img',
       all: ['_assets/img/**/*', '!_assets/img/**/*.svg'],
-      svg: '_assets/img/**/*.svg',
-      output: 'public/img'
+      svg: '_assets/img/**/*.svg'
     },
     fonts: {
       root: '_assets/fonts',
-      all: '_assets/fonts/**/*',
-      output: 'public/fonts'
+      all: '_assets/fonts/**/*'
     },
     html: {
       root: ['_layouts', '_includes'],
@@ -75,13 +74,7 @@ gulp.task('clean:jekyll', function(callback) {
   callback();
 });
 
-// Task che cancella la cartella public
-gulp.task('clean:assets', function(callback) {
-  del([paths.public.root]);
-  callback();
-});
-
-gulp.task('clean',  gulp.series('clean:jekyll', 'clean:assets'));
+gulp.task('clean',  gulp.series('clean:jekyll'));
 
 //Task che compila i file SASS, li unisce con le gli altri CSS dei vendor (Leaflet, hightlight, ...) e li minimizza nel file paroparo.min.css
 gulp.task('build:styles', function () {
@@ -99,7 +92,7 @@ gulp.task('build:styles', function () {
     .pipe(rename({suffix: '.min'}))
     .pipe(browserSync.stream())
     .pipe(size())
-    .pipe(gulp.dest(paths._assets.sass.output));
+    .pipe(gulp.dest(paths._site.assets.css));
 });
 
 //Task che compila i file JS critici (Bootstrap, Popper e Jquery)
@@ -113,7 +106,7 @@ gulp.task('build:scripts:critical', function() {
     .pipe(cache(uglify()))
     .pipe(browserSync.reload({stream: true}))
     .pipe(size())
-    .pipe(gulp.dest(paths._assets.js.output))
+    .pipe(gulp.dest(paths._site.assets.js));
 });
 
 //Task che compila i file JS opzionali e quelli custom del sito
@@ -127,35 +120,35 @@ gulp.task('build:scripts:optional', function() {
     .pipe(cache(uglify()))
     .pipe(browserSync.reload({stream: true}))
     .pipe(size())
-    .pipe(gulp.dest(paths._assets.js.output))
+    .pipe(gulp.dest(paths._site.assets.js));
 });
 
 // Task che compila tutti i JS
 gulp.task('build:scripts',  gulp.series('build:scripts:critical', 'build:scripts:optional'));
 
-// Task che copia i font in public
+// Task che copia i font
 gulp.task('build:fonts', function() {
   return gulp.src(paths._assets.fonts.all)
-    .pipe(size())
-    .pipe(gulp.dest(paths._assets.fonts.output))
     .pipe(browserSync.reload({stream: true}))
+    .pipe(size())
+    .pipe(gulp.dest(paths._site.assets.fonts));
 });
 
 // Task di ottimizzazione delle immagini
 gulp.task('build:images', function() {
   return gulp.src(paths._assets.img.all)
   .pipe(cache(imagemin({ optimizationLevel:5, progressive: true, interlaced: true })))
-  .pipe(size())
-  .pipe(gulp.dest(paths._assets.img.output))
   .pipe(browserSync.reload({stream: true}))
+  .pipe(size())
+  .pipe(gulp.dest(paths._site.assets.img))
 });
 
 // Task di ottimizzazione delle svg. E' sepratato dal task delle immagini perchè imagemin non ottimizza bene gli svg dei dividers e decorations
 gulp.task('build:svg', function() {
   return gulp.src(paths._assets.img.svg)
-  .pipe(size())
-  .pipe(gulp.dest(paths._assets.img.output))
   .pipe(browserSync.reload({stream: true}))
+  .pipe(size())
+  .pipe(gulp.dest(paths._site.assets.img))
 });
 
 // Task completo degli assets
@@ -183,7 +176,7 @@ gulp.task('serve', gulp.series('build', function() {
       baseDir: paths._site.root
     },
     ui: {
-      port: 80
+      port: 3000
     },
     ghostMode: false, // Toggle to mirror clicks, reloads etc (performance)
     logFileChanges: true,

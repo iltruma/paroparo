@@ -44,7 +44,8 @@ exclude:
   - Gemfile.lock
   - npm-debug.log
   - gulpfile.js
-  - _assets/vendor
+keep_files:
+  - assets
 
 permalink: /:title/
 
