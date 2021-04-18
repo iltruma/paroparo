@@ -12,6 +12,6 @@ RUN touch Gemfile.lock && chmod a+w Gemfile.lock
 RUN gulp build
 
 FROM nginx:alpine
-COPY --from=builder _site /usr/share/nginx/html
+COPY --from=builder paroparo/_site /usr/share/nginx/html
 
 EXPOSE 3000
