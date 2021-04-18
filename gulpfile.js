@@ -14,9 +14,14 @@ const imagemin     = require('gulp-imagemin');
 const cache        = require('gulp-cache');
 const size         = require('gulp-size');
 const babel        = require('gulp-babel');
+const yaml         = require('gulp-yaml');
+const sassVars     = require('gulp-sass-vars');
+const log          = require('fancy-log');
+const runSequence  = require('gulp4-run-sequence');
+const fs           = require('fs');
 
 // Lista delle path necesarie ai tasks
-var paths = {
+const paths = {
   here: './',
   _site: {
     root: '_site',
@@ -25,11 +30,15 @@ var paths = {
       css: '_site/assets/css',
       js: '_site/assets/js',
       fonts: '_site/assets/fonts',
-      img: '_site/assets/img'
+      img: '_site/assets/img',
+      json: '_site/assets/json',
     }
   },
   _posts: {
     root: '_posts'
+  },
+  _dist: {
+    root: '_dist'
   },
   _assets: {
     root: '_assets',
@@ -70,16 +79,28 @@ var paths = {
 
 // Task che cancella la cartella _site
 gulp.task('clean:jekyll', function(callback) {
-  del([paths._site.root]);
+  del.sync(paths._site.root);
   callback();
 });
 
-gulp.task('clean',  gulp.series('clean:jekyll'));
+gulp.task('build:variables', function(callback) {
+  return gulp.src('./_config.yml')
+  .pipe(yaml({ safe: true }))
+  .pipe(rename({basename: 'site'}))
+  .pipe(gulp.dest(paths._site.assets.json));
+});
 
 //Task che compila i file SASS, li unisce con le gli altri CSS dei vendor (Leaflet, hightlight, ...) e li minimizza nel file paroparo.min.css
 gulp.task('build:styles', function () {
+  var site = JSON.parse(fs.readFileSync(paths._site.assets.json + "/site.json"));
+  var colors = {};
+  for (i in site.colors) {
+    colors[Object.keys(site.colors[i])[0]] = Object.values(site.colors[i])[0];
+  }
+
   return merge(
       gulp.src(paths._assets.sass.app + "/leap.scss")
+      .pipe(sassVars(colors))
       .pipe(sass({
           includePaths: [paths._assets.sass.app],
           onError: browserSync.notify
@@ -92,6 +113,7 @@ gulp.task('build:styles', function () {
     .pipe(rename({suffix: '.min'}))
     .pipe(browserSync.stream())
     .pipe(size())
+    .pipe(gulp.dest(paths._dist.root))
     .pipe(gulp.dest(paths._site.assets.css));
 });
 
@@ -124,7 +146,7 @@ gulp.task('build:scripts:optional', function() {
 });
 
 // Task che compila tutti i JS
-gulp.task('build:scripts',  gulp.series('build:scripts:critical', 'build:scripts:optional'));
+gulp.task('build:scripts',  function(callback) {runSequence(['build:scripts:critical', 'build:scripts:optional'], callback)});
 
 // Task che copia i font
 gulp.task('build:fonts', function() {
@@ -152,7 +174,7 @@ gulp.task('build:svg', function() {
 });
 
 // Task completo degli assets
-gulp.task('build:assets',  gulp.series('clean', 'build:styles', 'build:scripts', 'build:fonts', 'build:images', 'build:svg'));
+gulp.task('build:assets',  function(callback) {runSequence('clean:jekyll', 'build:variables', 'build:styles', 'build:scripts', 'build:fonts', 'build:images', 'build:svg', callback)});
 
 // Task per il build Jekyll. Crea la cartella _site
 gulp.task('build:jekyll', function() {
@@ -167,7 +189,7 @@ gulp.task('build:jekyll:watch', gulp.series('build:jekyll', function(callback) {
 }));
 
 // Build task completo (assets + jekyll)
-gulp.task('build', gulp.series('build:assets', 'build:jekyll'));
+gulp.task('build', function(callback) {runSequence('build:assets', 'build:jekyll', callback)});
 
 // Task che fa il build e fa partire browsersync
 gulp.task('serve', gulp.series('build', function() {
@@ -192,6 +214,8 @@ gulp.task('serve', gulp.series('build', function() {
   gulp.watch(paths._assets.js.all, gulp.series('build:scripts'));
   // Watch image files and pipe changes to browserSync
   gulp.watch(paths._assets.img.all, gulp.series('build:images'));
+  //Watch html
+  gulp.watch(paths._assets.html.all, gulp.series('build:jekyll:watch'));
   // Watch posts
   gulp.watch(paths._posts.root + '**/*.+(md|markdown|MD)', gulp.series('build:jekyll:watch'));
   // Watch data files

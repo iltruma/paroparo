@@ -11,6 +11,19 @@ navigation: # Navigation links
   - {name: 'Feed', link: '/feed'}
   - {name: 'Chi Siamo', link: '/chi-siamo'}
   - {name: 'Contatti', link: '/contatti'}
+email: info@paroparo.it
+email_1: niccolo@paroparo.it
+email_2: cosimo@paroparo.it
+address: "Foresta di Figline Valdarno"
+city: "Firenze, Italia"
+locale: it_IT
+colors:
+  - primary: "#186e64"
+  - primary-3: "#2DE0CB"
+  - primary-dark: "#021C19"
+  - primary-2: "#FF6933"
+  - primary-4: "#6600FF"
+  - primary-2-dark: "#242331"
 
 #SEO
 #tagline: "" # A short description title | tagline header
@@ -24,12 +37,7 @@ navigation: # Navigation links
 #  links:
 #    - https://instagram.com/paroparo
 #google_site_verification: 
-email: info@paroparo.it
-email_1: niccolo@paroparo.it
-email_2: cosimo@paroparo.it
-address: "Foresta di Figline Valdarno"
-city: "Firenze, Italia"
-locale: it_IT
+
 
 # BUILD SETTINGS
 markdown: kramdown
