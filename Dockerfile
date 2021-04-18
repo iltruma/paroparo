@@ -7,9 +7,9 @@ COPY package.json ./
 RUN npm install
 ENV PATH node_modules/.bin:$PATH
 
-COPY . .
-
-RUN gulp build
+COPY  . .
+COPY --chown=docker:docker Gemfile.lock ./
+RUN jekyll build
 
 FROM nginx:alpine
 COPY --from=builder _site /usr/share/nginx/html
