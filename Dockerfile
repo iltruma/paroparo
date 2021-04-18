@@ -11,4 +11,4 @@ COPY . .
 
 RUN gulp serve
 
-EXPOSE 3000
+EXPOSE 80
