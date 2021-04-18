@@ -182,6 +182,9 @@ gulp.task('serve', gulp.series('build', function() {
     server: {
       baseDir: paths._site.root
     },
+    ui: {
+      port: 80
+    },
     ghostMode: false, // Toggle to mirror clicks, reloads etc (performance)
     logFileChanges: true,
     open: true       // Toggle to auto-open page when starting
