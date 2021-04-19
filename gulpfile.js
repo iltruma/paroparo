@@ -6,7 +6,7 @@ const cleanCSS     = require('gulp-clean-css');
 const del          = require('del');
 const gulp         = require('gulp');
 const rename       = require('gulp-rename');
-const run          = require('gulp-run');
+const run          = require('gulp-run-command').default;
 const sass         = require('gulp-sass');
 const merge        = require('merge2');
 const uglify       = require('gulp-uglify');
@@ -19,6 +19,7 @@ const sassVars     = require('gulp-sass-vars');
 const log          = require('fancy-log');
 const runSequence  = require('gulp4-run-sequence');
 const fs           = require('fs');
+const prompt       = require('gulp-prompt');
 
 // Lista delle path necesarie ai tasks
 const paths = {
@@ -177,9 +178,9 @@ gulp.task('build:svg', function() {
 gulp.task('build:assets',  function(callback) {runSequence('clean:jekyll', 'build:variables', 'build:styles', 'build:scripts', 'build:fonts', 'build:images', 'build:svg', callback)});
 
 // Task per il build Jekyll. Crea la cartella _site
-gulp.task('build:jekyll', function() {
-  return gulp.src(paths.here)
-  .pipe(run('jekyll build --config _config.yml'))
+gulp.task('build:jekyll', function(callback) {
+  run('jekyll build --config _config.yml')();
+  callback();
 });
 
 // Task watch per far ricompilare i file in _site
@@ -192,7 +193,7 @@ gulp.task('build:jekyll:watch', gulp.series('build:jekyll', function(callback) {
 gulp.task('build', function(callback) {runSequence('build:assets', 'build:jekyll', callback)});
 
 // Task che fa il build e fa partire browsersync
-gulp.task('serve', gulp.series('build', function() {
+gulp.task('serve', gulp.series('build', function(callback) {
   browserSync.init({
     server: {
       baseDir: paths._site.root
@@ -220,4 +221,24 @@ gulp.task('serve', gulp.series('build', function() {
   gulp.watch(paths._posts.root + '**/*.+(md|markdown|MD)', gulp.series('build:jekyll:watch'));
   // Watch data files
   //gulp.watch('_data/**.*+(yml|yaml|csv|json)', ['build:jekyll:watch']);
+  callback();
+}));
+
+// Task watch per taggare l'immagine docker e fare pubblicarla su github
+var tag;
+gulp.task('deploy:docker:input', function() {
+  return gulp.src(paths.here)
+  .pipe(prompt.prompt({
+    type: 'input',
+    name: 'tag',
+    default: 'latest',
+    message: 'Di quale tag vuoi fare il deploy?'
+  }, (res) => {
+    tag = res.tag;
+  }))
+});
+
+gulp.task('deploy:docker', gulp.series('deploy:docker:input', function deploy() {
+  run('docker tag paroparo docker.pkg.github.com/iltruma/paroparo/paroparo:' + tag)();
+  run('docker push docker.pkg.github.com/iltruma/paroparo/paroparo:' + tag)();
 }));
