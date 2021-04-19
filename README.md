@@ -1,52 +1,44 @@
-# Paroparo
+# Paroparo 🦜
+![Version](https://img.shields.io/github/v/tag/iltruma/paroparo?label=version)
+[![Documentation](https://img.shields.io/badge/documentation-yes-brightgreen.svg?style=flat)](https://github.com/iltruma/paroparo#readme)
+[![Maintenance](https://img.shields.io/badge/maintained%3F-yes-green.svg?style=flat)](https://github.com/iltruma/paroparo/graphs/commit-activity)
+[![License: MIT](https://img.shields.io/github/license/iltruma/paroparo?style=flat)](https://github.com/iltruma/paroparo/blob/master/LICENSE)
+[![Parrots](https://img.shields.io/badge/parrots-2-%23186e64)](https://www.paroparo.it)
+[![Bevanda](https://img.shields.io/badge/cochina-bella%20fresca-%23fe101a)]()
 
-Welcome to your new Jekyll theme! In this directory, you'll find the files you need to be able to package up your theme into a gem. Put your layouts in `_layouts`, your includes in `_includes`, your sass files in `_sass` and any other assets in `_assets`.
+> paroparo description need to be inserted here
 
-To experiment with this code, add some sample content and run `bundle exec jekyll serve` – this directory is setup just like a Jekyll site!
+### 🏠 [Homepage](https://github.com/iltruma/paroparo#readme)
 
-TODO: Delete this and the text above, and describe your gem
+### ✨ [Demo](www.paroparo.it)
 
+## Install
 
-## Installation
-
-Add this line to your Jekyll site's `Gemfile`:
-
-```ruby
-gem "paroparo"
+```sh
+docker pull docker.pkg.github.com/iltruma/paroparo/paroparo:latest
+docker run --rm -d  -p 3000:80/tcp paroparo:latest
 ```
+then browser to [http://localhost:3000/](http://localhost:3000)
 
-And add this line to your Jekyll site's `_config.yml`:
+## Authors
 
-```yaml
-theme: paroparo
-```
+🦜 **[@iltruma](https://github.com/iltruma)** &  **[@ilcaso](https://github.com/ilcaso)**
+## 🤝 Contributing
 
-And then execute:
+Contributions, issues and feature requests are welcome!
 
-    $ bundle
+Feel free to check [issues page](https://github.com/iltruma/paroparo/issues). 
 
-Or install it yourself as:
+## Show your support
 
-    $ gem install paroparo
+Give a ⭐️ if this project helped you!
 
-## Usage
 
-TODO: Write usage instructions here. Describe your available layouts, includes, sass and/or assets.
+## 📝 License
 
-## Contributing
+Copyright © 2021 [iltruma](https://github.com/iltruma).
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/hello. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+This project is [MIT](https://github.com/iltruma/paroparo/blob/master/LICENSE) licensed.
 
-## Development
-
-To set up your environment to develop this theme, run `bundle install`.
-
-Your theme is setup just like a normal Jekyll site! To test your theme, run `bundle exec jekyll serve` and open your browser at `http://localhost:4000`. This starts a Jekyll server using your theme. Add pages, documents, data, etc. like normal to test your theme's contents. As you make modifications to your theme and to your content, your site will regenerate and you should see the changes in the browser after a refresh, just like normal.
-
-When your theme is released, only the files in `_layouts`, `_includes`, `_sass` and `_assets` tracked with Git will be bundled.
-To add a custom directory to your theme-gem, please edit the regexp in `paroparo.gemspec` accordingly.
-
-## License
-
-The theme is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
-
+***
+_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
