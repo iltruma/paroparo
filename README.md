@@ -10,7 +10,7 @@
 
 ### 🏠 [Homepage](https://github.com/iltruma/paroparo#readme)
 
-### ✨ [Demo](www.paroparo.it)
+### ✨ [Demo](https://www.paroparo.it)
 
 ## Install
 
