@@ -225,8 +225,8 @@ gulp.task('serve', gulp.series('build', function(callback) {
 }));
 
 // Task watch per taggare l'immagine docker e fare pubblicarla su github
-var tag;
-gulp.task('deploy:docker:input', function() {
+var tag_deploy, tag_build;
+gulp.task('docker:deploy:input', function() {
   return gulp.src(paths.here)
   .pipe(prompt.prompt({
     type: 'input',
@@ -234,11 +234,27 @@ gulp.task('deploy:docker:input', function() {
     default: 'latest',
     message: 'Di quale tag vuoi fare il deploy?'
   }, (res) => {
-    tag = res.tag;
+    tag_deploy = res.tag;
   }))
 });
 
-gulp.task('deploy:docker', gulp.series('deploy:docker:input', function deploy() {
-  run('docker tag paroparo docker.pkg.github.com/iltruma/paroparo/paroparo:' + tag)();
-  run('docker push docker.pkg.github.com/iltruma/paroparo/paroparo:' + tag)();
+gulp.task('docker:deploy', gulp.series('docker:deploy:input', function deploy() {
+  run('docker tag paroparo docker.pkg.github.com/iltruma/paroparo/paroparo:' + tag_deploy)();
+  run('docker push docker.pkg.github.com/iltruma/paroparo/paroparo:' + tag_deploy)();
+}));
+
+gulp.task('docker:build:input', function() {
+  return gulp.src(paths.here)
+  .pipe(prompt.prompt({
+    type: 'input',
+    name: 'tag',
+    default: 'latest',
+    message: 'Di quale tag vuoi fare il build?'
+  }, (res) => {
+    tag_build = res.tag;
+  }))
+});
+
+gulp.task('docker:build', gulp.series('docker:build:input', function deploy() {
+  run('docker build --pull --rm -f "Dockerfile" -t paroparo:' + tag_build + '"."')();
 }));
