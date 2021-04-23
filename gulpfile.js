@@ -234,9 +234,11 @@ gulp.task('docker:deploy:input', function() {
   }))
 });
 
-gulp.task('docker:deploy', gulp.series('docker:deploy:input', function deploy() {
+gulp.task('docker:deploy', gulp.series('docker:deploy:input', function deploy(callback) {
+  run('docker build --pull --rm -f "Dockerfile" -t paroparo:' + tag_deploy + '"."')();
   run('docker tag paroparo docker.pkg.github.com/iltruma/paroparo/paroparo:' + tag_deploy)();
   run('docker push docker.pkg.github.com/iltruma/paroparo/paroparo:' + tag_deploy)();
+  callback();
 }));
 
 gulp.task('docker:build:input', function() {
@@ -251,6 +253,7 @@ gulp.task('docker:build:input', function() {
   }))
 });
 
-gulp.task('docker:build', gulp.series('docker:build:input', function deploy() {
+gulp.task('docker:build', gulp.series('docker:build:input', function deploy(callback) {
   run('docker build --pull --rm -f "Dockerfile" -t paroparo:' + tag_build + '"."')();
+  callback();
 }));
