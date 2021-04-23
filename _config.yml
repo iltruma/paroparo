@@ -2,6 +2,8 @@
 title: Paroparo # your site title
 author: iltruma # You :P
 description: "Paroparo description"
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://www.paroparo.it/" # the base hostname & protocol for your site, e.g. http://example.com
 
 # THEME SETTINGS
 navigation: # Navigation links
