@@ -38,9 +38,6 @@ const paths = {
   _posts: {
     root: '_posts'
   },
-  _dist: {
-    root: '_dist'
-  },
   _assets: {
     root: '_assets',
     sass: {
@@ -114,7 +111,6 @@ gulp.task('build:styles', function () {
     .pipe(rename({suffix: '.min'}))
     .pipe(browserSync.stream())
     .pipe(size())
-    .pipe(gulp.dest(paths._dist.root))
     .pipe(gulp.dest(paths._site.assets.css));
 });
 
