@@ -15,4 +15,4 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker run --rm -d  -p 3000:3000/tcp -p 80:80/tcp paroparo:latest
+      run: docker run --rm -d  -p 3000:3000/tcp -p 80:80/tcp docker.pkg.github.com/iltruma/paroparo/paroparo:latest
