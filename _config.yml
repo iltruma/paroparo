@@ -3,7 +3,7 @@ title: Paroparo # your site title
 author: iltruma # You :P
 description: "Paroparo description"
 baseurl: "" # the subpath of your site, e.g. /blog
-url:
+url: ""
 
 # THEME SETTINGS
 navigation: # Navigation links
