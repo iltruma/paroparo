@@ -38,26 +38,37 @@ const paths = {
   _posts: {
     root: '_posts'
   },
-  _assets: {
-    root: '_assets',
+  _src: {
+    root: '_src',
     sass: {
-      root: '_assets/sass',
-      all: '_assets/sass/**/*',
-      app: '_assets/sass/app',
-      vendor: '_assets/sass/vendor'
+      root: '_src/sass',
+      all: '_src/sass/**/*',
+      app: '_src/sass/app',
+      vendor: '_src/sass/vendor'
     },
     css: {
+      root:'_src/css',
+      all: '_src/css/**/*',
+      vendor: '_src/css/vendor'
+    },
+    js: {
+      root:'_src/js',
+      all: '_src/js/**/*',
+      app: '_src/js/app',
+      vendor: '_src/js/vendor',
+      critical: ['_src/js/vendor/critical/jquery.min.js', '_src/js/vendor/critical/popper.min.js', '_src/js/vendor/critical/bootstrap.js'],
+      optional: ['_src/js/vendor/plugins/*.js', '_src/js/vendor/leap.min.js', '_src/js/app/custom.js']
+    }
+  },
+  _assets: {
+    root: '_assets',
+    css: {
       root:'_assets/css',
-      all: '_assets/css/**/*',
-      vendor: '_assets/css/vendor'
+      all: '_assets/css/**/*'
     },
     js: {
       root:'_assets/js',
-      all: '_assets/js/**/*',
-      app: '_assets/js/app',
-      vendor: '_assets/js/vendor',
-      critical: ['_assets/js/vendor/critical/jquery.min.js', '_assets/js/vendor/critical/popper.min.js', '_assets/js/vendor/critical/bootstrap.js'],
-      optional: ['_assets/js/vendor/plugins/*.js', '_assets/js/vendor/leap.min.js', '_assets/js/app/custom.js']
+      all: '_assets/js/**/*'
     },
     img: {
       root: '_assets/img',
@@ -97,13 +108,13 @@ gulp.task('build:styles', function () {
   }
 
   return merge(
-      gulp.src(paths._assets.sass.app + "/leap.scss")
+      gulp.src(paths._src.sass.app + "/leap.scss")
       .pipe(sassVars(colors))
       .pipe(sass({
-          includePaths: [paths._assets.sass.app],
+          includePaths: [paths._src.sass.app],
           onError: browserSync.notify
       })),
-      gulp.src(paths._assets.css.vendor + "/*.css")
+      gulp.src(paths._src.css.vendor + "/*.css")
     )
     .pipe(cleanCSS())
     .pipe(autoprefixer())
@@ -111,12 +122,13 @@ gulp.task('build:styles', function () {
     .pipe(rename({suffix: '.min'}))
     .pipe(browserSync.stream())
     .pipe(size())
-    .pipe(gulp.dest(paths._site.assets.css));
+    .pipe(gulp.dest(paths._site.assets.css))
+    .pipe(gulp.dest(paths._assets.css.root));
 });
 
 //Task che compila i file JS critici (Bootstrap, Popper e Jquery)
 gulp.task('build:scripts:critical', function() {
-  return gulp.src(paths._assets.js.critical)
+  return gulp.src(paths._src.js.critical)
     .pipe(babel({ 
       presets: [["@babel/preset-env", { modules: false }]],
       compact: false  }))
@@ -125,12 +137,13 @@ gulp.task('build:scripts:critical', function() {
     .pipe(cache(uglify()))
     .pipe(browserSync.reload({stream: true}))
     .pipe(size())
-    .pipe(gulp.dest(paths._site.assets.js));
+    .pipe(gulp.dest(paths._site.assets.js))
+    .pipe(gulp.dest(paths._assets.js.root));
 });
 
 //Task che compila i file JS opzionali e quelli custom del sito
 gulp.task('build:scripts:optional', function() {
-  return gulp.src(paths._assets.js.optional)
+  return gulp.src(paths._src.js.optional)
     .pipe(babel({ 
       presets: [["@babel/preset-env", { modules: false }]],
       compact: false  }))
@@ -139,39 +152,34 @@ gulp.task('build:scripts:optional', function() {
     .pipe(cache(uglify()))
     .pipe(browserSync.reload({stream: true}))
     .pipe(size())
-    .pipe(gulp.dest(paths._site.assets.js));
+    .pipe(gulp.dest(paths._site.assets.js))
+    .pipe(gulp.dest(paths._assets.js.root));
 });
 
 // Task che compila tutti i JS
 gulp.task('build:scripts',  function(callback) {runSequence(['build:scripts:critical', 'build:scripts:optional'], callback)});
 
-// Task che copia i font
-gulp.task('build:fonts', function() {
-  return gulp.src(paths._assets.fonts.all)
-    .pipe(browserSync.reload({stream: true}))
-    .pipe(size())
-    .pipe(gulp.dest(paths._site.assets.fonts));
-});
-
-// Task di ottimizzazione delle immagini
+// Task di ottimizzazione delle immagini (sovrascrittura)
 gulp.task('build:images', function() {
   return gulp.src(paths._assets.img.all)
   .pipe(cache(imagemin({ optimizationLevel:5, progressive: true, interlaced: true })))
   .pipe(browserSync.reload({stream: true}))
   .pipe(size())
   .pipe(gulp.dest(paths._site.assets.img))
+  .pipe(gulp.dest(paths._assets.img.root));
 });
 
-// Task di ottimizzazione delle svg. E' sepratato dal task delle immagini perchè imagemin non ottimizza bene gli svg dei dividers e decorations
+// Task di ottimizzazione delle svg. E' sepratato dal task delle immagini perchè imagemin non ottimizza bene gli svg dei dividers e decorations (sovrascrittura)
 gulp.task('build:svg', function() {
   return gulp.src(paths._assets.img.svg)
   .pipe(browserSync.reload({stream: true}))
   .pipe(size())
   .pipe(gulp.dest(paths._site.assets.img))
+  .pipe(gulp.dest(paths._assets.img.root));
 });
 
 // Task completo degli assets
-gulp.task('build:assets',  function(callback) {runSequence('clean:jekyll', 'build:variables', 'build:styles', 'build:scripts', 'build:fonts', 'build:images', 'build:svg', callback)});
+gulp.task('build:assets',  function(callback) {runSequence('clean:jekyll', 'build:variables', 'build:styles', 'build:scripts', 'build:images', 'build:svg', callback)});
 
 // Task per il build Jekyll. Crea la cartella _site
 gulp.task('build:jekyll', function(callback) {
@@ -204,11 +212,11 @@ gulp.task('serve', gulp.series('build', function(callback) {
   //Watch _config.yml
   gulp.watch(['_config.yml'], gulp.series('build:jekyll:watch'));
   // Watch css files and pipe changes to browserSync
-  gulp.watch(paths._assets.css.all, gulp.series('build:styles'));
+  gulp.watch(paths._src.css.all, gulp.series('build:styles'));
   // Watch sass files and pipe changes to browserSync
-  gulp.watch(paths._assets.sass.all, gulp.series('build:styles'));
+  gulp.watch(paths._src.sass.all, gulp.series('build:styles'));
   // Watch .js files
-  gulp.watch(paths._assets.js.all, gulp.series('build:scripts'));
+  gulp.watch(paths._src.js.all, gulp.series('build:scripts'));
   // Watch image files and pipe changes to browserSync
   gulp.watch(paths._assets.img.all, gulp.series('build:images'));
   //Watch html
