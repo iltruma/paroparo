@@ -17,7 +17,7 @@ jobs:
       run: docker build . --file Dockerfile.prod --tag paroparo:latest
   
     - name: Login into package registry
-      run: echo "${{ secrets.GITH_TOKEN }}"  docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
+      run: docker login docker.pkg.github.com -u ${{ github.actor }} -p ${{ secrets.GITH_TOKEN }}
       
     - name: Tag & Push Docker Image
       run: |
