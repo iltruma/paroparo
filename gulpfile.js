@@ -60,24 +60,24 @@ const paths = {
       optional: ['_src/js/vendor/plugins/*.js', '_src/js/vendor/leap.min.js', '_src/js/app/custom.js']
     }
   },
-  _assets: {
-    root: '_assets',
+  assets: {
+    root: 'assets',
     css: {
-      root:'_assets/css',
-      all: '_assets/css/**/*'
+      root:'assets/css',
+      all: 'assets/css/**/*'
     },
     js: {
-      root:'_assets/js',
-      all: '_assets/js/**/*'
+      root:'assets/js',
+      all: 'assets/js/**/*'
     },
     img: {
-      root: '_assets/img',
-      all: ['_assets/img/**/*', '!_assets/img/**/*.svg'],
-      svg: '_assets/img/**/*.svg'
+      root: 'assets/img',
+      all: ['assets/img/**/*', '!assets/img/**/*.svg'],
+      svg: 'assets/img/**/*.svg'
     },
     fonts: {
-      root: '_assets/fonts',
-      all: '_assets/fonts/**/*'
+      root: 'assets/fonts',
+      all: 'assets/fonts/**/*'
     },
     html: {
       root: ['_layouts', '_includes'],
@@ -123,7 +123,7 @@ gulp.task('build:styles', function () {
     .pipe(browserSync.stream())
     .pipe(size())
     .pipe(gulp.dest(paths._site.assets.css))
-    .pipe(gulp.dest(paths._assets.css.root));
+    .pipe(gulp.dest(paths.assets.css.root));
 });
 
 //Task che compila i file JS critici (Bootstrap, Popper e Jquery)
@@ -138,7 +138,7 @@ gulp.task('build:scripts:critical', function() {
     .pipe(browserSync.reload({stream: true}))
     .pipe(size())
     .pipe(gulp.dest(paths._site.assets.js))
-    .pipe(gulp.dest(paths._assets.js.root));
+    .pipe(gulp.dest(paths.assets.js.root));
 });
 
 //Task che compila i file JS opzionali e quelli custom del sito
@@ -153,7 +153,7 @@ gulp.task('build:scripts:optional', function() {
     .pipe(browserSync.reload({stream: true}))
     .pipe(size())
     .pipe(gulp.dest(paths._site.assets.js))
-    .pipe(gulp.dest(paths._assets.js.root));
+    .pipe(gulp.dest(paths.assets.js.root));
 });
 
 // Task che compila tutti i JS
@@ -161,21 +161,21 @@ gulp.task('build:scripts',  function(callback) {runSequence(['build:scripts:crit
 
 // Task di ottimizzazione delle immagini (sovrascrittura)
 gulp.task('build:images', function() {
-  return gulp.src(paths._assets.img.all)
+  return gulp.src(paths.assets.img.all)
   .pipe(cache(imagemin({ optimizationLevel:5, progressive: true, interlaced: true })))
   .pipe(browserSync.reload({stream: true}))
   .pipe(size())
   .pipe(gulp.dest(paths._site.assets.img))
-  .pipe(gulp.dest(paths._assets.img.root));
+  .pipe(gulp.dest(paths.assets.img.root));
 });
 
 // Task di ottimizzazione delle svg. E' sepratato dal task delle immagini perchè imagemin non ottimizza bene gli svg dei dividers e decorations (sovrascrittura)
 gulp.task('build:svg', function() {
-  return gulp.src(paths._assets.img.svg)
+  return gulp.src(paths.assets.img.svg)
   .pipe(browserSync.reload({stream: true}))
   .pipe(size())
   .pipe(gulp.dest(paths._site.assets.img))
-  .pipe(gulp.dest(paths._assets.img.root));
+  .pipe(gulp.dest(paths.assets.img.root));
 });
 
 // Task completo degli assets
@@ -194,7 +194,7 @@ gulp.task('build:jekyll:watch', gulp.series('build:jekyll', function(callback) {
 }));
 
 // Build task completo (assets + jekyll)
-gulp.task('build', function(callback) {runSequence('build:assets', 'build:jekyll', callback)});
+gulp.task('build', function(callback) {runSequence('build:jekyll', callback)});
 
 // Task che fa il build e fa partire browsersync
 gulp.task('serve', gulp.series('build', function(callback) {
@@ -218,9 +218,9 @@ gulp.task('serve', gulp.series('build', function(callback) {
   // Watch .js files
   gulp.watch(paths._src.js.all, gulp.series('build:scripts'));
   // Watch image files and pipe changes to browserSync
-  gulp.watch(paths._assets.img.all, gulp.series('build:images'));
+  gulp.watch(paths.assets.img.all, gulp.series('build:images'));
   //Watch html
-  gulp.watch(paths._assets.html.all, gulp.series('build:jekyll:watch'));
+  gulp.watch(paths.assets.html.all, gulp.series('build:jekyll:watch'));
   // Watch posts
   gulp.watch(paths._posts.root + '**/*.+(md|markdown|MD)', gulp.series('build:jekyll:watch'));
   // Watch data files
