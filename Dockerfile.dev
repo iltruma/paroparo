@@ -8,7 +8,8 @@ RUN npm install
 ENV PATH node_modules/.bin:$PATH
 
 COPY . .
-RUN touch Gemfile.lock && chmod a+w Gemfile.lock
+RUN touch Gemfile.lock
+RUN chown -R jekyll .
 RUN gulp build
 
 FROM nginx:alpine

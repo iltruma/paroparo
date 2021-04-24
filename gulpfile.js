@@ -88,7 +88,7 @@ const paths = {
 
 // Task che cancella la cartella _site
 gulp.task('clean:jekyll', function(callback) {
-  del.sync(paths._site.root);
+  run('jekyll clean')();
   callback();
 });
 
@@ -183,7 +183,7 @@ gulp.task('build:assets',  function(callback) {runSequence('clean:jekyll', 'buil
 
 // Task per il build Jekyll. Crea la cartella _site
 gulp.task('build:jekyll', function(callback) {
-  run('jekyll build --config _config.yml --future')();
+  run('jekyll build --config _config.yml --future --trace')();
   callback();
 });
 
