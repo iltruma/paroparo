@@ -28,17 +28,12 @@ jobs:
         docker tag paroparo docker.pkg.github.com/iltruma/paroparo/paroparo:latest
         docker push docker.pkg.github.com/iltruma/paroparo/paroparo:latest
  
-  jekyll_build:
+  jekyll_build_and_deploy:
     runs-on: ubuntu-latest
     steps: 
-    - name: jekyll build
-      run: jekyll build --config _config.yml --future
+      - uses: helaili/jekyll-action@v2
+        with:
+          token: ${{ secrets.GITH_TOKEN }}
+          target_branch: gh-pages
+          target_path: _site
       
-  jekyll_deploy:
-      runs-on: ubuntu-latest
-      steps:
-        - uses: JamesIves/github-pages-deploy-action@4.1.1
-          with:
-            branch: gh-pages
-            folder: build
-            token: ${{ secrets.GITH_TOKEN }}
