@@ -3,7 +3,7 @@ WORKDIR /paroparo
 
 COPY . .
 RUN touch Gemfile.lock && chmod a+w Gemfile.lock
-RUN jekyll build --config _config.yml --future
+RUN jekyll build --config _config.yml --future --trace
 
 FROM nginx:alpine
 COPY --from=builder paroparo/_site /usr/share/nginx/html
