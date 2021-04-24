@@ -5,5 +5,5 @@
 _site
 Gemfile.lock
 node_modules
-_assets/sass/vendor/bootstrap/*
-_assets/sass/vendor/leap/*
+_src/sass/vendor/bootstrap/*
+_src/sass/vendor/leap/*
