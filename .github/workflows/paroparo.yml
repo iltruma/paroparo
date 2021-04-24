@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Paroparo CI
 
 on:
   push:
@@ -10,11 +10,11 @@ jobs:
   docker_build:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout 🛎️
+    - name: Checkout
       uses: actions/checkout@v2
       
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag paroparo:latest
+      run: docker build . --file Dockerfile.prod --tag paroparo:latest
   
   docker_publish:
     needs: docker_build
