@@ -7,7 +7,7 @@ on:
     branches: [ master ]
 
 jobs:
-  docker_build:
+  docker_build_and_push:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -16,10 +16,6 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file Dockerfile.prod --tag paroparo:latest
   
-  docker_publish:
-    needs: docker_build
-    runs-on: ubuntu-latest
-    steps:
     - name: Login into package registry
       run: echo "${{ secrets.GITH_TOKEN }}"  docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
       
