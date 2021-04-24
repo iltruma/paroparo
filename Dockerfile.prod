@@ -1,0 +1,10 @@
+FROM jekyll/builder as builder
+WORKDIR /paroparo
+
+COPY . .
+RUN jekyll build --config _config.yml --future
+
+FROM nginx:alpine
+COPY --from=builder paroparo/_site /usr/share/nginx/html
+
+EXPOSE 3000

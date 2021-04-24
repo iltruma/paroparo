@@ -183,7 +183,7 @@ gulp.task('build:assets',  function(callback) {runSequence('clean:jekyll', 'buil
 
 // Task per il build Jekyll. Crea la cartella _site
 gulp.task('build:jekyll', function(callback) {
-  run('jekyll build --config _config.yml')();
+  run('jekyll build --config _config.yml --future')();
   callback();
 });
 
