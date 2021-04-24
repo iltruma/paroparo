@@ -34,6 +34,5 @@ jobs:
       - uses: helaili/jekyll-action@v2
         with:
           token: ${{ secrets.GITH_TOKEN }}
-          target_branch: gh-pages
-          target_path: _site
-      
+          target_branch: 'gh-pages'
+          target_path: '_site'      
