@@ -31,7 +31,11 @@ jobs:
   jekyll_build_and_deploy:
     runs-on: ubuntu-latest
     steps: 
-      - uses: helaili/jekyll-action@v2
+      - name: Checkout
+        uses: actions/checkout@v2
+        
+      - name: jekyll build and deploy 
+        uses: helaili/jekyll-action@v2
         with:
           token: ${{ secrets.GITH_TOKEN }}
           target_branch: 'gh-pages'   
