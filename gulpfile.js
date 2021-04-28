@@ -212,9 +212,9 @@ gulp.task('serve', gulp.series('build', function(callback) {
   //Watch _config.yml
   gulp.watch(['_config.yml'], gulp.series('build:jekyll:watch'));
   // Watch css files and pipe changes to browserSync
-  gulp.watch(paths._src.css.all, gulp.series('build:styles'));
+  gulp.watch(paths._src.css.all, gulp.series('build:variables', 'build:styles'));
   // Watch sass files and pipe changes to browserSync
-  gulp.watch(paths._src.sass.all, gulp.series('build:styles'));
+  gulp.watch(paths._src.sass.all, gulp.series('build:variables', 'build:styles'));
   // Watch .js files
   gulp.watch(paths._src.js.all, gulp.series('build:scripts'));
   // Watch image files and pipe changes to browserSync
