@@ -13,14 +13,6 @@
 
 ### ✨ [Demo](https://www.paroparo.it)
 
-## Install
-
-```sh
-docker pull docker.pkg.github.com/iltruma/paroparo/paroparo:latest
-docker run --rm -d  -p 3000:80/tcp paroparo:latest
-```
-then browser to [http://localhost:3000/](http://localhost:3000)
-
 ## Authors
 
 🦜 **[@iltruma](https://github.com/iltruma)** &  **[@ilcaso](https://github.com/ilcaso)**
