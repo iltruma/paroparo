@@ -21,4 +21,5 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "jekyll-feed"
   spec.add_runtime_dependency "rouge"
   spec.add_runtime_dependency "jekyll-paginate-v2"
+  spec.add_runtime_dependency "jekyll-email-protect"
 end

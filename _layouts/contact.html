@@ -35,15 +35,15 @@ layout: default
             <span class="h4 m-0 mdi mdi-email text-primary "></span>
           </div>
           <h3 class="h2">Email</h3>
-          <a href="mailto:{{site.email}}" class="lead">{{site.email}}</a>
+          <a href="mailto:{{site.email | encode_email}}" class="lead">{{site.email}}</a>
         </div>
         <div class="col-sm-4 mb-3 mb-sm-0" data-aos="fade-left" data-aos-delay="100">
           <div class="mb-2 icon-round icon-round-sm bg-primary d-inline-flex">
             <span class="h4 m-0 mdi mdi-bird text-primary"></span>
           </div>
           <h3 class="h2">Email dei Pappagalli</h3>
-          <a href="mailto:{{site.email_1}}" class="lead">{{site.email_1}}</a><br>
-          <a href="mailto:{{site.email_2}}" class="lead text-primary-2">{{site.email_2}}</a>
+          <a href="mailto:{{site.email_1 | encode_email}}" class="lead">{{site.email_1}}</a><br>
+          <a href="mailto:{{site.email_2 | encode_email}}" class="lead text-primary-2">{{site.email_2}}</a>
         </div>
       </div>
     </div>

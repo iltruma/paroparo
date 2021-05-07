@@ -26,7 +26,6 @@ colors:
   - primary-2-dark: "#242331"
 
 #SEO
-github: "https://github.com/iltruma/paroparo"
 #tagline: "" # A short description title | tagline header
 #facebook:
 #  app_id: 1234
@@ -38,6 +37,7 @@ github: "https://github.com/iltruma/paroparo"
 #  links:
 #    - https://instagram.com/paroparo
 #google_site_verification: 
+github: "https://github.com/iltruma/paroparo"
 
 
 # BUILD SETTINGS
@@ -81,3 +81,4 @@ plugins:
   - jekyll-sitemap
   - jekyll-feed
   - jekyll-paginate-v2
+  - jekyll-email-protect

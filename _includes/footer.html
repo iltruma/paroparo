@@ -30,14 +30,14 @@
           <li class="mb-3 d-flex">
             <span class="h4 m-0 mdi mdi-email text-light"></span>
             <div class="ml-3">
-              <a  class="nav-link p-0" href="mailto:{{site.email}}">{{site.email}}</a>
+              <a  class="nav-link p-0" href="mailto:{{site.email | encode_email}}">{{site.email}}</a>
             </div>
           </li>
           <li class="mb-3 d-flex">
             <span class="h4 m-0 mdi mdi-bird text-light"></span>
             <div class="ml-3">
-              <a class="nav-link p-0" href="mailto:{{site.email_1}}">{{site.email_1}}</a>
-              <a class="nav-link p-0" href="mailto:{{site.email_1}}">{{site.email_2}}</a>
+              <a class="nav-link p-0" href="mailto:{{site.email_1 | encode_email}}">{{site.email_1}}</a>
+              <a class="nav-link p-0" href="mailto:{{site.email_1 | encode_email}}">{{site.email_2}}</a>
             </div>
           </li>
         </ul>
