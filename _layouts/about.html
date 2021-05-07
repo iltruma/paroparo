@@ -45,7 +45,7 @@ layout: default
                 </div>
                 <p class="lead">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
                     laudantium, totam rem aperiam, eaque ipsa.</p>
-                <a href="mailto:niccolo@paroparo.it" class="lead">niccolo@paroparo.it</a>
+                <a href="mailto:{{site.email_1 | encode_email}}" class="lead">{{site.email_1}}</a>
             </div>
         </div>
 
@@ -118,7 +118,7 @@ layout: default
                 </div>
                 <p class="lead">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
                     laudantium, totam rem aperiam, eaque ipsa.</p>
-                <a href="mailto:cosimo@paroparo.it" class="lead text-primary-2">cosimo@paroparo.it</a>
+                <a href="mailto:{{site.email_2 | encode_email}}" class="lead text-primary-2">{{site.email_1 | encode_email}}</a>
             </div>
             <div class="col-md-4" data-aos="fade-left" data-aos-delay="200">
                 <img src="{{ '/assets/img/desktop-app-2.jpg' | relative_url }}" alt="Image" class="rounded-circle layer-2">
