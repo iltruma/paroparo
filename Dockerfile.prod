@@ -1,0 +1,12 @@
+FROM jekyll/builder as builder
+WORKDIR /paroparo
+
+COPY . .
+RUN touch Gemfile.lock
+RUN chown -R jekyll .
+RUN jekyll build --config _config.yml --trace
+
+FROM nginx:alpine
+COPY --from=builder paroparo/_site /usr/share/nginx/html
+
+EXPOSE 3000
