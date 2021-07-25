@@ -82,6 +82,10 @@ const paths = {
     html: {
       root: ['_layouts', '_includes'],
       all: ['_layouts/**/*.html', '_includes/**/*.html']
+    },
+    json: {
+      root: 'assets/json',
+      all: 'assets/json/**/*'
     }
   }
 };
@@ -96,12 +100,12 @@ gulp.task('build:variables', function(callback) {
   return gulp.src('./_config.yml')
   .pipe(yaml({ safe: true }))
   .pipe(rename({basename: 'site'}))
-  .pipe(gulp.dest(paths._site.assets.json));
+  .pipe(gulp.dest(paths.assets.json.root));
 });
 
 //Task che compila i file SASS, li unisce con le gli altri CSS dei vendor (Leaflet, hightlight, ...) e li minimizza nel file paroparo.min.css
 gulp.task('build:styles', function () {
-  var site = JSON.parse(fs.readFileSync(paths._site.assets.json + "/site.json"));
+  var site = JSON.parse(fs.readFileSync(paths.assets.json.root + "/site.json"));
   var colors = {};
   for (i in site.colors) {
     colors[Object.keys(site.colors[i])[0]] = Object.values(site.colors[i])[0];
@@ -194,7 +198,7 @@ gulp.task('build:jekyll:watch', gulp.series('build:jekyll', function(callback) {
 }));
 
 // Build task completo (assets + jekyll)
-gulp.task('build', function(callback) {runSequence('build:jekyll', callback)});
+gulp.task('build', function(callback) {runSequence('build:assets', 'build:jekyll', callback)});
 
 // Task che fa il build e fa partire browsersync
 gulp.task('serve', gulp.series('build', function(callback) {
