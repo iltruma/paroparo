@@ -16,7 +16,7 @@ jobs:
           config_timezone: Europe/Rome
           token: ${{ secrets.GITH_TOKEN }}
           template: repository
-          filename: metrics.svg
+          filename: assets/img/metrics.svg
           user: iltruma
           repo: paroparo
           base: header
