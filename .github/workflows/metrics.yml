@@ -13,6 +13,7 @@ jobs:
         if: ${{ success() || failure() }}
         uses: lowlighter/metrics@latest
         with:
+          config_timezone: Europe/Rome
           token: ${{ secrets.GITH_TOKEN }}
           template: repository
           filename: metrics.svg
@@ -23,6 +24,18 @@ jobs:
           plugin_introduction_title: no # Hide section title
           plugin_lines: yes
           plugin_followup: yes
-          plugin_projects: yes
+          plugin_activity: yes
+          plugin_activity_days: 14
+          plugin_activity_filter: all
+          plugin_activity_limit: 5
+          plugin_activity_load: 300
+          plugin_activity_visibility: all
+          plugin_languages: yes
+          plugin_languages_colors: github
+          plugin_languages_limit: 8
+          plugin_languages_recent.days: 14
+          plugin_languages_recent.load: 300
+          plugin_languages_sections: most-used
+          plugin_languages_threshold: 0%
   
   
