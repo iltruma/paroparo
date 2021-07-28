@@ -1,4 +1,4 @@
-name: Metric Generator
+name: Metrics Generator
 
 on:
   schedule:
