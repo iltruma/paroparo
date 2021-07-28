@@ -13,8 +13,11 @@ jobs:
         uses: lowlighter/metrics@latest
         with:
           template: classic
+          filename: metrics.svg
           user: iltruma
           repo: paroparo
           token: ${{ secrets.GITH_TOKEN }}
+          plugin_introduction: yes
+          plugin_introduction_title: no # Hide section title
   
   
