@@ -35,15 +35,3 @@ jobs:
         with:
           token: ${{ secrets.GITH_TOKEN }}
           target_branch: 'gh-pages'   
-  
-  metrics_generator:
-    runs-on: ubuntu-latest
-    steps: 
-      - name: Metrics Generator
-        uses: lowlighter/metrics@latest
-        with:
-          template: classic
-          user: iltruma
-          repo: iltruma/paroparo
-  
-  
