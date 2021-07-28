@@ -20,6 +20,7 @@ jobs:
           user: iltruma
           repo: paroparo
           base: header
+          config_display: large
           plugin_introduction: yes
           plugin_introduction_title: no # Hide section title
           plugin_lines: yes
