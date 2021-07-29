@@ -2,8 +2,9 @@
 <script type="text/javascript" src="{{ '/assets/js/paroparo-critical.min.js' | relative_url }}"></script>
 
 <!-- Optional and Paroparo scripts  -->
-<script>var site; $.getJSON("{{'/assets/json/site.json' | relative_url }}", function(data){site = data;});</script>
+<script>var site; $.ajax({url: "{{'/assets/json/site.json' | relative_url }}", dataType: 'json', async: false, success: function(data){site = data;}})</script>
 <script type="text/javascript" src="{{ '/assets/js/paroparo.min.js' | relative_url }}"></script>
+
 
 <!-- Removes page load animation when window is finished loading -->
 <script type="text/javascript">
