@@ -32,13 +32,10 @@ colors:
 #  publisher: 1234
 #  admins: 1234
 #logo: 
-#social:
-#  name: Paroparo
-#  links:
-#    - https://instagram.com/paroparo
 #google_site_verification: 
-github: "https://github.com/iltruma/paroparo"
-
+social:
+  - github: "https://github.com/iltruma/paroparo"
+  - instagram: "https://www.instagram.com/paroparo.it"
 
 # BUILD SETTINGS
 markdown: kramdown
