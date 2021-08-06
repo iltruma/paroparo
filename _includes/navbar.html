@@ -23,6 +23,12 @@
                 <a href="{{ item.link | relative_url }}" class="nav-link" aria-expanded="false" aria-haspopup="true">{{ item.name }}</a>
               </li>
               {% endfor %}
+              <li>
+                <div class="custom-control custom-switch" title="" data-toggle="tooltip" data-placement="left" data-original-title="Toggle Dark Mode<small><br>or press [D] hot-key</small>">                  
+                  <input type="checkbox" class="custom-control-input" id="css-toggle-btn">
+                  <label class="custom-control-label" for="css-toggle-btn">Dark Mode</label>
+                </div>
+              </li>
           </ul>
         </div>
       </div>

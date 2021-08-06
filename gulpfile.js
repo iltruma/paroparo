@@ -56,7 +56,7 @@ const paths = {
       all: '_src/js/**/*',
       app: '_src/js/app',
       vendor: '_src/js/vendor',
-      critical: ['_src/js/vendor/critical/jquery.min.js', '_src/js/vendor/critical/popper.min.js', '_src/js/vendor/critical/bootstrap.js'],
+      critical: ['_src/js/vendor/critical/jquery.min.js', '_src/js/vendor/critical/popper.min.js', '_src/js/vendor/critical/bootstrap.js','_src/js/vendor/critical/dark-mode-switch.js'],
       optional: ['_src/js/vendor/plugins/*.js', '_src/js/vendor/leap.min.js', '_src/js/app/custom.js']
     }
   },
@@ -130,6 +130,33 @@ gulp.task('build:styles', function () {
     .pipe(gulp.dest(paths.assets.css.root));
 });
 
+//Task che compila i file SASS, li unisce con le gli altri CSS dei vendor (Leaflet, hightlight, ...) e li minimizza nel file paroparo.min.css
+gulp.task('build:styles-dark', function () {
+  var site = JSON.parse(fs.readFileSync(paths.assets.json.root + "/site.json"));
+  var colors = {};
+  for (i in site.colors) {
+    colors[Object.keys(site.colors[i])[0]] = Object.values(site.colors[i])[0];
+  }
+
+  return merge(
+      gulp.src(paths._src.sass.app + "/dark.scss")
+      .pipe(sassVars(colors))
+      .pipe(sass({
+          includePaths: [paths._src.sass.app],
+          onError: browserSync.notify
+      })),
+      gulp.src(paths._src.css.vendor + "/*.css")
+    )
+    .pipe(cleanCSS())
+    .pipe(autoprefixer())
+    .pipe(concat("paroparo-dark.css"))
+    .pipe(rename({suffix: '.min'}))
+    .pipe(browserSync.stream())
+    .pipe(size())
+    .pipe(gulp.dest(paths._site.assets.css))
+    .pipe(gulp.dest(paths.assets.css.root));
+});
+
 //Task che compila i file JS critici (Bootstrap, Popper e Jquery)
 gulp.task('build:scripts:critical', function() {
   return gulp.src(paths._src.js.critical)
@@ -183,7 +210,7 @@ gulp.task('build:svg', function() {
 });
 
 // Task completo degli assets
-gulp.task('build:assets',  function(callback) {runSequence('clean:jekyll', 'build:variables', 'build:styles', 'build:scripts', 'build:images', 'build:svg', callback)});
+gulp.task('build:assets',  function(callback) {runSequence('clean:jekyll', 'build:variables', 'build:styles', 'build:styles-dark', 'build:scripts', 'build:images', 'build:svg', callback)});
 
 // Task per il build Jekyll. Crea la cartella _site
 gulp.task('build:jekyll', function(callback) {
@@ -216,9 +243,9 @@ gulp.task('serve', gulp.series('build', function(callback) {
   //Watch _config.yml
   gulp.watch(['_config.yml'], gulp.series('build:jekyll:watch'));
   // Watch css files and pipe changes to browserSync
-  gulp.watch(paths._src.css.all, gulp.series('build:variables', 'build:styles'));
+  gulp.watch(paths._src.css.all, gulp.series('build:variables', 'build:styles', 'build:styles-dark'));
   // Watch sass files and pipe changes to browserSync
-  gulp.watch(paths._src.sass.all, gulp.series('build:variables', 'build:styles'));
+  gulp.watch(paths._src.sass.all, gulp.series('build:variables', 'build:styles', 'build:styles-dark'));
   // Watch .js files
   gulp.watch(paths._src.js.all, gulp.series('build:scripts'));
   // Watch image files and pipe changes to browserSync
