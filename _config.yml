@@ -19,11 +19,12 @@ city: "Firenze, Italia"
 locale: it_IT
 colors:
   - primary: "#186e64"
-  - primary-3: "#2DE0CB"
-  - primary-dark: "#021C19"
   - primary-2: "#FF6933"
+  - primary-3: "#2DE0CB"
   - primary-4: "#6600FF"
+  - primary-dark: "#021C19"
   - primary-2-dark: "#242331"
+  - primary-night: "#121212"
 
 #SEO
 #tagline: "" # A short description title | tagline header

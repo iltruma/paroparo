@@ -18,10 +18,12 @@
   <meta name="apple-mobile-web-app-title" content="{{site.title}}">
   <meta name="application-name" content="{{site.title}}">
   <meta name="theme-color" content="{{site.colors.primary}}">
+  <meta name="color-scheme" content="light dark">
   
   <!-- Loading Animation -->
   {% include loading.html %}
   <!-- CSS -->
-  <link rel="stylesheet" href="{{ '/assets/css/paroparo.min.css' | relative_url }}" type="text/css" media="all">
+  <link id="css-light" rel="stylesheet" href="{{ '/assets/css/paroparo-dark.min.css' | relative_url }}" type="text/css" media="(prefers-color-scheme: dark)">
+  <link id="css-dark" rel="stylesheet" href="{{ '/assets/css/paroparo.min.css' | relative_url }}" type="text/css">
   {% seo %}
 </head>

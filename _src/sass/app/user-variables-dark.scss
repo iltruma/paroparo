@@ -1,22 +1,22 @@
 // 
 // 
-// user-variables.scss
+// user-variables-dark.scss
 //
 // Place your own variable overrides here, these will override any Bootstrap and theme variables.
 
 // Do not change or remove the $theme-color-scheme or $theme-colors maps below
 
-$white:    #fff ;
-$gray-100: #f8f9fa ;
-$gray-200: #e9ecef ;
-$gray-300: #dee2e6 ;
-$gray-400: #ced4da ;
+$black:    #fff ;
+$gray-900: #f8f9fa ;
+$gray-800: #e9ecef ;
+$gray-700: #dee2e6 ;
+$gray-600: #ced4da ;
 $gray-500: #adb5bd ;
-$gray-600: #6c757d ;
-$gray-700: #495057 ;
-$gray-800: #343a40 ;
-$gray-900: #212529 ;
-$black:    #000 ;
+$gray-400: #6c757d ;
+$gray-300: #495057 ;
+$gray-200: #343a40 ;
+$gray-100: #212529 ;
+$white:    #0d1716 ;
 
 $grays: () ;
 // stylelint-disable-next-line scss/dollar-variable-default
@@ -82,8 +82,9 @@ $theme-colors: map-merge(
     "primary-2":      $primary-2,
     "primary-3":      $primary-3,
     "primary-4":      $primary-4,
-    "primary-dark":   $primary-dark,
-    "primary-2-dark": $primary-2-dark,
+    "primary-dark":   $primary-night,
+    "primary-2-dark": $primary-2,
+    "primary-night":  $primary-night,
     "secondary":      $secondary,
     "success":        $success,
     "info":           $info,
@@ -100,6 +101,7 @@ $theme-color-scheme: (
     "primary-2":      $primary-2,
     "primary-3":      $primary-3,
     "primary-4":      $primary-4,
-    "primary-dark":   $primary-dark,
-    "primary-2-dark": $primary-2-dark
+    "primary-dark":   $primary-night,
+    "primary-2-dark": $primary-2,
+    "primary-night":  $primary-night,
 );

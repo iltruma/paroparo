@@ -1,0 +1,25 @@
+.text-light {
+    a:not(.btn),h1,h2,h3,h4,h5,h6,span,p,.h1,.h2,.h3,.h4,.h5,.h6,.display-1, .display-2, .display-3, .display-4, .nav-link{
+      color: $gray-800 !important;
+    }
+    .text-muted{
+      color: $gray-500 !important;
+    }
+}
+
+.navbar-dark {
+    a,.nav-link{
+        color: $gray-800 !important;
+      }
+}
+
+.btn {
+    color: $gray-800 !important;
+    &:hover {
+        color: $gray-500 !important;
+    }
+}
+
+.bg-dark {
+    background: $gray-800 !important;
+}
