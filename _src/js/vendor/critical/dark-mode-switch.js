@@ -3,13 +3,19 @@ $(document).ready(function(){
   // Update the toggle button based on current color scheme
   function updateDarkToggleButton() {
     $mode = 'light'; //default
-    if (typeof $("body").attr("data-color-scheme") === 'undefined') {
-      $dark = (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches);
-      $mode = $dark ? 'dark' : 'light';
+
+    // if on user prefers color then update stored value
+    $upc = window.localStorage.getItem('user-prefers-color');
+    if ($upc !== null) {
+      $mode = $upc;
     } else {
-      $mode = $("body").attr("data-color-scheme");
+      if (typeof $("body").attr("data-color-scheme") === 'undefined') {
+        $dark = (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches);
+        $mode = $dark ? 'dark' : 'light';
+      } else {
+        $mode = $("body").attr("data-color-scheme");
+      }
     }
-    alert($mode);
     toggleColorSchemeCss($mode);
     autoThemeToggle(); //toggle theme automatically if is night
   }
@@ -25,6 +31,7 @@ $(document).ready(function(){
     $("#css-toggle-btn").prop( "checked", $dark );
     $("#css-dark").attr( "disabled", !$dark );
     $("body").attr("data-color-scheme", $mode);
+    window.localStorage.setItem('user-prefers-color', $mode);
   }
 
   function autoThemeToggle() {
