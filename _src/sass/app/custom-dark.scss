@@ -20,6 +20,16 @@
     }
 }
 
-.bg-dark {
-    background: $gray-800 !important;
+section.bg-primary {
+    background: $primary-night !important;
+}
+
+#mapid {
+  .leaflet-tile.leaflet-tile-loaded {
+    -webkit-filter: invert(90%);
+    -moz-filter: invert(90%);
+    -ms-filter: invert(90%);
+    -o-filter: invert(90%);
+    filter: invert(90%);
+  }
 }

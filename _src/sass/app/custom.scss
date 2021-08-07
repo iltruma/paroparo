@@ -1,3 +1,6 @@
+section.bg-primary {
+    background: $primary !important;
+}
 code.hljs {
     @extend .bg-primary-alt, .rounded, .p-2, .mb-2;
 }
@@ -94,4 +97,34 @@ article {
 		    animation: octocat-wave 560ms ease-in-out;
         }
 	}
+}
+
+#mapid {
+    .leaflet-popup-content-wrapper, .leaflet-popup-tip {
+        background: $white;
+        color: $gray-900;
+        box-shadow: 0 3px 14px rgba($white,.4);
+    }
+    .leaflet-tile.leaflet-tile-loaded {
+        -webkit-filter: invert(0);
+        -moz-filter: invert(0);
+        -ms-filter: invert(0);
+        -o-filter: invert(0);
+        filter: invert(0);
+    }
+    a {
+        @extend .text-primary;
+    }
+    .leaflet-bar a {
+        background-color: $white;
+        color: $primary;
+        border-bottom: 1px solid $gray-200;
+        &:hover {
+            background-color: $gray-200;
+        }
+    }
+    .leaflet-control-attribution.leaflet-control {
+        background: rgba($white,.8);
+        color: $gray-900;
+    }
 }

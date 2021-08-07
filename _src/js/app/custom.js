@@ -21,6 +21,7 @@ $(document).ready(function () {
         'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
       id: 'mapbox/streets-v11',
       tileSize: 512,
+      fillColor:  site.colors[0].primary,
       zoomOffset: -1
     }).addTo(mymap);
 
