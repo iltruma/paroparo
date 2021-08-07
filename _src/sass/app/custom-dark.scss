@@ -79,18 +79,19 @@ body[data-color-scheme="dark"] {
       filter: invert(90%);
     }
   }
-}
 
-#css-toggle.custom-switch .custom-control-label {
-  &:before {
-      background-color: transparent;
-      border-color:  $navbar-dark-color;
-  }
-  &:after {
-      @extend .mdi;
-      background-color:  $primary-dark;
-      border-color:  $navbar-dark-color;
-      content: "\F0594";
-      color: $gray-900;
+
+  #css-toggle.custom-switch .custom-control-label {
+    &:before {
+        background-color: transparent;
+        border-color:  $navbar-dark-color;
+    }
+    &:after {
+        @extend .mdi;
+        background-color:  $primary-dark;
+        border-color:  $navbar-dark-color;
+        content: "\F0594";
+        color: $gray-900;
+    }
   }
 }
