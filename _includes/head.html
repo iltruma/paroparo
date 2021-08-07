@@ -17,11 +17,14 @@
   <!--<meta name="msapplication-config" content="{{ '/assets/img/icons/browserconfig.xml?v=qA3OXqyw77' | relative_url }}">-->
   <meta name="apple-mobile-web-app-title" content="{{site.title}}">
   <meta name="application-name" content="{{site.title}}">
-  <meta name="theme-color" content="{{site.colors.primary}}">
+  <meta name="theme-color" content="{{site.colors[0].primary}}">
+  <meta name="color-scheme" content="light dark">
   
   <!-- Loading Animation -->
-  {% include loading.html %}
+  <link rel="stylesheet" href="{{ '/assets/css/loader.min.css' | relative_url }}" type="text/css">
+
   <!-- CSS -->
-  <link rel="stylesheet" href="{{ '/assets/css/paroparo.min.css' | relative_url }}" type="text/css" media="all">
+  <link id="css-light" rel="stylesheet" href="{{ '/assets/css/paroparo.min.css' | relative_url }}" type="text/css">
+  <link id="css-dark" rel="stylesheet" href="{{ '/assets/css/paroparo-dark.min.css' | relative_url }}" type="text/css" media="(prefers-color-scheme: dark)">
   {% seo %}
 </head>

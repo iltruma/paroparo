@@ -1,3 +1,6 @@
+section.bg-primary {
+    background: $primary !important;
+}
 code.hljs {
     @extend .bg-primary-alt, .rounded, .p-2, .mb-2;
 }
@@ -94,4 +97,52 @@ article {
 		    animation: octocat-wave 560ms ease-in-out;
         }
 	}
+}
+
+#mapid {
+    .leaflet-popup-content-wrapper, .leaflet-popup-tip {
+        background: $white;
+        color: $gray-900;
+        box-shadow: 0 3px 14px rgba($white,.4);
+    }
+    .leaflet-tile.leaflet-tile-loaded {
+        -webkit-filter: invert(0);
+        -moz-filter: invert(0);
+        -ms-filter: invert(0);
+        -o-filter: invert(0);
+        filter: invert(0);
+    }
+    a {
+        @extend .text-primary;
+    }
+    .leaflet-bar a {
+        background-color: $white;
+        color: $primary;
+        border-bottom: 1px solid $gray-200;
+        &:hover {
+            background-color: $gray-200;
+        }
+    }
+    .leaflet-control-attribution.leaflet-control {
+        background: rgba($white,.8);
+        color: $gray-900;
+    }
+}
+
+#css-toggle.custom-switch .custom-control-label {
+    &:before {
+        background-color: transparent;
+        border-color:  $navbar-dark-color;
+    }
+    &:after {
+        display: inline-block;
+        font-family: "Material Design Icons";
+        background-color: $navbar-dark-color;
+        border-color: $navbar-dark-color;
+        text-align: center;
+        content: "\F05A8";
+        font-size: 0.75rem;
+        line-height: 0.85rem;
+        color: $warning;
+    }
 }

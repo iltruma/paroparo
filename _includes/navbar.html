@@ -1,6 +1,4 @@
-<div class="loader">
-  <div class="loading-animation"></div>
-</div>
+{% include loader.html %}
 
 <div class="navbar-container">
   <nav class="navbar navbar-expand-lg navbar-dark" data-overlay data-sticky="top">
@@ -25,7 +23,16 @@
               {% endfor %}
           </ul>
         </div>
+        <form class="form-inline my-2 my-lg-0">
+          <div id="css-toggle" class="custom-control custom-switch" title="" data-toggle="tooltip" data-placement="left">                  
+            <input type="checkbox" class="custom-control-input" id="css-toggle-btn">
+            <label class="custom-control-label" for="css-toggle-btn"></label>
+          </div>
+        </form>
+        
       </div>
+
+
     </div>
   </nav>
 </div>

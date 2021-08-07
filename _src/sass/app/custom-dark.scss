@@ -1,0 +1,96 @@
+body[data-color-scheme="dark"] {
+  .text-light *, .text-light {
+        color: $gray-900 !important;
+    .text-muted{
+      color: $gray-500 !important;
+    }
+  }
+
+  .navbar-dark {
+    .navbar-brand {
+      color: $navbar-light-brand-color;
+
+      @include hover-focus() {
+        color: $navbar-light-brand-hover-color;
+      }
+    }
+
+    .navbar-nav {
+      .nav-link {
+        color: $navbar-light-color;
+
+        @include hover-focus() {
+          color: $navbar-light-hover-color;
+        }
+
+        &.disabled {
+          color: $navbar-light-disabled-color;
+        }
+      }
+
+      .show > .nav-link,
+      .active > .nav-link,
+      .nav-link.show,
+      .nav-link.active {
+        color: $navbar-light-active-color;
+      }
+    }
+
+    .navbar-toggler {
+      color: $navbar-light-color;
+      border-color: $navbar-light-toggler-border-color;
+    }
+
+    .navbar-toggler-icon {
+      background-image: escape-svg($navbar-light-toggler-icon-bg);
+    }
+
+    .navbar-text {
+      color: $navbar-light-color;
+      a {
+        color: $navbar-light-active-color;
+
+        @include hover-focus() {
+          color: $navbar-light-active-color;
+        }
+      }
+    }
+  }
+
+
+
+  .btn {
+      color: $gray-900;
+      &:hover {
+          color: $gray-500;
+      }
+  }
+
+  section.bg-primary {
+      background: $primary-night;
+  }
+
+  #mapid {
+    .leaflet-tile.leaflet-tile-loaded {
+      -webkit-filter: invert(90%);
+      -moz-filter: invert(90%);
+      -ms-filter: invert(90%);
+      -o-filter: invert(90%);
+      filter: invert(90%);
+    }
+  }
+
+
+  #css-toggle.custom-switch .custom-control-label {
+    &:before {
+        background-color: transparent;
+        border-color:  $navbar-dark-color;
+    }
+    &:after {
+        background-color:  $primary-dark;
+        border-color:  $navbar-dark-color;
+        content: "\F0594";
+        color: $gray-900;
+    }
+  }
+}
