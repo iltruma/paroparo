@@ -128,3 +128,14 @@ article {
         color: $gray-900;
     }
 }
+
+#css-toggle.custom-switch .custom-control-label {
+    &:before {
+        background-color: transparent;
+        border-color:  $navbar-dark-color;
+    }
+    &:after {
+        background-color: $navbar-dark-color;
+        border-color: $navbar-dark-color;
+    }
+}
