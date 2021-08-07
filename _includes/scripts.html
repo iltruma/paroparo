@@ -1,9 +1,27 @@
+<script>
+var site;
+function loadJSON(callback) {
+  var xobj = new XMLHttpRequest();
+  xobj.overrideMimeType("application/json");
+  xobj.open("GET", "{{'/assets/json/site.json' | relative_url }}", true);
+  xobj.onreadystatechange = function() {
+      if (xobj.readyState == 4 && xobj.status == "200") {
+          // .open will NOT return a value but simply returns undefined in async mode so use a callback
+          callback(xobj.responseText);
+      }
+  }
+  xobj.send(null);
+}
+ loadJSON(function(response) {
+  site = JSON.parse(response);
+  console.log(site);
+});</script>
+
 <!-- Critical scripts -->
-<script type="text/javascript" src="{{ '/assets/js/paroparo-critical.min.js' | relative_url }}"></script>
+<script async type="text/javascript" src="{{ '/assets/js/paroparo-critical.min.js' | relative_url }}"></script>
 
 <!-- Optional and Paroparo scripts  -->
-<script>var site; $.ajax({url: "{{'/assets/json/site.json' | relative_url }}", dataType: 'json', async: false, success: function(data){site = data;}})</script>
-<script type="text/javascript" src="{{ '/assets/js/paroparo.min.js' | relative_url }}"></script>
+<script async type="text/javascript" src="{{ '/assets/js/paroparo.min.js' | relative_url }}"></script>
 
 
 <!-- Removes page load animation when window is finished loading -->
