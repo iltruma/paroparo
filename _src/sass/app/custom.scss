@@ -135,7 +135,14 @@ article {
         border-color:  $navbar-dark-color;
     }
     &:after {
+        display: inline-block;
+        font-family: "Material Design Icons";
         background-color: $navbar-dark-color;
         border-color: $navbar-dark-color;
+        text-align: center;
+        content: "\F05A8";
+        font-size: 0.75rem;
+        line-height: 0.9rem;
+        color: $warning;
     }
 }

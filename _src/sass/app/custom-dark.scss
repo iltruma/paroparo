@@ -87,7 +87,10 @@ body[data-color-scheme="dark"] {
       border-color:  $navbar-dark-color;
   }
   &:after {
-      background-color:  $navbar-dark-color;
+      @extend .mdi;
+      background-color:  $primary-dark;
       border-color:  $navbar-dark-color;
+      content: "\F0594";
+      color: $gray-900;
   }
 }
