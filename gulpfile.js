@@ -161,15 +161,11 @@ gulp.task('build:styles:dark', function () {
     colors[Object.keys(site.colors[i])[0]] = Object.values(site.colors[i])[0];
   }
 
-  return merge(
-      gulp.src(paths._src.sass.app + "/dark.scss")
-      .pipe(sassVars(colors))
-      .pipe(sass({
-          includePaths: [paths._src.sass.app],
-          onError: browserSync.notify
-      })),
-      gulp.src(paths._src.css.vendor + "/*.css")
-    )
+  return gulp.src(paths._src.sass.app + "/dark.scss")
+    .pipe(sassVars(colors))
+    .pipe(sass(
+        {onError: browserSync.notify}
+    ))
     .pipe(cleanCSS())
     .pipe(autoprefixer())
     .pipe(concat("paroparo-dark.css"))
@@ -181,7 +177,6 @@ gulp.task('build:styles:dark', function () {
 });
 
 gulp.task('build:styles',  function(callback) {runSequence(['build:variables', 'build:styles:loader', 'build:styles:light', 'build:styles:dark'], callback)});
-
 
 //Task che compila i file JS critici (Bootstrap, Popper e Jquery)
 gulp.task('build:scripts:critical', function() {

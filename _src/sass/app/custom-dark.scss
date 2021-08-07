@@ -87,7 +87,6 @@ body[data-color-scheme="dark"] {
         border-color:  $navbar-dark-color;
     }
     &:after {
-        @extend .mdi;
         background-color:  $primary-dark;
         border-color:  $navbar-dark-color;
         content: "\F0594";
