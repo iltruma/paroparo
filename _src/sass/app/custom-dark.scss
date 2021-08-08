@@ -1,9 +1,9 @@
 body[data-color-scheme="dark"] {
   .text-light *, .text-light {
         color: $gray-900 !important;
-    .text-muted{
-      color: $gray-500 !important;
-    }
+      .text-muted{
+        color: $gray-500 !important;
+      }
   }
 
   .navbar-dark {
@@ -57,14 +57,18 @@ body[data-color-scheme="dark"] {
     }
   }
 
-
-
-  .btn {
-      color: $gray-900;
+  .btn.btn-primary {
+      color: $gray-900 !important;
       &:hover {
-          color: $gray-500;
+          color: $gray-500 !important;
+          fill: $gray-500 !important;
+      }
+      * {
+        fill:  $gray-900 !important;
       }
   }
+
+
 
   section.bg-primary {
       background: $primary-night;
