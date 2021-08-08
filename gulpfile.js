@@ -236,7 +236,7 @@ gulp.task('build:scripts',  function(callback) {runSequence(['build:scripts:swit
 gulp.task('build:images', function() {
   return gulp.src(paths.assets.img.all)
   .pipe(cache(imagemin({ optimizationLevel:5, progressive: true, interlaced: true })))
-  .pipe(webp())
+  .pipe(cache(webp()))
   .pipe(browserSync.reload({stream: true}))
   .pipe(size({title: "build:images"}))
   .pipe(gulp.dest(paths._site.assets.img))
