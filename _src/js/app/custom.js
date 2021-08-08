@@ -44,7 +44,7 @@ $(document).ready(function () {
   }
 
   //Hightlight
-  if(hljs) {
+  if(typeof hljs !== "undefined") {
     hljs.highlightAll();
   }
 });
