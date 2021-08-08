@@ -56,7 +56,7 @@ const paths = {
       all: '_src/js/**/*',
       app: '_src/js/app',
       vendor: '_src/js/vendor',
-      critical: ['_src/js/vendor/critical/jquery.min.js', '_src/js/vendor/critical/popper.min.js', '_src/js/vendor/critical/bootstrap.js'],
+      critical: ['_src/js/vendor/jquery.min.js', '_src/js/vendor/popper.min.js', '_src/js/vendor/bootstrap.js'],
       optional: ['_src/js/vendor/plugins/*.js', '_src/js/vendor/leap.min.js', '_src/js/app/custom.js']
     }
   },
@@ -127,7 +127,7 @@ gulp.task('build:styles:loader', function () {
 });
 
 //Task che compila i file SASS, li unisce con le gli altri CSS dei vendor (Leaflet, hightlight, ...) e li minimizza nel file paroparo.min.css
-gulp.task('build:styles:light', function () {
+gulp.task('build:styles:paroparo', function () {
   var site = JSON.parse(fs.readFileSync(paths.assets.json.root + "/site.json"));
   var colors = {};
   for (i in site.colors) {
@@ -135,7 +135,7 @@ gulp.task('build:styles:light', function () {
   }
 
   return merge(
-      gulp.src(paths._src.sass.app + "/light.scss")
+      gulp.src(paths._src.sass.app + "/paroparo.scss")
       .pipe(sassVars(colors))
       .pipe(sass({
           includePaths: [paths._src.sass.app],
@@ -154,14 +154,14 @@ gulp.task('build:styles:light', function () {
 });
 
 //Task che compila i file SASS, li unisce con le gli altri CSS dei vendor (Leaflet, hightlight, ...) e li minimizza nel file paroparo.min.css
-gulp.task('build:styles:dark', function () {
+gulp.task('build:styles:paroparo-dark', function () {
   var site = JSON.parse(fs.readFileSync(paths.assets.json.root + "/site.json"));
   var colors = {};
   for (i in site.colors) {
     colors[Object.keys(site.colors[i])[0]] = Object.values(site.colors[i])[0];
   }
 
-  return gulp.src(paths._src.sass.app + "/dark.scss")
+  return gulp.src(paths._src.sass.app + "/paroparo-dark.scss")
     .pipe(sassVars(colors))
     .pipe(sass(
         {onError: browserSync.notify}
@@ -176,26 +176,11 @@ gulp.task('build:styles:dark', function () {
     .pipe(gulp.dest(paths.assets.css.root));
 });
 
-gulp.task('build:styles',  function(callback) {runSequence(['build:variables', 'build:styles:loader', 'build:styles:light', 'build:styles:dark'], callback)});
+gulp.task('build:styles',  function(callback) {runSequence(['build:variables', 'build:styles:loader', 'build:styles:paroparo', 'build:styles:paroparo-dark'], callback)});
 
-//Task che compila i file JS critici (Bootstrap, Popper e Jquery)
-gulp.task('build:scripts:critical', function() {
-  return gulp.src(paths._src.js.critical)
-    .pipe(babel({ 
-      presets: [["@babel/preset-env", { modules: false }]],
-      compact: false  }))
-    .pipe(concat('paroparo-critical.js'))
-    .pipe(rename({suffix: '.min'}))
-    .pipe(cache(uglify()))
-    .pipe(browserSync.reload({stream: true}))
-    .pipe(size())
-    .pipe(gulp.dest(paths._site.assets.js))
-    .pipe(gulp.dest(paths.assets.js.root));
-});
-
-//Task che compila i file JS opzionali e quelli custom del sito
-gulp.task('build:scripts:optional', function() {
-  return gulp.src(paths._src.js.optional)
+//Task che compila i file JS
+gulp.task('build:scripts:paroparo', function() {
+  return gulp.src(paths._src.js.critical.concat(paths._src.js.optional))
     .pipe(babel({ 
       presets: [["@babel/preset-env", { modules: false }]],
       compact: false  }))
@@ -224,7 +209,7 @@ gulp.task('build:scripts:switch', function() {
 });
 
 // Task che compila tutti i JS
-gulp.task('build:scripts',  function(callback) {runSequence(['build:scripts:critical', 'build:scripts:optional', 'build:scripts:switch'], callback)});
+gulp.task('build:scripts',  function(callback) {runSequence(['build:scripts:paroparo', 'build:scripts:switch'], callback)});
 
 // Task di ottimizzazione delle immagini (sovrascrittura)
 gulp.task('build:images', function() {
