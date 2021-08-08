@@ -126,7 +126,7 @@ gulp.task('build:styles:loader', function () {
     .pipe(browserSync.stream())
     .pipe(size({title: "build:styles:loader"}))
     .pipe(gulp.dest(paths._site.assets.css))
-    .pipe(gulp.dest(paths.assets.css.root));
+    .pipe(gulp.dest("_includes/loader"));
 });
 
 //Task che compila i file SASS, li unisce con le gli altri CSS dei vendor (Leaflet, hightlight, ...) e li minimizza nel file paroparo.min.css
