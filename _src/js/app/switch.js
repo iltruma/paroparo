@@ -30,10 +30,6 @@ function updateDarkToggleButton() {
 // function to toggle the css
 function toggleColorSchemeCss($mode) {
   $dark = ($mode == 'dark') ? true : false;
-  if(document.querySelector("#loader")) {
-    document.querySelector("#loader").classList.remove(($mode == 'dark') ? 'light' : 'dark');
-    document.querySelector("#loader").classList.add($mode);
-  }
   if(document.querySelector("#css-toggle-btn")) {
     document.querySelector("#css-toggle-btn").checked = $dark;
     document.querySelector("#css-dark").disabled= !$dark;
