@@ -21,12 +21,7 @@ const runSequence  = require('gulp4-run-sequence');
 const fs           = require('fs');
 const prompt       = require('gulp-prompt');
 const webp         = require('gulp-webp');
-
-gulp.Gulp.prototype.__runTask = gulp.Gulp.prototype._runTask;
-gulp.Gulp.prototype._runTask = function(task) {
-  this.currentTask = task;
-  this.__runTask(task);
-}
+const fileClean    = require('gulp-clean');
 
 // Lista delle path necesarie ai tasks
 const paths = {
@@ -66,11 +61,6 @@ const paths = {
       critical: ['_src/js/vendor/jquery.min.js', '_src/js/vendor/popper.min.js', '_src/js/vendor/bootstrap.js'],
       optional: ['_src/js/vendor/plugins/*.js', '_src/js/vendor/leap.min.js', '_src/js/app/custom.js'],
       other:    ['_src/js/vendor/plugins/other/*.js']
-    },
-    img: {
-      root:'_src/img',
-      all: ['_src/img/**/*.png', '_src/img/**/*.jpg'],
-      svg: '_src/img/**/*.svg'
     }
   },
   assets: {
@@ -85,7 +75,8 @@ const paths = {
     },
     img: {
       root: 'assets/img',
-      all: 'assets/img/**/*'
+      all: ['assets/img/**/*.png', 'assets/img/**/*.jpg'],
+      svg: 'assets/img/**/*.svg'
     },
     fonts: {
       root: 'assets/fonts',
@@ -238,7 +229,8 @@ gulp.task('build:scripts',  function(callback) {runSequence(['build:scripts:swit
 
 // Task di ottimizzazione delle immagini (sovrascrittura)
 gulp.task('build:images', function() {
-  return gulp.src(paths._src.img.all)
+  return gulp.src(paths.assets.img.all)
+  .pipe(fileClean({force: true}))
   .pipe(cache(imagemin({ optimizationLevel:5, progressive: true, interlaced: true })))
   .pipe(webp())
   .pipe(browserSync.reload({stream: true}))
@@ -249,7 +241,7 @@ gulp.task('build:images', function() {
 
 // Task di ottimizzazione delle svg. E' sepratato dal task delle immagini perchè imagemin non ottimizza bene gli svg dei dividers e decorations (sovrascrittura)
 gulp.task('build:svg', function() {
-  return gulp.src(paths._src.img.svg)
+  return gulp.src(paths.assets.img.svg)
   .pipe(browserSync.reload({stream: true}))
   .pipe(size({title: "build:svg"}))
   .pipe(gulp.dest(paths._site.assets.img))
