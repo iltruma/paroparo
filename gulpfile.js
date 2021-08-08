@@ -288,7 +288,7 @@ gulp.task('serve', gulp.series('build', function(callback) {
   // Watch .js files
   gulp.watch(paths._src.js.all, gulp.series('build:scripts'));
   // Watch image files and pipe changes to browserSync
-  gulp.watch(paths._src.img.all, gulp.series('build:images'));
+  gulp.watch(paths.assets.img.all, gulp.series('build:images'));
   //Watch html
   gulp.watch(paths.assets.html.all, gulp.series('build:jekyll:watch'));
   // Watch posts
