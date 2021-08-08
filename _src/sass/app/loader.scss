@@ -13,9 +13,9 @@
 
 body>div.loader {
 	position: fixed;
+	background: $primary;
 	width: 100%;
 	height: 100%;
-	background-color: $primary;
 	z-index: 1071;
 	opacity: 0;
 	transition: opacity .5s ease;
