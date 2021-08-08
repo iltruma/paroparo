@@ -78,6 +78,23 @@ body[data-color-scheme="dark"] {
       -o-filter: invert(90%);
       filter: invert(90%);
     }
+    .leaflet-popup-content-wrapper, .leaflet-popup-tip {
+      background: $white;
+      color: $gray-900;
+      box-shadow: 0 3px 14px rgba($white,.4);
+    }
+    .leaflet-bar a {
+        background-color: $white;
+        color: $primary;
+        border-bottom: 1px solid $gray-200;
+        &:hover {
+            background-color: $gray-200;
+        }
+    }
+    .leaflet-control-attribution.leaflet-control {
+        background: rgba($white,.8);
+        color: $gray-900;
+    }
   }
 
 
