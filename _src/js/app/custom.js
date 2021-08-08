@@ -39,7 +39,7 @@ $(document).ready(function () {
   if($('#pageclip-form').length) {
       var form = $('#pageclip-form');
       Pageclip.form(form, {
-        successTemplate: '<span>Grazie della richiesta!<span class="mdi mdi-heart"></span></span>'
+        successTemplate: '<span>Grazie della richiesta!<span class="mdi iconify" data-icon="mdi-heart"></span></span>'
       })
   }
 
