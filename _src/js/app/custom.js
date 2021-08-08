@@ -44,6 +44,8 @@ $(document).ready(function () {
   }
 
   //Hightlight
-  hljs.highlightAll();
+  if(hljs) {
+    hljs.highlightAll();
+  }
 });
 
