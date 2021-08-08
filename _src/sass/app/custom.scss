@@ -136,13 +136,11 @@ article {
     }
     &:after {
         display: inline-block;
-        font-family: "Material Design Icons";
         background-color: $navbar-dark-color;
         border-color: $navbar-dark-color;
         text-align: center;
-        content: "\F05A8";
+        content: url('https://api.iconify.design/mdi/white-balance-sunny.svg?width=12&color=#{encodecolor($warning)}');
         font-size: 0.75rem;
-        line-height: 0.85rem;
-        color: $warning;
+        line-height: 1rem;
     }
 }
