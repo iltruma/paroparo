@@ -20,6 +20,7 @@ const log          = require('fancy-log');
 const runSequence  = require('gulp4-run-sequence');
 const fs           = require('fs');
 const prompt       = require('gulp-prompt');
+const webp         = require('gulp-webp');
 
 // Lista delle path necesarie ai tasks
 const paths = {
@@ -215,6 +216,7 @@ gulp.task('build:scripts',  function(callback) {runSequence(['build:scripts:paro
 gulp.task('build:images', function() {
   return gulp.src(paths.assets.img.all)
   .pipe(cache(imagemin({ optimizationLevel:5, progressive: true, interlaced: true })))
+  .pipe(webp())
   .pipe(browserSync.reload({stream: true}))
   .pipe(size())
   .pipe(gulp.dest(paths._site.assets.img))
