@@ -32,10 +32,6 @@ body[data-color-scheme="dark"] {
           color: $navbar-light-disabled-color;
         }
       }
-      
-      .navbar-toggler svg path {
-        fill:  $navbar-light-brand-color;
-      }
 
       .show > .nav-link,
       .active > .nav-link,
@@ -48,6 +44,9 @@ body[data-color-scheme="dark"] {
     .navbar-toggler {
       color: $navbar-light-color;
       border-color: $navbar-light-toggler-border-color;
+      svg path {
+        fill:  $navbar-light-brand-color;
+      }
     }
 
     .navbar-toggler-icon {
