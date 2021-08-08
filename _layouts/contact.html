@@ -3,7 +3,7 @@ layout: default
 ---
 
   <section class="has-divider text-light jarallax bg-dark" data-jarallax data-speed="0.5" data-overlay data-img-position="30% 60%">
-    <img src="{{ '/assets/img/sfondo_macaw.png' | relative_url }}" alt="" class="jarallax-img opacity-50">
+    <img src="{{ '/assets/img/sfondo_macaw.webp' | relative_url }}" alt="" class="jarallax-img opacity-50">
     <div class="container">
         <div class="row">
             <div class="col-xl-6 col-md-8">
@@ -22,7 +22,7 @@ layout: default
       <div class="row text-center">
         <div class="col-sm-4 mb-3 mb-sm-0" data-aos="fade-right" data-aos-delay="100"> 
           <div class="mb-2 icon-round icon-round-sm bg-primary d-inline-flex">
-            <span class="h4 m-0 mdi mdi-map-marker text-primary"></span>
+            <span class="h4 m-0 mdi iconify text-primary" data-icon="mdi-map-marker"></span>
           </div>
           <h3 class="h2">Indirizzo</h3>
           <span class="lead">
@@ -32,14 +32,14 @@ layout: default
         </div>
         <div class="col-sm-4 mb-3 mb-sm-0" data-aos="fade-up" data-aos-delay="100">
           <div class="mb-2 icon-round icon-round-sm bg-primary d-inline-flex">
-            <span class="h4 m-0 mdi mdi-email text-primary "></span>
+            <span class="h4 m-0 mdi iconify text-primary" data-icon="mdi-email"></span>
           </div>
           <h3 class="h2">Email</h3>
           <a href="mailto:{{site.email | encode_email}}" class="lead">{{site.email}}</a>
         </div>
         <div class="col-sm-4 mb-3 mb-sm-0" data-aos="fade-left" data-aos-delay="100">
           <div class="mb-2 icon-round icon-round-sm bg-primary d-inline-flex">
-            <span class="h4 m-0 mdi mdi-bird text-primary"></span>
+            <span class="h4 m-0 mdi iconify text-primary" data-icon="mdi-bird"></span>
           </div>
           <h3 class="h2">Email dei Pappagalli</h3>
           <a href="mailto:{{site.email_1 | encode_email}}" class="lead">{{site.email_1}}</a><br>
@@ -103,8 +103,8 @@ layout: default
                 <div data-recaptcha data-sitekey="6Lf_baQaAAAAALU1DsTY2rz88lH_xRAIjPLnc_eQ"></div>
               </div>
               <div class="col">
-                <button type="submit" class="btn btn-primary btn-loading pageclip-form__submit" >
-                  <span>Invia Messaggio</span><span class="ml-1 mdi mdi-send"></span>
+                <button type="submit" class="btn btn-primary text-light btn-loading pageclip-form__submit" >
+                  <span>Invia Messaggio</span><span class="ml-1 mdi iconify" data-icon="mdi-send"></span>
                 </button>
               </div>
             </div>

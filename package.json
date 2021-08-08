@@ -337,6 +337,7 @@
     "gulp-uglify": "^3.0.2",
     "gulp-uglify-es": "^2.0.0",
     "gulp-util": "^3.0.8",
+    "gulp-webp": "^4.0.1",
     "gulp-yaml": "^2.0.4",
     "gulp4-run-sequence": "^1.0.1",
     "gulplog": "^1.0.0",

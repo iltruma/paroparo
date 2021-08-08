@@ -1,29 +1,25 @@
 <script>
-var site;
-function loadJSON(callback) {
+function loadJSON() {
+  var response;
   var xobj = new XMLHttpRequest();
   xobj.overrideMimeType("application/json");
-  xobj.open("GET", "{{'/assets/json/site.json' | relative_url }}", true);
-  xobj.onreadystatechange = function() {
-      if (xobj.readyState == 4 && xobj.status == "200") {
-          // .open will NOT return a value but simply returns undefined in async mode so use a callback
-          callback(xobj.responseText);
-      }
-  }
+  xobj.open("GET", "{{'/assets/json/site.json' | relative_url }}", false);
   xobj.send(null);
+  if(xobj.readyState == 4 && xobj.status == "200") {
+    response = JSON.parse(xobj.responseText);
+  }
+  return response;
 }
- loadJSON(function(response) {
-  site = JSON.parse(response);
-  console.log(site);
-});</script>
+var site = loadJSON();
+</script>
 
 <!-- Removes page load animation when window is finished loading -->
 <script type="text/javascript">
   window.addEventListener("load", function () {    document.querySelector('body').classList.add('loaded');  });
 </script>
 
-<!-- Critical scripts -->
-<script defer type="text/javascript" src="{{ '/assets/js/paroparo-critical.min.js' | relative_url }}"></script>
+<!-- Material Design Icons Script -->
+<script defer src="//code.iconify.design/1/1.0.6/iconify.min.js"></script>
 
-<!-- Optional and Paroparo scripts  -->
+<!-- Paroparo scripts  -->
 <script defer type="text/javascript" src="{{ '/assets/js/paroparo.min.js' | relative_url }}"></script>
