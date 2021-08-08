@@ -69,7 +69,7 @@ pagination:
 
 jekyll_get_json:
   - data: feed
-    json: 'https://profilepageimages.usecue.com/images/casini.cosimo/images.json'
+    json: 'https://profilepageimages.usecue.com/images/paroparo.it/images.json'
 
 plugins:
   - jekyll-spaceship
