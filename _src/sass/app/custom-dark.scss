@@ -32,6 +32,10 @@ body[data-color-scheme="dark"] {
           color: $navbar-light-disabled-color;
         }
       }
+      
+      .navbar-toggler svg path {
+        fill:  $navbar-light-brand-color;
+      }
 
       .show > .nav-link,
       .active > .nav-link,
