@@ -21,6 +21,7 @@ const runSequence  = require('gulp4-run-sequence');
 const fs           = require('fs');
 const prompt       = require('gulp-prompt');
 const webp         = require('gulp-webp');
+const fileClean    = require('gulp-clean');
 
 // Lista delle path necesarie ai tasks
 const paths = {
@@ -58,7 +59,8 @@ const paths = {
       app: '_src/js/app',
       vendor: '_src/js/vendor',
       critical: ['_src/js/vendor/jquery.min.js', '_src/js/vendor/popper.min.js', '_src/js/vendor/bootstrap.js'],
-      optional: ['_src/js/vendor/plugins/*.js', '_src/js/vendor/leap.min.js', '_src/js/app/custom.js']
+      optional: ['_src/js/vendor/plugins/*.js', '_src/js/vendor/leap.min.js', '_src/js/app/custom.js'],
+      other:    ['_src/js/vendor/plugins/other/*.js']
     }
   },
   assets: {
@@ -73,7 +75,7 @@ const paths = {
     },
     img: {
       root: 'assets/img',
-      all: ['assets/img/**/*', '!assets/img/**/*.svg'],
+      all: ['assets/img/**/*.png', 'assets/img/**/*.jpg'],
       svg: 'assets/img/**/*.svg'
     },
     fonts: {
@@ -122,7 +124,7 @@ gulp.task('build:styles:loader', function () {
     .pipe(concat("loader.css"))
     .pipe(rename({suffix: '.min'}))
     .pipe(browserSync.stream())
-    .pipe(size())
+    .pipe(size({title: "build:styles:loader"}))
     .pipe(gulp.dest(paths._site.assets.css))
     .pipe(gulp.dest(paths.assets.css.root));
 });
@@ -149,7 +151,7 @@ gulp.task('build:styles:paroparo', function () {
     .pipe(concat("paroparo.css"))
     .pipe(rename({suffix: '.min'}))
     .pipe(browserSync.stream())
-    .pipe(size())
+    .pipe(size({title: "build:styles:paroparo"}))
     .pipe(gulp.dest(paths._site.assets.css))
     .pipe(gulp.dest(paths.assets.css.root));
 });
@@ -172,7 +174,7 @@ gulp.task('build:styles:paroparo-dark', function () {
     .pipe(concat("paroparo-dark.css"))
     .pipe(rename({suffix: '.min'}))
     .pipe(browserSync.stream())
-    .pipe(size())
+    .pipe(size({title: "build:styles:paroparo-dark"}))
     .pipe(gulp.dest(paths._site.assets.css))
     .pipe(gulp.dest(paths.assets.css.root));
 });
@@ -189,12 +191,25 @@ gulp.task('build:scripts:paroparo', function() {
     .pipe(rename({suffix: '.min'}))
     .pipe(cache(uglify()))
     .pipe(browserSync.reload({stream: true}))
-    .pipe(size())
+    .pipe(size({title: "build:scripts:paroparo"}))
     .pipe(gulp.dest(paths._site.assets.js))
     .pipe(gulp.dest(paths.assets.js.root));
 });
 
-//Task che compila i file JS opzionali e quelli custom del sito
+//Task che compila i file JS che non servono sempre (es. leaflet, highlight)
+gulp.task('build:scripts:other', function() {
+  return gulp.src(paths._src.js.other)
+    .pipe(babel({ 
+      presets: [["@babel/preset-env", { modules: false }]],
+      compact: false  }))
+    .pipe(cache(uglify()))
+    .pipe(browserSync.reload({stream: true}))
+    .pipe(size({title: "build:scripts:other"}))
+    .pipe(gulp.dest(paths._site.assets.js))
+    .pipe(gulp.dest(paths.assets.js.root));
+});
+
+//Task che compila il per lo switch theme
 gulp.task('build:scripts:switch', function() {
   return gulp.src(paths._src.js.app + '/switch.js' )
     .pipe(babel({ 
@@ -204,21 +219,22 @@ gulp.task('build:scripts:switch', function() {
     .pipe(rename({suffix: '.min'}))
     .pipe(cache(uglify()))
     .pipe(browserSync.reload({stream: true}))
-    .pipe(size())
+    .pipe(size({title: "build:scripts:switch"}))
     .pipe(gulp.dest(paths._site.assets.js))
     .pipe(gulp.dest(paths.assets.js.root));
 });
 
 // Task che compila tutti i JS
-gulp.task('build:scripts',  function(callback) {runSequence(['build:scripts:paroparo', 'build:scripts:switch'], callback)});
+gulp.task('build:scripts',  function(callback) {runSequence(['build:scripts:switch', 'build:scripts:paroparo', 'build:scripts:other'], callback)});
 
 // Task di ottimizzazione delle immagini (sovrascrittura)
 gulp.task('build:images', function() {
   return gulp.src(paths.assets.img.all)
+  .pipe(fileClean({force: true}))
   .pipe(cache(imagemin({ optimizationLevel:5, progressive: true, interlaced: true })))
   .pipe(webp())
   .pipe(browserSync.reload({stream: true}))
-  .pipe(size())
+  .pipe(size({title: "build:images"}))
   .pipe(gulp.dest(paths._site.assets.img))
   .pipe(gulp.dest(paths.assets.img.root));
 });
@@ -227,7 +243,7 @@ gulp.task('build:images', function() {
 gulp.task('build:svg', function() {
   return gulp.src(paths.assets.img.svg)
   .pipe(browserSync.reload({stream: true}))
-  .pipe(size())
+  .pipe(size({title: "build:svg"}))
   .pipe(gulp.dest(paths._site.assets.img))
   .pipe(gulp.dest(paths.assets.img.root));
 });
