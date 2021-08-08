@@ -1,20 +1,17 @@
 <script>
-var site;
-function loadJSON(callback) {
+function loadJSON() {
+  var response;
   var xobj = new XMLHttpRequest();
   xobj.overrideMimeType("application/json");
-  xobj.open("GET", "{{'/assets/json/site.json' | relative_url }}", true);
-  xobj.onreadystatechange = function() {
-      if (xobj.readyState == 4 && xobj.status == "200") {
-          // .open will NOT return a value but simply returns undefined in async mode so use a callback
-          callback(xobj.responseText);
-      }
-  }
+  xobj.open("GET", "{{'/assets/json/site.json' | relative_url }}", false);
   xobj.send(null);
+  if(xobj.readyState == 4 && xobj.status == "200") {
+    response = JSON.parse(xobj.responseText);
+  }
+  return response;
 }
- loadJSON(function(response) {
-  site = JSON.parse(response);
-});</script>
+var site = loadJSON();
+</script>
 
 <!-- Removes page load animation when window is finished loading -->
 <script type="text/javascript">
