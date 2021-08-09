@@ -9,6 +9,14 @@ jobs:
   metrics_generator:
     runs-on: ubuntu-latest
     steps: 
+      - name: Cache Metrics
+        uses: actions/cache@v2
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-metrics-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-metrics-
+            
       - name: Metrics Generator
         if: ${{ success() || failure() }}
         uses: lowlighter/metrics@latest
