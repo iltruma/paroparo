@@ -764,7 +764,7 @@
     "server-destroy": "^1.0.1",
     "set-blocking": "^2.0.0",
     "set-immediate-shim": "^1.0.1",
-    "set-value": "^2.0.1",
+    "set-value": "^4.0.1",
     "setprototypeof": "^1.2.0",
     "shebang-command": "^1.2.0",
     "shebang-regex": "^1.0.0",
