@@ -76,7 +76,21 @@ body[data-color-scheme="dark"] {
       }
   }
 
+  
+  .tooltip {
+    .tooltip-inner {
+      background-color: $white;
+      color: $black;
+    }
+  }
 
+  .bs-tooltip-top {
+    .arrow {
+      &::before {
+        border-top-color: $white;
+      }
+    }
+  }
 
   section.bg-primary {
       background: $primary-night;
