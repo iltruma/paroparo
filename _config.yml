@@ -1,22 +1,25 @@
 # SITE CONFIGURATION
-title: Paroparo # your site title
-author: iltruma # You :P
+title: Paroparo 
+author: iltruma
 description: "Paroparo description"
-baseurl: "" # the subpath of your site, e.g. /blog
-url: ""
-
-# THEME SETTINGS
-navigation: # Navigation links
-  - {name: 'Blog', link: '/blog'}
-  - {name: 'Feed', link: '/feed'}
-  - {name: 'Chi Siamo', link: '/chi-siamo'}
-  - {name: 'Contatti', link: '/contatti'}
+baseurl: ""
+url: "www.paroparo.it"
 email: info@paroparo.it
 email_1: niccolo@paroparo.it
 email_2: cosimo@paroparo.it
 address: "Foresta di Figline Valdarno"
 city: "Firenze, Italia"
 locale: it_IT
+version: "1.0"
+
+# NAVIGATION
+navigation:
+  - {name: 'Blog', link: '/blog'}
+  - {name: 'Feed', link: '/feed'}
+  - {name: 'Chi Siamo', link: '/chi-siamo'}
+  - {name: 'Contatti', link: '/contatti'}
+
+#THEME 
 colors:
   - primary: "#186e64"
   - primary-2: "#FF6933"
@@ -53,9 +56,7 @@ exclude:
   - gulpfile.js
 keep_files:
   - assets
-
 permalink: /:title/
-
 compress_html:
   clippings: all
 
