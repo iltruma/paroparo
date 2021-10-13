@@ -22,6 +22,8 @@ const fs           = require('fs');
 const prompt       = require('gulp-prompt');
 const webp         = require('gulp-webp');
 const fileClean    = require('gulp-clean');
+const favicons     = require ('gulp-favicons');
+
 
 // Lista delle path necesarie ai tasks
 const paths = {
@@ -75,7 +77,7 @@ const paths = {
     },
     img: {
       root: 'assets/img',
-      all: ['assets/img/**/*.png', 'assets/img/**/*.jpg'],
+      all: ['assets/img/**/*.png', 'assets/img/**/*.jpg', '!assets/img/favicons/*'],
       svg: 'assets/img/**/*.svg'
     },
     fonts: {
@@ -99,21 +101,21 @@ gulp.task('clean:jekyll', function(callback) {
   callback();
 });
 
-gulp.task('build:variables', function(callback) {
+gulp.task('build:variables', function() {
   return gulp.src('./_config.yml')
   .pipe(yaml({ safe: true }))
   .pipe(rename({basename: 'site'}))
   .pipe(gulp.dest(paths.assets.json.root));
 });
 
+var site = JSON.parse(fs.readFileSync(paths.assets.json.root + "/site.json"));
+var colors = {};
+for (i in site.colors) {
+  colors[Object.keys(site.colors[i])[0]] = Object.values(site.colors[i])[0];
+}
+
 //Task che compila i file SASS, li unisce con le gli altri CSS dei vendor (Leaflet, hightlight, ...) e li minimizza nel file paroparo.min.css
 gulp.task('build:styles:loader', function () {
-  var site = JSON.parse(fs.readFileSync(paths.assets.json.root + "/site.json"));
-  var colors = {};
-  for (i in site.colors) {
-    colors[Object.keys(site.colors[i])[0]] = Object.values(site.colors[i])[0];
-  }
-
   return gulp.src(paths._src.sass.app + "/loader.scss")
     .pipe(sassVars(colors))
     .pipe(sass({
@@ -131,12 +133,6 @@ gulp.task('build:styles:loader', function () {
 
 //Task che compila i file SASS, li unisce con le gli altri CSS dei vendor (Leaflet, hightlight, ...) e li minimizza nel file paroparo.min.css
 gulp.task('build:styles:paroparo', function () {
-  var site = JSON.parse(fs.readFileSync(paths.assets.json.root + "/site.json"));
-  var colors = {};
-  for (i in site.colors) {
-    colors[Object.keys(site.colors[i])[0]] = Object.values(site.colors[i])[0];
-  }
-
   return merge(
       gulp.src(paths._src.sass.app + "/paroparo.scss")
       .pipe(sassVars(colors))
@@ -158,12 +154,6 @@ gulp.task('build:styles:paroparo', function () {
 
 //Task che compila i file SASS, li unisce con le gli altri CSS dei vendor (Leaflet, hightlight, ...) e li minimizza nel file paroparo.min.css
 gulp.task('build:styles:paroparo-dark', function () {
-  var site = JSON.parse(fs.readFileSync(paths.assets.json.root + "/site.json"));
-  var colors = {};
-  for (i in site.colors) {
-    colors[Object.keys(site.colors[i])[0]] = Object.values(site.colors[i])[0];
-  }
-
   return gulp.src(paths._src.sass.app + "/paroparo-dark.scss")
     .pipe(sassVars(colors))
     .pipe(sass(
@@ -248,8 +238,45 @@ gulp.task('build:svg', function() {
   .pipe(gulp.dest(paths.assets.img.root));
 });
 
+gulp.task('build:favicons', function() {
+  return gulp.src(paths.assets.img.root + "/favicons/pp_logo.png")
+  .pipe(
+    cache(favicons({
+      appName: site.title,
+      appShortName: site.title,
+      appDescription: site.description,
+      developerName: site.author,
+      background: colors['primary-dark'],
+      theme_color: colors['primary'],
+      path: paths.assets.img.root + "/favicons/",
+      url: site.url,
+      lang: site.locale,
+      display: "standalone",
+      orientation: "any",
+      scope: "/",
+      start_url: "/",
+      version: site.version,
+      icons: {
+        android: true,
+        appleIcon: true,
+        appleStartup: false,
+        coast: false,
+        favicons: true,
+        firefox: false,
+        windows: false,
+        yandex: false,
+      },
+      logging: false,
+      pipeHTML: false,
+      replace: true,
+    }))
+  )
+  .pipe(gulp.dest(paths.assets.img.root + "/favicons/"));
+});
+
+
 // Task completo degli assets
-gulp.task('build:assets',  function(callback) {runSequence('clean:jekyll', 'build:styles', 'build:scripts', 'build:images', 'build:svg', callback)});
+gulp.task('build:assets',  function(callback) {runSequence('clean:jekyll', 'build:styles', 'build:scripts', 'build:images', 'build:svg', 'build:favicons', callback)});
 
 // Task per il build Jekyll. Crea la cartella _site
 gulp.task('build:jekyll', function(callback) {
