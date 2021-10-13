@@ -238,6 +238,7 @@ gulp.task('build:svg', function() {
   .pipe(gulp.dest(paths.assets.img.root));
 });
 
+//Task che genera le favicons
 gulp.task('build:favicons', function() {
   return gulp.src(paths.assets.img.root + "/favicons/pp_logo.png")
   .pipe(
@@ -268,7 +269,8 @@ gulp.task('build:favicons', function() {
       },
       logging: false,
       pipeHTML: false,
-      replace: true,
+      html: "",
+      replace: false,
     }))
   )
   .pipe(gulp.dest(paths.assets.img.root + "/favicons/"));
