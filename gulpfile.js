@@ -240,9 +240,8 @@ gulp.task('build:svg', function() {
 
 //Task che genera le favicons
 gulp.task('build:favicons', function() {
-  return gulp.src(paths.assets.img.root + "/favicons/pp_logo.png")
-  .pipe(
-    cache(favicons({
+  return gulp.src(paths.assets.img.root + "/favicons/pp_logo.svg")
+  .pipe(cache(favicons({
       appName: site.title,
       appShortName: site.title,
       appDescription: site.description,
