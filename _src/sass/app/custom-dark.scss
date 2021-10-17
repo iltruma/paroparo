@@ -135,4 +135,8 @@ body[data-color-scheme="dark"] {
         content: url('https://api.iconify.design/mdi/weather-night.svg?width=12&color=#{encodecolor($gray-900)}');
     }
   }
+
+  .pageclip-form__success {
+    background: rgba($white,.8);
+  }
 }
