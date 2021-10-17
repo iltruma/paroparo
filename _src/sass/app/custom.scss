@@ -144,3 +144,10 @@ article {
         line-height: 1rem;
     }
 }
+
+.bg-image-pattern {
+    @extend .bg-image;
+    background-image: url('/assets/img/pattern_div.webp');
+    top: 5px;
+    opacity: 0.1;
+}
