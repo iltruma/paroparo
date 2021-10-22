@@ -20,20 +20,7 @@ layout: default
 <section class="has-divider bg-primary-alt">
     <div class="container">
         <div class="row align-items-center justify-content-around">
-            <div class="col-md-4" data-aos="fade-right" data-aos-delay="100">
-                <img src="{{ '/assets/img/course-1.webp' | relative_url }}" alt="Image" class="rounded-circle layer-2" loading="lazy">
-                <div class="decorations-wrapper d-none d-lg-block">
-                    <div class="decoration mt-6 top opacity-20 scale-2">
-                        <img class="bg-primary" src="{{ '/assets/img/decorations/deco-blob-2.svg' | relative_url }}"
-                            alt="deco-blob-2 decoration" data-inject-svg />
-                    </div>
-                    <div class="decoration bottom left opacity-80 scale-2">
-                        <img class="bg-primary-3" src="{{ '/assets/img/decorations/deco-dots-6.svg' | relative_url }}"
-                            alt="deco-dots-6 decoration" data-inject-svg />
-                    </div>
-                    </div>
-            </div>
-            <div class="col-md-6" data-aos="fade-left" data-aos-delay="200">
+            <div class="col-md-6 order-md-2" data-aos="fade-left" data-aos-delay="200">
                 <span class="badge badge-primary mb-2">Pappagallo Verde</span>
                 <h1>Niccolò Casini</h1>
                 <div class="h4">
@@ -46,6 +33,20 @@ layout: default
                 <p class="lead">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
                     laudantium, totam rem aperiam, eaque ipsa.</p>
                 <a href="mailto:{{site.email_1 | encode_email}}" class="lead">{{site.email_1}}</a>
+            </div>
+            
+            <div class="col-md-4 order-md-1" data-aos="fade-right" data-aos-delay="100">
+                <img src="{{ '/assets/img/course-1.webp' | relative_url }}" alt="Image" class="rounded-circle layer-2" loading="lazy">
+                <div class="decorations-wrapper d-none d-lg-block">
+                    <div class="decoration mt-6 top opacity-20 scale-2">
+                        <img class="bg-primary" src="{{ '/assets/img/decorations/deco-blob-2.svg' | relative_url }}"
+                            alt="deco-blob-2 decoration" data-inject-svg />
+                    </div>
+                    <div class="decoration bottom left opacity-80 scale-2">
+                        <img class="bg-primary-3" src="{{ '/assets/img/decorations/deco-dots-6.svg' | relative_url }}"
+                            alt="deco-dots-6 decoration" data-inject-svg />
+                    </div>
+                    </div>
             </div>
         </div>
 
