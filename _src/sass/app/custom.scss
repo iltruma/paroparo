@@ -144,3 +144,7 @@ article {
         line-height: 1rem;
     }
 }
+
+.fancybox-image {
+    @extend .card-img;
+}

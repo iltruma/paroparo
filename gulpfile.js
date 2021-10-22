@@ -24,6 +24,8 @@ const webp         = require('gulp-webp');
 const fileClean    = require('gulp-clean');
 const favicons     = require ('gulp-favicons');
 
+var site = "";
+var colors = {};
 
 // Lista delle path necesarie ai tasks
 const paths = {
@@ -101,18 +103,20 @@ gulp.task('clean:jekyll', function(callback) {
   callback();
 });
 
-gulp.task('build:variables', function() {
+gulp.task('build:variables:create', function() {
   return gulp.src('./_config.yml')
   .pipe(yaml({ safe: true }))
   .pipe(rename({basename: 'site'}))
   .pipe(gulp.dest(paths.assets.json.root));
 });
 
-var site = JSON.parse(fs.readFileSync(paths.assets.json.root + "/site.json"));
-var colors = {};
-for (i in site.colors) {
-  colors[Object.keys(site.colors[i])[0]] = Object.values(site.colors[i])[0];
-}
+gulp.task('build:variables:set', function(callback) {
+  site = JSON.parse(fs.readFileSync(paths.assets.json.root + "/site.json"));
+  for (i in site.colors) {
+    colors[Object.keys(site.colors[i])[0]] = Object.values(site.colors[i])[0];
+  }
+  callback();
+});
 
 //Task che compila i file SASS, li unisce con le gli altri CSS dei vendor (Leaflet, hightlight, ...) e li minimizza nel file paroparo.min.css
 gulp.task('build:styles:loader', function () {
@@ -169,7 +173,7 @@ gulp.task('build:styles:paroparo-dark', function () {
     .pipe(gulp.dest(paths.assets.css.root));
 });
 
-gulp.task('build:styles',  function(callback) {runSequence(['build:variables', 'build:styles:loader', 'build:styles:paroparo', 'build:styles:paroparo-dark'], callback)});
+gulp.task('build:styles',  function(callback) {runSequence(['build:variables:create', 'build:variables:set', 'build:styles:loader', 'build:styles:paroparo', 'build:styles:paroparo-dark'], callback)});
 
 //Task che compila i file JS
 gulp.task('build:scripts:paroparo', function() {
