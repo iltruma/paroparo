@@ -126,7 +126,7 @@ body[data-color-scheme="dark"] {
 
   #css-toggle.custom-switch .custom-control-label {
     &:before {
-        background-color: transparent;
+        background-color: rgba($navbar-dark-color,.2);
         border-color:  $navbar-dark-color;
     }
     &:after {
@@ -139,4 +139,8 @@ body[data-color-scheme="dark"] {
   .pageclip-form__success {
     background: rgba($white,.8);
   }
+
+  .btt-scroll-arrow,  .btt-scroll-arrow * {
+    fill: $gray-800;
+  } 
 }
