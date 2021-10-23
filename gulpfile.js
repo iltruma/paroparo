@@ -7,7 +7,7 @@ const del          = require('del');
 const gulp         = require('gulp');
 const rename       = require('gulp-rename');
 const run          = require('gulp-run-command').default;
-const sass         = require('gulp-sass');
+const sass         = require('gulp-sass')(require('sass'));
 const merge        = require('merge2');
 const uglify       = require('gulp-uglify');
 const imagemin     = require('gulp-imagemin');
@@ -22,7 +22,7 @@ const fs           = require('fs');
 const prompt       = require('gulp-prompt');
 const webp         = require('gulp-webp');
 const fileClean    = require('gulp-clean');
-const favicons     = require ('gulp-favicons');
+const favicons     = require('gulp-favicons');
 
 var site = "";
 var colors = {};
@@ -123,7 +123,7 @@ gulp.task('build:styles:loader', function () {
   return gulp.src(paths._src.sass.app + "/loader.scss")
     .pipe(sassVars(colors))
     .pipe(sass({
-        onError: browserSync.notify
+        quietDeps: true
       }))
     .pipe(cleanCSS())
     .pipe(autoprefixer())
@@ -142,7 +142,7 @@ gulp.task('build:styles:paroparo', function () {
       .pipe(sassVars(colors))
       .pipe(sass({
           includePaths: [paths._src.sass.app],
-          onError: browserSync.notify
+          quietDeps: true
       })),
       gulp.src(paths._src.css.vendor + "/*.css")
     )
@@ -160,8 +160,9 @@ gulp.task('build:styles:paroparo', function () {
 gulp.task('build:styles:paroparo-dark', function () {
   return gulp.src(paths._src.sass.app + "/paroparo-dark.scss")
     .pipe(sassVars(colors))
-    .pipe(sass(
-        {onError: browserSync.notify}
+    .pipe(sass({
+        quietDeps: true
+      }
     ))
     .pipe(cleanCSS())
     .pipe(autoprefixer())
