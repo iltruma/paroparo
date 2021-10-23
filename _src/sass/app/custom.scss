@@ -155,6 +155,7 @@ article {
         background-position: center; 
         background-repeat: no-repeat;
         background-size: contain;
+        transition: transform 0.1s linear;
     }
     .btt-scroll-arrow,  .btt-scroll-arrow * {
         position: absolute;

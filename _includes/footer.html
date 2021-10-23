@@ -45,6 +45,9 @@
       <div class="col-4 col-xl-2">
         <h5>Naviga</h5>
         <ul class="nav flex-column">
+          <li class="nav-item">
+            <a href="{{ '/' | relative_url }}" class="nav-link">Home</a>
+          </li>
           {% for item in site.navigation %}
           <li class="nav-item">
             <a href="{{ item.link | relative_url }}" class="nav-link">{{ item.name }}</a>
