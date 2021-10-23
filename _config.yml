@@ -14,7 +14,6 @@ version: "1.0"
 
 # NAVIGATION
 navigation:
-  - {name: 'Blog', link: '/blog'}
   - {name: 'Feed', link: '/feed'}
   - {name: 'Chi Siamo', link: '/chi-siamo'}
   - {name: 'Contatti', link: '/contatti'}
