@@ -1,14 +1,15 @@
 {
   "name": "paroparo",
-  "version": "1.0.0",
+  "version": "0.0.0-development",
   "description": "![Version](https://img.shields.io/github/v/tag/iltruma/paroparo?label=version)\r [![Documentation](https://img.shields.io/badge/documentation-yes-brightgreen.svg?style=flat)](https://github.com/iltruma/paroparo#readme)\r [![Maintenance](https://img.shields.io/badge/maintained%3F-yes-green.svg?style=flat)](https://github.com/iltruma/paroparo/graphs/commit-activity)\r [![License: MIT](https://img.shields.io/github/license/iltruma/paroparo?style=flat)](https://github.com/iltruma/paroparo/blob/master/LICENSE)\r [![Paroparo CI](https://img.shields.io/github/workflow/status/iltruma/paroparo/Paroparo%20CI?logo=github)](https://github.com/iltruma/paroparo/actions/workflows/paroparo.yml)\r [![Parrots](https://img.shields.io/badge/parrots-2-%23186e64)](https://www.paroparo.it)\r [![Bevanda](https://img.shields.io/badge/cochina-bella%20fresca-%23fe101a)]()",
   "main": "gulpfile.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "semantic-release": "semantic-release"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/iltruma/paroparo.git"
+    "url": "https://github.com/iltruma/paroparo.git"
   },
   "author": "",
   "license": "ISC",
@@ -42,6 +43,10 @@
     "gulp-yaml": "^2.0.4",
     "gulp4-run-sequence": "^1.0.1",
     "merge2": "^1.4.1",
-    "sass": "^1.43.3"
+    "sass": "^1.43.3",
+    "semantic-release": "^18.0.0"
+  },
+  "devDependencies": {
+    "semantic-release": "^18.0.0"
   }
 }
