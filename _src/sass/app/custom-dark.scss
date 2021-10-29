@@ -76,7 +76,21 @@ body[data-color-scheme="dark"] {
       }
   }
 
+  
+  .tooltip {
+    .tooltip-inner {
+      background-color: $white;
+      color: $black;
+    }
+  }
 
+  .bs-tooltip-top {
+    .arrow {
+      &::before {
+        border-top-color: $white;
+      }
+    }
+  }
 
   section.bg-primary {
       background: $primary-night;
@@ -112,7 +126,7 @@ body[data-color-scheme="dark"] {
 
   #css-toggle.custom-switch .custom-control-label {
     &:before {
-        background-color: transparent;
+        background-color: rgba($navbar-dark-color,.2);
         border-color:  $navbar-dark-color;
     }
     &:after {
@@ -121,4 +135,12 @@ body[data-color-scheme="dark"] {
         content: url('https://api.iconify.design/mdi/weather-night.svg?width=12&color=#{encodecolor($gray-900)}');
     }
   }
+
+  .pageclip-form__success {
+    background: rgba($white,.8);
+  }
+
+  .btt-scroll-arrow,  .btt-scroll-arrow * {
+    fill: $gray-800;
+  } 
 }

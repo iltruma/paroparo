@@ -1,0 +1,15 @@
+
+<script>
+    function loadJSON() {
+      var response;
+      var xobj = new XMLHttpRequest();
+      xobj.overrideMimeType("application/json");
+      xobj.open("GET", "{{include.ajax_url | relative_url }}", false);
+      xobj.send(null);
+      if(xobj.readyState == 4 && xobj.status == "200") {
+        response = JSON.parse(xobj.responseText);
+      }
+      return response;
+    }
+    var {{ include.var }} = loadJSON();
+</script>

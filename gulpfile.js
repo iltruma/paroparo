@@ -7,7 +7,7 @@ const del          = require('del');
 const gulp         = require('gulp');
 const rename       = require('gulp-rename');
 const run          = require('gulp-run-command').default;
-const sass         = require('gulp-sass');
+const sass         = require('gulp-sass')(require('sass'));
 const merge        = require('merge2');
 const uglify       = require('gulp-uglify');
 const imagemin     = require('gulp-imagemin');
@@ -22,6 +22,10 @@ const fs           = require('fs');
 const prompt       = require('gulp-prompt');
 const webp         = require('gulp-webp');
 const fileClean    = require('gulp-clean');
+const favicons     = require('gulp-favicons');
+
+var site = "";
+var colors = {};
 
 // Lista delle path necesarie ai tasks
 const paths = {
@@ -75,7 +79,7 @@ const paths = {
     },
     img: {
       root: 'assets/img',
-      all: ['assets/img/**/*.png', 'assets/img/**/*.jpg'],
+      all: ['assets/img/**/*.png', 'assets/img/**/*.jpg', '!assets/img/favicons/*'],
       svg: 'assets/img/**/*.svg'
     },
     fonts: {
@@ -99,25 +103,27 @@ gulp.task('clean:jekyll', function(callback) {
   callback();
 });
 
-gulp.task('build:variables', function(callback) {
+gulp.task('build:variables:create', function() {
   return gulp.src('./_config.yml')
   .pipe(yaml({ safe: true }))
   .pipe(rename({basename: 'site'}))
   .pipe(gulp.dest(paths.assets.json.root));
 });
 
-//Task che compila i file SASS, li unisce con le gli altri CSS dei vendor (Leaflet, hightlight, ...) e li minimizza nel file paroparo.min.css
-gulp.task('build:styles:loader', function () {
-  var site = JSON.parse(fs.readFileSync(paths.assets.json.root + "/site.json"));
-  var colors = {};
+gulp.task('build:variables:set', function(callback) {
+  site = JSON.parse(fs.readFileSync(paths.assets.json.root + "/site.json"));
   for (i in site.colors) {
     colors[Object.keys(site.colors[i])[0]] = Object.values(site.colors[i])[0];
   }
+  callback();
+});
 
+//Task che compila i file SASS, li unisce con le gli altri CSS dei vendor (Leaflet, hightlight, ...) e li minimizza nel file paroparo.min.css
+gulp.task('build:styles:loader', function () {
   return gulp.src(paths._src.sass.app + "/loader.scss")
     .pipe(sassVars(colors))
     .pipe(sass({
-        onError: browserSync.notify
+        quietDeps: true
       }))
     .pipe(cleanCSS())
     .pipe(autoprefixer())
@@ -131,18 +137,12 @@ gulp.task('build:styles:loader', function () {
 
 //Task che compila i file SASS, li unisce con le gli altri CSS dei vendor (Leaflet, hightlight, ...) e li minimizza nel file paroparo.min.css
 gulp.task('build:styles:paroparo', function () {
-  var site = JSON.parse(fs.readFileSync(paths.assets.json.root + "/site.json"));
-  var colors = {};
-  for (i in site.colors) {
-    colors[Object.keys(site.colors[i])[0]] = Object.values(site.colors[i])[0];
-  }
-
   return merge(
       gulp.src(paths._src.sass.app + "/paroparo.scss")
       .pipe(sassVars(colors))
       .pipe(sass({
           includePaths: [paths._src.sass.app],
-          onError: browserSync.notify
+          quietDeps: true
       })),
       gulp.src(paths._src.css.vendor + "/*.css")
     )
@@ -158,16 +158,11 @@ gulp.task('build:styles:paroparo', function () {
 
 //Task che compila i file SASS, li unisce con le gli altri CSS dei vendor (Leaflet, hightlight, ...) e li minimizza nel file paroparo.min.css
 gulp.task('build:styles:paroparo-dark', function () {
-  var site = JSON.parse(fs.readFileSync(paths.assets.json.root + "/site.json"));
-  var colors = {};
-  for (i in site.colors) {
-    colors[Object.keys(site.colors[i])[0]] = Object.values(site.colors[i])[0];
-  }
-
   return gulp.src(paths._src.sass.app + "/paroparo-dark.scss")
     .pipe(sassVars(colors))
-    .pipe(sass(
-        {onError: browserSync.notify}
+    .pipe(sass({
+        quietDeps: true
+      }
     ))
     .pipe(cleanCSS())
     .pipe(autoprefixer())
@@ -179,7 +174,7 @@ gulp.task('build:styles:paroparo-dark', function () {
     .pipe(gulp.dest(paths.assets.css.root));
 });
 
-gulp.task('build:styles',  function(callback) {runSequence(['build:variables', 'build:styles:loader', 'build:styles:paroparo', 'build:styles:paroparo-dark'], callback)});
+gulp.task('build:styles',  function(callback) {runSequence(['build:variables:create', 'build:variables:set', 'build:styles:loader', 'build:styles:paroparo', 'build:styles:paroparo-dark'], callback)});
 
 //Task che compila i file JS
 gulp.task('build:scripts:paroparo', function() {
@@ -248,8 +243,46 @@ gulp.task('build:svg', function() {
   .pipe(gulp.dest(paths.assets.img.root));
 });
 
+//Task che genera le favicons
+gulp.task('build:favicons', function() {
+  return gulp.src(paths.assets.img.root + "/favicons/pp_logo.svg")
+  .pipe(cache(favicons({
+      appName: site.title,
+      appShortName: site.title,
+      appDescription: site.description,
+      developerName: site.author,
+      background: colors['primary-dark'],
+      theme_color: colors['primary'],
+      path: paths.assets.img.root + "/favicons/",
+      url: site.url,
+      lang: site.locale,
+      display: "standalone",
+      orientation: "any",
+      scope: "/",
+      start_url: "/",
+      version: site.version,
+      icons: {
+        android: true,
+        appleIcon: true,
+        appleStartup: false,
+        coast: false,
+        favicons: true,
+        firefox: false,
+        windows: false,
+        yandex: false,
+      },
+      logging: false,
+      pipeHTML: false,
+      html: "",
+      replace: false,
+    }))
+  )
+  .pipe(gulp.dest(paths.assets.img.root + "/favicons/"));
+});
+
+
 // Task completo degli assets
-gulp.task('build:assets',  function(callback) {runSequence('clean:jekyll', 'build:styles', 'build:scripts', 'build:images', 'build:svg', callback)});
+gulp.task('build:assets',  function(callback) {runSequence('clean:jekyll', 'build:styles', 'build:scripts', 'build:images', 'build:svg', 'build:favicons', callback)});
 
 // Task per il build Jekyll. Crea la cartella _site
 gulp.task('build:jekyll', function(callback) {

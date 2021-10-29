@@ -32,7 +32,7 @@ $(document).ready(function () {
         radius: 2000
     }).addTo(mymap);
     circle.bindPopup('<div class="container"><div class="row"><div class="col-12"><h4>' + site.title + '</h4><p class="mt-0 mb-2">'
-    + site.description + '</p><h6 class="mb-0">Indirizzo</h6><address>' + site.address + '<br>' + site.city + '</address><a target="_blank" href="' + site.url + '">Sito Web</a></div></div></div>').openPopup();
+    + site.description + '</p><h6 class="mb-0">Indirizzo</h6><address>' + site.address + '<br>' + site.city + '</address><a target="_blank" href="/">Sito Web</a></div></div></div>').openPopup();
   }
 
   //Pageclip form
@@ -47,5 +47,11 @@ $(document).ready(function () {
   if(typeof hljs !== "undefined") {
     hljs.highlightAll();
   }
+
+  $(window).scroll(function(){
+    var btt_scroll_icon = $('.btt-scroll-icon');
+    btt_scroll_icon.css('transform', "rotate(" + $(window).scrollTop()/4 + "deg)");
+  });
+
 });
 
