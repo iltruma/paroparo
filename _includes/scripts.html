@@ -1,17 +1,4 @@
-<script>
-function loadJSON() {
-  var response;
-  var xobj = new XMLHttpRequest();
-  xobj.overrideMimeType("application/json");
-  xobj.open("GET", "{{'/assets/json/site.json' | relative_url }}", false);
-  xobj.send(null);
-  if(xobj.readyState == 4 && xobj.status == "200") {
-    response = JSON.parse(xobj.responseText);
-  }
-  return response;
-}
-var site = loadJSON();
-</script>
+{% include ajax.html ajax_url='/assets/json/site.json' var='site' %}
 
 <script defer type="text/javascript" src="{{ '/assets/js/switch.min.js' | relative_url }}"></script>
 

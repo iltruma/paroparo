@@ -131,7 +131,7 @@ article {
 
 #css-toggle.custom-switch .custom-control-label {
     &:before {
-        background-color: transparent;
+        background-color: rgba($navbar-dark-color,.2);
         border-color:  $navbar-dark-color;
     }
     &:after {
@@ -142,5 +142,24 @@ article {
         content: url('https://api.iconify.design/mdi/white-balance-sunny.svg?width=12&color=#{encodecolor($warning)}');
         font-size: 0.75rem;
         line-height: 1rem;
+    }
+}
+
+.fancybox-image {
+    @extend .card-img;
+}
+
+.btt-scroll {
+    .btt-scroll-icon {
+        background-image: url('/assets/img/favicons/pp_logo.svg');
+        background-position: center; 
+        background-repeat: no-repeat;
+        background-size: contain;
+        transition: transform 0.1s linear;
+    }
+    .btt-scroll-arrow,  .btt-scroll-arrow * {
+        position: absolute;
+        bottom: 2.5rem;
+        fill: $gray-800;
     }
 }
