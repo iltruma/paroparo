@@ -1,11 +1,11 @@
 # Paroparo 🦜
 ![Version](https://img.shields.io/github/v/tag/iltruma/paroparo?label=version)
-[![Documentation](https://img.shields.io/badge/documentation-yes-brightgreen.svg?style=flat)](https://github.com/iltruma/paroparo#readme)
 [![Maintenance](https://img.shields.io/badge/maintained%3F-yes-green.svg?style=flat)](https://github.com/iltruma/paroparo/graphs/commit-activity)
 [![License: MIT](https://img.shields.io/github/license/iltruma/paroparo?style=flat)](https://github.com/iltruma/paroparo/blob/master/LICENSE)
 [![Paroparo CI](https://img.shields.io/github/workflow/status/iltruma/paroparo/Paroparo%20CI?logo=github)](https://github.com/iltruma/paroparo/actions/workflows/paroparo.yml)
 [![Parrots](https://img.shields.io/badge/parrots-2-%23186e64)](https://www.paroparo.it)
 [![Bevanda](https://img.shields.io/badge/cochina-bella%20fresca-%23fe101a)]()
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/S6S46WOAS)
 
 > paroparo description need to be inserted here
 

@@ -23,6 +23,7 @@ const prompt       = require('gulp-prompt');
 const webp         = require('gulp-webp');
 const fileClean    = require('gulp-clean');
 const favicons     = require('gulp-favicons');
+const cryptojs     = require('crypto-js');
 
 var site = "";
 var colors = {};
@@ -96,6 +97,52 @@ const paths = {
     }
   }
 };
+
+function encrypt(password) {
+  return through.obj(function(file, encoding, callback) {
+    if (file.isNull() || file.isDirectory()) {
+      this.push(file);
+      return callback();
+    }
+
+    // No support for streams
+    if (file.isStream()) {
+      this.emit('error', new PluginError({
+        plugin: 'Encrypt',
+        message: 'Streams are not supported.'
+      }));
+      return callback();
+    }
+
+    if (file.isBuffer()) {
+      var delimiter = '---',
+          chunks = String(file.contents).split(delimiter),
+          originalBody = chunks[0],
+          frontMatter = '';
+
+      if (chunks.length === 3) {
+        checkEncryptedLayout(chunks[1], file.path);
+        frontMatter = chunks[1];
+        originalBody = chunks[2];
+      } else if (chunks.length > 1) {
+        this.emit('error', new PluginError({
+          plugin: 'Encrypt',
+          message: file.path + ': protected file has invalid front matter.'
+        }));
+        return callback();
+      }
+
+      var encryptedBody = cryptojs.AES.encrypt(marked(originalBody), password),
+          hmac = cryptojs.HmacSHA256(encryptedBody.toString(), cryptojs.SHA256(password).toString()).toString(),
+          encryptedFrontMatter = 'encrypted: ' + hmac + encryptedBody,
+          result = [ delimiter, frontMatter, '\n', encryptedFrontMatter, '\n', delimiter ];
+
+      file.contents = Buffer.from(result.join(''));
+      this.push(file);
+      return callback();
+    }
+  });
+}
 
 // Task che cancella la cartella _site
 gulp.task('clean:jekyll', function(callback) {
