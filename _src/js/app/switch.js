@@ -30,6 +30,7 @@ function updateDarkToggleButton() {
 // function to toggle the css
 function toggleColorSchemeCss($mode) {
   $dark = ($mode == 'dark') ? true : false;
+  document.body.setAttribute("data-color-scheme", "");
   if(document.querySelector("#css-toggle-btn")) {
     document.querySelector("#css-toggle-btn").checked = $dark;
     document.querySelector("#css-dark").disabled= !$dark;
@@ -76,14 +77,16 @@ document.addEventListener("DOMContentLoaded", function() {
   if (window.matchMedia) window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",  function() { updateDarkToggleButton() });
   
   // toggle button click code
-  document.querySelector("#css-toggle-btn").addEventListener("click", function() {
-    // get current mode
-    // don't use `.data("color-scheme")`, it doesn't refresh
-    $mode = document.body.getAttribute("data-color-scheme");
-    // by here we have the current mode, so swap it
-    $mode = ($mode == 'dark') ? 'light' : 'dark';
-    toggleColorSchemeCss($mode);
-  });
+  if(document.querySelector("#css-toggle-btn")) {
+    document.querySelector("#css-toggle-btn").addEventListener("click", function() {
+      // get current mode
+      // don't use `.data("color-scheme")`, it doesn't refresh
+      $mode = document.body.getAttribute("data-color-scheme");
+      // by here we have the current mode, so swap it
+      $mode = ($mode == 'dark') ? 'light' : 'dark';
+      toggleColorSchemeCss($mode);
+    });
+  }
 
 });
 

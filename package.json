@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/iltruma/paroparo#readme",
   "dependencies": {
+    "@babel/preset-env": "^7.16.11",
     "browser-sync": "^2.27.5",
     "crypto-js": "^4.1.1",
     "fs": "^0.0.1-security",
@@ -32,14 +33,14 @@
     "gulp-prompt": "^1.2.0",
     "gulp-rename": "^2.0.0",
     "gulp-run-command": "^0.0.10",
+    "gulp-sass": "^5.1.0",
     "gulp-sass-vars": "^1.1.5",
     "gulp-size": "^4.0.1",
-    "gulp-sass": "^5.0.0",
-    "sass": "^1.43.3",
     "gulp-uglify": "^3.0.2",
     "gulp-webp": "^4.0.1",
     "gulp-yaml": "^2.0.4",
     "gulp4-run-sequence": "^1.0.1",
-    "merge2": "^1.4.1"
+    "merge2": "^1.4.1",
+    "sass": "^1.49.7"
   }
 }
