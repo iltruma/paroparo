@@ -164,10 +164,10 @@ gulp.task('build:variables:set', function(callback) {
 });
 
 //Task che compila i file SASS, li unisce con le gli altri CSS dei vendor (Leaflet, hightlight, ...) e li minimizza nel file paroparo.min.css
-gulp.task('build:styles:loader', function (callback) {
-  gulp.src(paths._src.sass.app + "/loader.scss")
+gulp.task('build:styles:loader', function () {
+  return gulp.src(paths._src.sass.app + "/loader.scss")
     .pipe(sassVars(colors))
-    .pipe(sass({
+    .pipe(sass.sync({
         quietDeps: true
       }))
     .pipe(cleanCSS())
@@ -178,21 +178,19 @@ gulp.task('build:styles:loader', function (callback) {
     .pipe(size({title: "build:styles:loader"}))
     .pipe(gulp.dest(paths._site.assets.css))
     .pipe(gulp.dest("_includes/loader"));
-    callback();
 });
 
 //Task che compila i file SASS, li unisce con le gli altri CSS dei vendor (Leaflet, hightlight, ...) e li minimizza nel file paroparo.min.css
-gulp.task('build:styles:paroparo', function (callback) {
-  merge(
+gulp.task('build:styles:paroparo', function () {
+  return merge(
       gulp.src(paths._src.sass.app + "/paroparo.scss")
       .pipe(sassVars(colors))
-      .pipe(sass({
+      .pipe(sass.sync({
           includePaths: [paths._src.sass.app],
           quietDeps: true
-      })),
+      }).on('error', sass.logError)),
       gulp.src(paths._src.css.vendor + "/*.css")
-    )
-    .pipe(cleanCSS())
+    ).pipe(cleanCSS())
     .pipe(autoprefixer())
     .pipe(concat("paroparo.css"))
     .pipe(rename({suffix: '.min'}))
@@ -200,17 +198,16 @@ gulp.task('build:styles:paroparo', function (callback) {
     .pipe(size({title: "build:styles:paroparo"}))
     .pipe(gulp.dest(paths._site.assets.css))
     .pipe(gulp.dest(paths.assets.css.root));
-    callback();
 });
 
 //Task che compila i file SASS, li unisce con le gli altri CSS dei vendor (Leaflet, hightlight, ...) e li minimizza nel file paroparo.min.css
-gulp.task('build:styles:paroparo-dark', function (callback) {
-  gulp.src(paths._src.sass.app + "/paroparo-dark.scss")
+gulp.task('build:styles:paroparo-dark', function () {
+  return gulp.src(paths._src.sass.app + "/paroparo-dark.scss")
     .pipe(sassVars(colors))
-    .pipe(sass({
+    .pipe(sass.sync({
         quietDeps: true
       }
-    ))
+    ).on('error', sass.logError))
     .pipe(cleanCSS())
     .pipe(autoprefixer())
     .pipe(concat("paroparo-dark.css"))
@@ -219,14 +216,13 @@ gulp.task('build:styles:paroparo-dark', function (callback) {
     .pipe(size({title: "build:styles:paroparo-dark"}))
     .pipe(gulp.dest(paths._site.assets.css))
     .pipe(gulp.dest(paths.assets.css.root));
-    callback();
 });
 
 gulp.task('build:styles',  function(callback) {runSequence(['build:variables:create', 'build:variables:set', 'build:styles:loader', 'build:styles:paroparo', 'build:styles:paroparo-dark'], callback)});
 
 //Task che compila i file JS
-gulp.task('build:scripts:paroparo', function (callback) {
-  gulp.src(paths._src.js.critical.concat(paths._src.js.optional))
+gulp.task('build:scripts:paroparo', function () {
+  return gulp.src(paths._src.js.critical.concat(paths._src.js.optional))
     .pipe(babel({ 
       presets: [["@babel/preset-env", { modules: false }]],
       compact: false  }))
@@ -237,12 +233,11 @@ gulp.task('build:scripts:paroparo', function (callback) {
     .pipe(size({title: "build:scripts:paroparo"}))
     .pipe(gulp.dest(paths._site.assets.js))
     .pipe(gulp.dest(paths.assets.js.root));
-    callback();
 });
 
 //Task che compila i file JS che non servono sempre (es. leaflet, highlight)
-gulp.task('build:scripts:other', function (callback) {
-  gulp.src(paths._src.js.other)
+gulp.task('build:scripts:other', function () {
+  return gulp.src(paths._src.js.other)
     .pipe(babel({ 
       presets: [["@babel/preset-env", { modules: false }]],
       compact: false  }))
@@ -251,12 +246,11 @@ gulp.task('build:scripts:other', function (callback) {
     .pipe(size({title: "build:scripts:other"}))
     .pipe(gulp.dest(paths._site.assets.js))
     .pipe(gulp.dest(paths.assets.js.root));
-    callback();
 });
 
 //Task che compila il per lo switch theme
-gulp.task('build:scripts:switch', function (callback) {
-  gulp.src(paths._src.js.app + '/switch.js' )
+gulp.task('build:scripts:switch', function () {
+  return gulp.src(paths._src.js.app + '/switch.js' )
     .pipe(babel({ 
       presets: [["@babel/preset-env", { modules: false }]],
       compact: false  }))
@@ -267,15 +261,14 @@ gulp.task('build:scripts:switch', function (callback) {
     .pipe(size({title: "build:scripts:switch"}))
     .pipe(gulp.dest(paths._site.assets.js))
     .pipe(gulp.dest(paths.assets.js.root));
-    callback();
 });
 
 // Task che compila tutti i JS
 gulp.task('build:scripts',  function(callback) {runSequence(['build:scripts:switch', 'build:scripts:paroparo', 'build:scripts:other'], callback)});
 
 // Task di ottimizzazione delle immagini (sovrascrittura)
-gulp.task('build:images', function (callback) {
-   gulp.src(paths.assets.img.all)
+gulp.task('build:images', function () {
+   return gulp.src(paths.assets.img.all)
   .pipe(fileClean({force: true}))
   .pipe(cache(imagemin({ optimizationLevel:5, progressive: true, interlaced: true })))
   .pipe(webp())
@@ -283,22 +276,20 @@ gulp.task('build:images', function (callback) {
   .pipe(size({title: "build:images"}))
   .pipe(gulp.dest(paths._site.assets.img))
   .pipe(gulp.dest(paths.assets.img.root));
-  callback();
 });
 
 // Task di ottimizzazione delle svg. E' sepratato dal task delle immagini perchè imagemin non ottimizza bene gli svg dei dividers e decorations (sovrascrittura)
-gulp.task('build:svg', function (callback) {
-  gulp.src(paths.assets.img.svg)
+gulp.task('build:svg', function () {
+  return gulp.src(paths.assets.img.svg)
   .pipe(browserSync.reload({stream: true}))
   .pipe(size({title: "build:svg"}))
   .pipe(gulp.dest(paths._site.assets.img))
   .pipe(gulp.dest(paths.assets.img.root));
-  callback();
 });
 
 //Task che genera le favicons
-gulp.task('build:favicons', function (callback) {
-  gulp.src(paths.assets.img.root + "/favicons/pp_logo.svg")
+gulp.task('build:favicons', function () {
+  return gulp.src(paths.assets.img.root + "/favicons/pp_logo.svg")
   .pipe(cache(favicons({
       appName: site.title,
       appShortName: site.title,
@@ -331,7 +322,6 @@ gulp.task('build:favicons', function (callback) {
     }))
   )
   .pipe(gulp.dest(paths.assets.img.root + "/favicons/"));
-  callback();
 });
 
 
@@ -387,8 +377,8 @@ gulp.task('serve', gulp.series('build', function(callback) {
 
 // Task watch per taggare l'immagine docker e fare pubblicarla su github
 var tag_deploy, tag_build;
-gulp.task('docker:deploy:input', function (callback) {
-  gulp.src(paths.here)
+gulp.task('docker:deploy:input', function () {
+  return gulp.src(paths.here)
   .pipe(prompt.prompt({
     type: 'input',
     name: 'tag',
@@ -397,7 +387,6 @@ gulp.task('docker:deploy:input', function (callback) {
   }, (res) => {
     tag_deploy = res.tag;
   }));
-  callback();
 });
 
 gulp.task('docker:deploy', gulp.series('docker:deploy:input', function deploy(callback) {
@@ -407,7 +396,7 @@ gulp.task('docker:deploy', gulp.series('docker:deploy:input', function deploy(ca
   callback();
 }));
 
-gulp.task('docker:build:input', function (callback) {
+gulp.task('docker:build:input', function () {
   return gulp.src(paths.here)
   .pipe(prompt.prompt({
     type: 'input',
@@ -417,7 +406,6 @@ gulp.task('docker:build:input', function (callback) {
   }, (res) => {
     tag_build = res.tag;
   }));
-  callback();
 });
 
 gulp.task('docker:build', gulp.series('docker:build:input', function deploy(callback) {
