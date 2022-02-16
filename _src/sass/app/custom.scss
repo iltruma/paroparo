@@ -87,13 +87,13 @@ article {
     &:hover .octo-arm {
         animation: octocat-wave 560ms ease-in-out;
 
-        @media (max-width:500px) {
+        @media (max-width:576px) {
             animation: none;
         }
     }
 
 	.octo-arm {
-        @media (max-width:500px) {
+        @media (max-width:576px) {
 		    animation: octocat-wave 560ms ease-in-out;
         }
 	}
@@ -161,5 +161,12 @@ article {
         position: absolute;
         bottom: 2.5rem;
         fill: $gray-800;
+    }
+}
+
+
+nav[data-overlay].navbar-toggled-show {
+    &.navbar-dark{
+      background: $primary;
     }
 }
