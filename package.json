@@ -1,28 +1,25 @@
 {
   "name": "paroparo",
-  "version": "0.0.0-development",
-  "description": "![Version](https://img.shields.io/github/v/tag/iltruma/paroparo?label=version)\r [![Documentation](https://img.shields.io/badge/documentation-yes-brightgreen.svg?style=flat)](https://github.com/iltruma/paroparo#readme)\r [![Maintenance](https://img.shields.io/badge/maintained%3F-yes-green.svg?style=flat)](https://github.com/iltruma/paroparo/graphs/commit-activity)\r [![License: MIT](https://img.shields.io/github/license/iltruma/paroparo?style=flat)](https://github.com/iltruma/paroparo/blob/master/LICENSE)\r [![Paroparo CI](https://img.shields.io/github/workflow/status/iltruma/paroparo/Paroparo%20CI?logo=github)](https://github.com/iltruma/paroparo/actions/workflows/paroparo.yml)\r [![Parrots](https://img.shields.io/badge/parrots-2-%23186e64)](https://www.paroparo.it)\r [![Bevanda](https://img.shields.io/badge/cochina-bella%20fresca-%23fe101a)]()",
+  "version": "1.0.0",
+  "description": "![Version](https://img.shields.io/github/v/tag/iltruma/paroparo?label=version)\r [![Maintenance](https://img.shields.io/badge/maintained%3F-yes-green.svg?style=flat)](https://github.com/iltruma/paroparo/graphs/commit-activity)\r [![License: MIT](https://img.shields.io/github/license/iltruma/paroparo?style=flat)](https://github.com/iltruma/paroparo/blob/master/LICENSE)\r [![Paroparo CI](https://img.shields.io/github/workflow/status/iltruma/paroparo/Paroparo%20CI?logo=github)](https://github.com/iltruma/paroparo/actions/workflows/paroparo.yml)\r [![Parrots](https://img.shields.io/badge/parrots-2-%23186e64)](https://www.paroparo.it)\r [![Bevanda](https://img.shields.io/badge/cochina-bella%20fresca-%23fe101a)]()\r [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/S6S46WOAS)",
   "main": "gulpfile.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "semantic-release": "semantic-release"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/iltruma/paroparo.git"
+    "url": "git+https://github.com/iltruma/paroparo.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "iltruma",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/iltruma/paroparo/issues"
   },
   "homepage": "https://github.com/iltruma/paroparo#readme",
   "dependencies": {
-    "@babel/preset-env": "^7.15.8",
+    "@babel/preset-env": "^7.16.11",
     "browser-sync": "^2.27.5",
     "crypto-js": "^4.1.1",
-    "del": "^6.0.0",
-    "fancy-log": "^1.3.3",
     "fs": "^0.0.1-security",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^8.0.0",
@@ -32,11 +29,11 @@
     "gulp-clean-css": "^4.3.0",
     "gulp-concat": "^2.6.1",
     "gulp-favicons": "^3.0.0",
-    "gulp-imagemin": "^7.1.0",
+    "gulp-imagemin": "7.1.0",
     "gulp-prompt": "^1.2.0",
     "gulp-rename": "^2.0.0",
     "gulp-run-command": "^0.0.10",
-    "gulp-sass": "^5.0.0",
+    "gulp-sass": "^5.1.0",
     "gulp-sass-vars": "^1.1.5",
     "gulp-size": "^4.0.1",
     "gulp-uglify": "^3.0.2",
@@ -44,10 +41,6 @@
     "gulp-yaml": "^2.0.4",
     "gulp4-run-sequence": "^1.0.1",
     "merge2": "^1.4.1",
-    "sass": "^1.43.3",
-    "semantic-release": "^18.0.0"
-  },
-  "devDependencies": {
-    "semantic-release": "^18.0.0"
+    "sass": "^1.49.7"
   }
 }

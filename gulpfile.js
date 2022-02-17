@@ -3,7 +3,6 @@ const autoprefixer = require('gulp-autoprefixer');
 const browserSync  = require('browser-sync').create();
 const concat       = require('gulp-concat');
 const cleanCSS     = require('gulp-clean-css');
-const del          = require('del');
 const gulp         = require('gulp');
 const rename       = require('gulp-rename');
 const run          = require('gulp-run-command').default;
@@ -16,7 +15,6 @@ const size         = require('gulp-size');
 const babel        = require('gulp-babel');
 const yaml         = require('gulp-yaml');
 const sassVars     = require('gulp-sass-vars');
-const log          = require('fancy-log');
 const runSequence  = require('gulp4-run-sequence');
 const fs           = require('fs');
 const prompt       = require('gulp-prompt');
@@ -169,7 +167,7 @@ gulp.task('build:variables:set', function(callback) {
 gulp.task('build:styles:loader', function () {
   return gulp.src(paths._src.sass.app + "/loader.scss")
     .pipe(sassVars(colors))
-    .pipe(sass({
+    .pipe(sass.sync({
         quietDeps: true
       }))
     .pipe(cleanCSS())
@@ -187,13 +185,12 @@ gulp.task('build:styles:paroparo', function () {
   return merge(
       gulp.src(paths._src.sass.app + "/paroparo.scss")
       .pipe(sassVars(colors))
-      .pipe(sass({
+      .pipe(sass.sync({
           includePaths: [paths._src.sass.app],
           quietDeps: true
-      })),
+      }).on('error', sass.logError)),
       gulp.src(paths._src.css.vendor + "/*.css")
-    )
-    .pipe(cleanCSS())
+    ).pipe(cleanCSS())
     .pipe(autoprefixer())
     .pipe(concat("paroparo.css"))
     .pipe(rename({suffix: '.min'}))
@@ -207,10 +204,10 @@ gulp.task('build:styles:paroparo', function () {
 gulp.task('build:styles:paroparo-dark', function () {
   return gulp.src(paths._src.sass.app + "/paroparo-dark.scss")
     .pipe(sassVars(colors))
-    .pipe(sass({
+    .pipe(sass.sync({
         quietDeps: true
       }
-    ))
+    ).on('error', sass.logError))
     .pipe(cleanCSS())
     .pipe(autoprefixer())
     .pipe(concat("paroparo-dark.css"))
@@ -224,7 +221,7 @@ gulp.task('build:styles:paroparo-dark', function () {
 gulp.task('build:styles',  function(callback) {runSequence(['build:variables:create', 'build:variables:set', 'build:styles:loader', 'build:styles:paroparo', 'build:styles:paroparo-dark'], callback)});
 
 //Task che compila i file JS
-gulp.task('build:scripts:paroparo', function() {
+gulp.task('build:scripts:paroparo', function () {
   return gulp.src(paths._src.js.critical.concat(paths._src.js.optional))
     .pipe(babel({ 
       presets: [["@babel/preset-env", { modules: false }]],
@@ -239,7 +236,7 @@ gulp.task('build:scripts:paroparo', function() {
 });
 
 //Task che compila i file JS che non servono sempre (es. leaflet, highlight)
-gulp.task('build:scripts:other', function() {
+gulp.task('build:scripts:other', function () {
   return gulp.src(paths._src.js.other)
     .pipe(babel({ 
       presets: [["@babel/preset-env", { modules: false }]],
@@ -252,7 +249,7 @@ gulp.task('build:scripts:other', function() {
 });
 
 //Task che compila il per lo switch theme
-gulp.task('build:scripts:switch', function() {
+gulp.task('build:scripts:switch', function () {
   return gulp.src(paths._src.js.app + '/switch.js' )
     .pipe(babel({ 
       presets: [["@babel/preset-env", { modules: false }]],
@@ -270,8 +267,8 @@ gulp.task('build:scripts:switch', function() {
 gulp.task('build:scripts',  function(callback) {runSequence(['build:scripts:switch', 'build:scripts:paroparo', 'build:scripts:other'], callback)});
 
 // Task di ottimizzazione delle immagini (sovrascrittura)
-gulp.task('build:images', function() {
-  return gulp.src(paths.assets.img.all)
+gulp.task('build:images', function () {
+   return gulp.src(paths.assets.img.all)
   .pipe(fileClean({force: true}))
   .pipe(cache(imagemin({ optimizationLevel:5, progressive: true, interlaced: true })))
   .pipe(webp())
@@ -282,7 +279,7 @@ gulp.task('build:images', function() {
 });
 
 // Task di ottimizzazione delle svg. E' sepratato dal task delle immagini perchè imagemin non ottimizza bene gli svg dei dividers e decorations (sovrascrittura)
-gulp.task('build:svg', function() {
+gulp.task('build:svg', function () {
   return gulp.src(paths.assets.img.svg)
   .pipe(browserSync.reload({stream: true}))
   .pipe(size({title: "build:svg"}))
@@ -291,7 +288,7 @@ gulp.task('build:svg', function() {
 });
 
 //Task che genera le favicons
-gulp.task('build:favicons', function() {
+gulp.task('build:favicons', function () {
   return gulp.src(paths.assets.img.root + "/favicons/pp_logo.svg")
   .pipe(cache(favicons({
       appName: site.title,
@@ -380,7 +377,7 @@ gulp.task('serve', gulp.series('build', function(callback) {
 
 // Task watch per taggare l'immagine docker e fare pubblicarla su github
 var tag_deploy, tag_build;
-gulp.task('docker:deploy:input', function() {
+gulp.task('docker:deploy:input', function () {
   return gulp.src(paths.here)
   .pipe(prompt.prompt({
     type: 'input',
@@ -389,7 +386,7 @@ gulp.task('docker:deploy:input', function() {
     message: 'Di quale tag vuoi fare il deploy?'
   }, (res) => {
     tag_deploy = res.tag;
-  }))
+  }));
 });
 
 gulp.task('docker:deploy', gulp.series('docker:deploy:input', function deploy(callback) {
@@ -399,7 +396,7 @@ gulp.task('docker:deploy', gulp.series('docker:deploy:input', function deploy(ca
   callback();
 }));
 
-gulp.task('docker:build:input', function() {
+gulp.task('docker:build:input', function () {
   return gulp.src(paths.here)
   .pipe(prompt.prompt({
     type: 'input',
@@ -408,7 +405,7 @@ gulp.task('docker:build:input', function() {
     message: 'Di quale tag vuoi fare il build?'
   }, (res) => {
     tag_build = res.tag;
-  }))
+  }));
 });
 
 gulp.task('docker:build', gulp.series('docker:build:input', function deploy(callback) {

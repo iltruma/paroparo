@@ -1,4 +1,4 @@
-body[data-color-scheme="dark"] {
+body[data-color-scheme="dark"], body[data-color-scheme=""]  {
   .text-light *, .text-light {
         color: $gray-900 !important;
       .text-muted{
