@@ -1,0 +1,28 @@
+name: Paroparo Development CI
+
+on:
+  push:
+    branches:
+      - develop
+  workflow_dispatch: #Manually Schedule
+
+jobs:
+  jekyll_build_and_deploy:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: 🛎️ Checkout
+        uses: actions/checkout@v2
+
+      - name: ⚡ Cache Jekyll build
+        uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
+          
+      - name: 💉 jekyll build and deploy 
+        uses: helaili/jekyll-action@v2
+        with:
+          token: ${{ secrets.GITH_TOKEN }}
+          target_branch: 'gh-pages-dev'   
