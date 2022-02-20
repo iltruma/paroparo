@@ -44,12 +44,12 @@ exclude:
   - README.md
   - node_modules
   - script
-  - package.json
-  - package-lock.json
-  - Gemfile
-  - Gemfile.lock
+  - package*.json
+  - Gemfile*
   - npm-debug.log
   - gulpfile.js
+  - Dockerfile*
+  - paroparo.gemspec
 keep_files:
   - assets
 permalink: /:title/
