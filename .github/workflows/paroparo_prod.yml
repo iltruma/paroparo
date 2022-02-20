@@ -1,4 +1,4 @@
-name: Paroparo Development CI
+name: Paroparo Production CI
 
 on:
   push:
