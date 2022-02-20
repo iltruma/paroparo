@@ -30,12 +30,17 @@ colors:
   - primary-night: "#121212"
 
 #SEO
-#tagline: "" # A short description title | tagline header
 #google_site_verification: 
 logo: "/assets/img/favicons/pp_logo.svg"
 social:
-  - github: "https://github.com/iltruma/paroparo"
-  - instagram: "https://www.instagram.com/paroparo.it"
+  links:
+    - github: "https://github.com/iltruma/paroparo"
+    - instagram: "https://www.instagram.com/paroparo.it"
+defaults:
+  - scope:
+      path: ""
+    values:
+      image: assets/img/gitpreview.webp
 
 # BUILD SETTINGS
 markdown: kramdown
@@ -59,6 +64,7 @@ collections:
   pages:
     output: true
     permalink: /:title/
+
 
 #PAGINATION
 pagination:
