@@ -7,6 +7,8 @@
 
 > paroparo description need to be inserted here
 
+![gitpreview](https://github.com/iltruma/paroparo/blob/master/assets/gitpreview.webp?raw=true)
+
 ### :octocat: [Github](https://github.com/iltruma/paroparo#readme)
 
 ### 🏠 [Homepage](https://www.paroparo.it)
