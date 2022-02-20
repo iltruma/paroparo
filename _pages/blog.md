@@ -5,4 +5,5 @@
 layout: blog
 pagination:
   enabled: true
+title: blog
 ---
