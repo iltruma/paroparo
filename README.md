@@ -8,12 +8,12 @@
 > paroparo description need to be inserted here
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/iltruma/paroparo/master/assets/img/gitpreview.webp" width="576">
+    <img src="https://raw.githubusercontent.com/iltruma/paroparo/master/assets/img/gitpreview.webp" width="576">
 </p>
-
-### :octocat: [Github](https://github.com/iltruma/paroparo#readme)
-
-### 🏠 [Homepage](https://www.paroparo.it)
+<h3 align="center">
+    <a href="https://www.paroparo.it">🏠 Homepage</a>
+    <a href="https://github.com/iltruma/paroparo#readme">:octocat: Github</a>
+</h3>
 
 ## ✒️ Autori
 
