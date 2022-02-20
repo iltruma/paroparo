@@ -55,6 +55,10 @@ keep_files:
 permalink: /:title/
 compress_html:
   clippings: all
+collections:
+  pages:
+    output: true
+    permalink: /:title/
 
 #PAGINATION
 pagination:
