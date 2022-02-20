@@ -2,6 +2,11 @@
 layout: blank
 ---
 
-{% include navbar.html %}
-{{ content }}
-{% include footer.html %}
+{% if site.environment == "dev"%}
+    {% include navbar.html %}
+    {{ content }}
+    {% include footer.html %}
+{% elsif site.environment == "prod" %}
+    {% include coming-soon.html %}
+{% endif %}
+

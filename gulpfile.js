@@ -22,6 +22,7 @@ const webp         = require('gulp-webp');
 const fileClean    = require('gulp-clean');
 const favicons     = require('gulp-favicons');
 const cryptojs     = require('crypto-js');
+const argv         = require('yargs').argv;
 
 var site = "";
 var colors = {};
@@ -330,7 +331,12 @@ gulp.task('build:assets',  function(callback) {runSequence('clean:jekyll', 'buil
 
 // Task per il build Jekyll. Crea la cartella _site
 gulp.task('build:jekyll', function(callback) {
-  run('jekyll build --config _config.yml --future --trace')();
+  var env = (argv.env === undefined) ? 'dev' : argv.env ;
+  if(env === 'prod') {
+    run('jekyll build --config _config.yml --future --trace')();
+  } else if (env === 'dev'){
+    run('jekyll build --config _config.yml,_config_dev.yml --future --trace')();
+  }
   callback();
 });
 

@@ -26,3 +26,4 @@ jobs:
         with:
           token: ${{ secrets.GITH_TOKEN }}
           target_branch: 'ghp-dev'   
+          jekyll_build_options: --config _config.yml,_config_dev.yml

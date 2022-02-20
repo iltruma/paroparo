@@ -11,6 +11,7 @@ address: "Foresta di Figline Valdarno"
 city: "Firenze, Italia"
 locale: it_IT
 timezone: Europe/Rome
+environment: prod
 #version: "1.0"
 
 # NAVIGATION
