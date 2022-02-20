@@ -25,4 +25,4 @@ jobs:
         uses: helaili/jekyll-action@v2
         with:
           token: ${{ secrets.GITH_TOKEN }}
-          target_branch: 'gh-pages-dev'   
+          target_branch: 'ghp-dev'   
