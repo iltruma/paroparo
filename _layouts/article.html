@@ -4,9 +4,9 @@ layout: default
 
 <section class="has-divider text-light jarallax bg-dark text-md-left text-center" data-jarallax data-speed="0.5" data-overlay data-img-position="30% 60%">
   {% if page.featured-img %}
-    <img src="{{ site.url }}{{ site.baseurl }}/assets/img/posts/{{page.featured-img}}.webp" alt="Image" class="jarallax-img opacity-50">
+    <img src="{{ site.url }}{{ site.baseurl }}/assets/img/posts/{{page.featured-img}}.webp" alt="Article Image" class="jarallax-img opacity-50">
   {% else %}
-    <img src="{{ '/assets/img/sfondo_macaw.webp' | relative_url }}" alt="" class="jarallax-img opacity-50">
+    <img src="{{ '/assets/img/sfondo_macaw.webp' | relative_url }}" alt="Macaw" class="jarallax-img opacity-50">
   {% endif %}
   <div class="container pt-6">
     <div class="row justify-content-center">
@@ -18,11 +18,11 @@ layout: default
         </div>
         <h1>{{page.title}}</h1>
         <div class="d-flex align-items-center">
-          <a href="#">
-            <img src="{{ '/assets/img/avatars/male-1.webp' | relative_url }}" alt="Avatar" class="avatar mr-2">
+          <a title="Autor Avatar" href="#">
+            <img src="{{ '/assets/img/avatars/male-1.webp' | relative_url }}" alt="Autor Avatar" class="avatar mr-2">
           </a>
           <div>
-            <div>by <a href="#">{{page.author}}</a>
+            <div>by <a title="Autor" href="#">{{page.author}}</a>
             </div>
             <div class="text-small text-muted">{{ page.date | date_to_string }}</div>
             <span>
@@ -57,13 +57,13 @@ layout: default
             <div class="d-flex align-items-center">
               <span class="text-small text-muted">Condividi:</span>
               <div class="d-flex ml-1">
-                <a href="#" class="mx-1 btn btn-sm btn-round btn-primary-3">
+                <a title="" href="#" class="mx-1 btn btn-sm btn-round btn-primary-3">
                   <span class="m-0 mdi iconify text-light" data-icon="mdi-twitter" alt="twitter social icon"></span>
                 </a>
-                <a href="#" class="mx-1 btn btn-sm btn-round btn-primary-3">
+                <a title="" href="#" class="mx-1 btn btn-sm btn-round btn-primary-3">
                   <span class="m-0 mdi iconify text-light" data-icon="mdi-instagram"  alt="instagram social icon"></span>
                 </a>
-                <a href="#" class="mx-1 btn btn-sm btn-round btn-primary-3">
+                <a title="" href="#" class="mx-1 btn btn-sm btn-round btn-primary-3">
                   <span class="m-0 mdi iconify text-light" data-icon="mdi-facebook"  alt="facebook social icon"></span>
                 </a>
               </div>

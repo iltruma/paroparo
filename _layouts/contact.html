@@ -3,7 +3,7 @@ layout: default
 ---
 
   <section class="has-divider text-light jarallax bg-dark text-md-left text-center" data-jarallax data-speed="0.5" data-overlay data-img-position="30% 60%">
-    <img src="{{ '/assets/img/sfondo_macaw.webp' | relative_url }}" alt="" class="jarallax-img opacity-50">
+    <img src="{{ '/assets/img/sfondo_macaw.webp' | relative_url }}" alt="Macaw" class="jarallax-img opacity-50">
     <div class="container">
         <div class="row">
             <div class="col-xl-6 col-md-8">
@@ -35,15 +35,15 @@ layout: default
             <span class="h4 m-0 mdi iconify text-primary" data-icon="mdi-email"></span>
           </div>
           <h3 class="h2">Email</h3>
-          <a href="mailto:{{site.email | encode_email}}" class="lead">{{site.email}}</a>
+          <a title="{{site.email}}" href="mailto:{{site.email | encode_email}}" class="lead">{{site.email}}</a>
         </div>
         <div class="col-sm-4 mb-3 mb-sm-0" data-aos="fade-left" data-aos-delay="100">
           <div class="mb-2 icon-round icon-round-sm bg-primary d-inline-flex">
             <span class="h4 m-0 mdi iconify text-primary" data-icon="mdi-bird"></span>
           </div>
           <h3 class="h2">Email dei Pappagalli</h3>
-          <a href="mailto:{{site.email_1 | encode_email}}" class="lead">{{site.email_1}}</a><br>
-          <a href="mailto:{{site.email_2 | encode_email}}" class="lead text-primary-2">{{site.email_2}}</a>
+          <a title="{{site.email}}" href="mailto:{{site.email_1 | encode_email}}" class="lead">{{site.email_1}}</a><br>
+          <a title="{{site.email}}" href="mailto:{{site.email_2 | encode_email}}" class="lead text-primary-2">{{site.email_2}}</a>
         </div>
       </div>
     </div>

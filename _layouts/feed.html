@@ -3,7 +3,7 @@ layout: default
 ---
 
 <section class="has-divider text-light jarallax bg-dark text-md-left text-center" data-jarallax data-speed="0.5" data-overlay data-img-position="30% 60%">
-    <img src="{{ '/assets/img/sfondo_macaw.webp' | relative_url }}" alt="" class="jarallax-img opacity-50">
+    <img src="{{ '/assets/img/sfondo_macaw.webp' | relative_url }}" alt="Macaw" class="jarallax-img opacity-50">
     <div class="container">
         <div class="row">
             <div class="col-xl-6 col-md-8">
@@ -25,7 +25,7 @@ layout: default
                         {% for f in site.data.feed reversed %}
                         <div data-isotope-item class="col-4" data-category="images">
                             <div class="card shadow-3d hover-shadow-3d">
-                                <a href="{{f.image_small}}" data-fancybox="images" data-options="{'loop':true}" data-caption="{{f.caption | escape}}" data-permalink="{{f.permalink}}">
+                                <a title="{{f.permalink}}" href="{{f.image_small}}" data-fancybox="images" data-options="{'loop':true}" data-caption="{{f.caption | escape}}" data-permalink="{{f.permalink}}">
                                     <img class="card-img"  src="{{f.image_small}}" alt="{{f.caption}}" class="rounded">
                                 </a>
                             </div>
