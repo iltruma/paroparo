@@ -24,7 +24,7 @@ layout: default
           <div class="mb-2 icon-round icon-round-sm bg-primary d-inline-flex">
             <span class="h4 m-0 mdi iconify text-primary" data-icon="mdi-map-marker"></span>
           </div>
-          <h3 class="h2">Indirizzo</h3>
+          <p class="h2">Indirizzo</p>
           <span class="lead">
             {{site.address}}<br>
             {{site.city}}
@@ -34,16 +34,16 @@ layout: default
           <div class="mb-2 icon-round icon-round-sm bg-primary d-inline-flex">
             <span class="h4 m-0 mdi iconify text-primary" data-icon="mdi-email"></span>
           </div>
-          <h3 class="h2">Email</h3>
-          <a title="{{site.email}}" href="mailto:{{site.email | encode_email}}" class="lead">{{site.email}}</a>
+          <p class="h2">Email</p>
+          <a title="{{site.email | encode_email}}" href="mailto:{{site.email | encode_email}}" class="lead">{{site.email}}</a>
         </div>
         <div class="col-sm-4 mb-3 mb-sm-0" data-aos="fade-left" data-aos-delay="100">
           <div class="mb-2 icon-round icon-round-sm bg-primary d-inline-flex">
             <span class="h4 m-0 mdi iconify text-primary" data-icon="mdi-bird"></span>
           </div>
-          <h3 class="h2">Email dei Pappagalli</h3>
-          <a title="{{site.email}}" href="mailto:{{site.email_1 | encode_email}}" class="lead">{{site.email_1}}</a><br>
-          <a title="{{site.email}}" href="mailto:{{site.email_2 | encode_email}}" class="lead text-primary-2">{{site.email_2}}</a>
+          <p class="h2">Email dei Pappagalli</p>
+          <a title="{{site.email | encode_email}}" href="mailto:{{site.email_1 | encode_email}}" class="lead">{{site.email_1}}</a><br>
+          <a title="{{site.email | encode_email}}" href="mailto:{{site.email_2 | encode_email}}" class="lead text-primary-2">{{site.email_2}}</a>
         </div>
       </div>
     </div>
@@ -63,7 +63,7 @@ layout: default
       <div class="row justify-content-center">
         <div class="col-md-8">
           <div class="text-center mb-4">
-            <h2 class="h1">Lasciaci un messaggio!</h2>
+            <p class="h1">Lasciaci un messaggio!</p>
             <p class="lead">Non essere timido, i pappagalli sono sempre disponibili con gli estranei. </p>
             <p class="small text-muted"><i>Il messaggio verrà inviato attraverso un pappagallo viaggiatore, non si rimborsano eventuali messaggi persi per strada </i></p>
             </p>
@@ -113,11 +113,15 @@ layout: default
           <div class="row justify-content-center mt-6">
             <div class="col-md-8">
               <div class="text-center mb-4">
-                <h2 class="h1">Supportaci!</h2>
+                <p class="h1">Supportaci!</p>
                 <p class="lead">Noi lavoriamo sodo e ci divertiamo sodo</p>
               </div>
               <div class="row text-center justify-content-center">
-                <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script><script type='text/javascript'>kofiwidget2.init('Supportaci su Ko-fi', '{{site.colors[1].primary-2}}', 'S6S46WOAS');kofiwidget2.draw();</script> 
+                <div class="btn-container">
+                  <a title="Supportaci su Ko-fi" class="kofi-button" style="background-color:#FF6933;" href="https://ko-fi.com/S6S46WOAS" target="_blank"> 
+                    <span class="kofitext"><img src="https://storage.ko-fi.com/cdn/cup-border.png" alt="Ko-fi donations" class="kofiimg" loading="lazy">Supportaci su Ko-fi</span>
+                  </a>
+                </div>
               </div>
             </div>
           </div>

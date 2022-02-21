@@ -21,7 +21,7 @@ const webp         = require('gulp-webp');
 const fileClean    = require('gulp-clean');
 const favicons     = require('gulp-favicons');
 const argv         = require('yargs').argv;
-const purgecss     = require('gulp-purgecss')
+const purgecss     = require('gulp-purgecss');
 
 var site = "";
 var colors = {};
@@ -197,7 +197,7 @@ gulp.task('build:scripts:paroparo', function () {
       compact: false  }))
     .pipe(gconcat('paroparo.js'))
     .pipe(rename({suffix: '.min'}))
-    .pipe(cache(uglify({compress: {defaults: false, dead_code: true, unused: true}})))
+    .pipe(uglify({compress: {defaults: true}}))
     .pipe(browserSync.reload({stream: true}))
     .pipe(size({title: "build:scripts:paroparo"}))
     .pipe(gulp.dest(paths._site.assets.js))
@@ -210,7 +210,7 @@ gulp.task('build:scripts:other', function () {
     .pipe(babel({ 
       presets: [["@babel/preset-env", { modules: false }]],
       compact: false  }))
-    .pipe(cache(uglify({compress: {defaults: false, dead_code: true, unused: true}})))
+    .pipe(uglify({compress: {defaults: true}}))
     .pipe(browserSync.reload({stream: true}))
     .pipe(size({title: "build:scripts:other"}))
     .pipe(gulp.dest(paths._site.assets.js))
@@ -225,7 +225,7 @@ gulp.task('build:scripts:switch', function () {
       compact: false  }))
     .pipe(gconcat('switch.js'))
     .pipe(rename({suffix: '.min'}))
-    .pipe(cache(uglify({compress: {defaults: false, dead_code: true, unused: true}})))
+    .pipe(uglify({compress: {defaults: true}}))
     .pipe(browserSync.reload({stream: true}))
     .pipe(size({title: "build:scripts:switch"}))
     .pipe(gulp.dest(paths._site.assets.js))

@@ -40,7 +40,7 @@ layout: default
                                             <span class="m-0 mdi iconify text-primary" data-icon="mdi-heart"></span> 12
                                         </span>
                                     </div>
-                                    <h4>{{ post.title | strip_html | truncate: 50 }}</h4>
+                                    <p class="h4">{{ post.title | strip_html | truncate: 50 }}</p>
                                     <p class="flex-grow-1">{{ post.content | strip_html | truncatewords: 20 }}</p>
                                     <div class="d-flex align-items-center mt-3">
                                     <img src="{{ '/assets/img/avatars/female-1.webp' | relative_url }}" alt="Article Image" class="avatar avatar-sm">
@@ -72,7 +72,7 @@ layout: default
                                 </span>
                             </div>
                             <div class="layer-2">
-                                <h2>{{ post.title | strip_html | truncate: 50 }}</h2>
+                                <p class="h2">{{ post.title | strip_html | truncate: 50 }}</p>
                                 <span class="text-small opacity-70">http://www.website.io/link</span>
                             </div>
                         </a>
