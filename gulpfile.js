@@ -1,14 +1,14 @@
 //Import dipendenze
 const autoprefixer = require('gulp-autoprefixer');
 const browserSync  = require('browser-sync').create();
-const concat       = require('gulp-concat');
+const gconcat      = require('gulp-concat');
 const cleanCSS     = require('gulp-clean-css');
 const gulp         = require('gulp');
 const rename       = require('gulp-rename');
 const run          = require('gulp-run-command').default;
 const sass         = require('gulp-sass')(require('sass'));
 const merge        = require('merge2');
-const uglify       = require('gulp-uglify');
+const uglify       = require('gulp-uglify-es').default;
 const imagemin     = require('gulp-imagemin');
 const cache        = require('gulp-cache');
 const size         = require('gulp-size');
@@ -17,12 +17,11 @@ const yaml         = require('gulp-yaml');
 const sassVars     = require('gulp-sass-vars');
 const runSequence  = require('gulp4-run-sequence');
 const fs           = require('fs');
-const prompt       = require('gulp-prompt');
 const webp         = require('gulp-webp');
 const fileClean    = require('gulp-clean');
 const favicons     = require('gulp-favicons');
-const cryptojs     = require('crypto-js');
 const argv         = require('yargs').argv;
+const purgecss     = require('gulp-purgecss')
 
 var site = "";
 var colors = {};
@@ -71,11 +70,11 @@ const paths = {
     root: 'assets',
     css: {
       root:'assets/css',
-      all: 'assets/css/**/*'
+      all: 'assets/css/**/*.css'
     },
     js: {
       root:'assets/js',
-      all: 'assets/js/**/*'
+      all: 'assets/js/**/*.js'
     },
     img: {
       root: 'assets/img',
@@ -96,52 +95,6 @@ const paths = {
     }
   }
 };
-
-function encrypt(password) {
-  return through.obj(function(file, encoding, callback) {
-    if (file.isNull() || file.isDirectory()) {
-      this.push(file);
-      return callback();
-    }
-
-    // No support for streams
-    if (file.isStream()) {
-      this.emit('error', new PluginError({
-        plugin: 'Encrypt',
-        message: 'Streams are not supported.'
-      }));
-      return callback();
-    }
-
-    if (file.isBuffer()) {
-      var delimiter = '---',
-          chunks = String(file.contents).split(delimiter),
-          originalBody = chunks[0],
-          frontMatter = '';
-
-      if (chunks.length === 3) {
-        checkEncryptedLayout(chunks[1], file.path);
-        frontMatter = chunks[1];
-        originalBody = chunks[2];
-      } else if (chunks.length > 1) {
-        this.emit('error', new PluginError({
-          plugin: 'Encrypt',
-          message: file.path + ': protected file has invalid front matter.'
-        }));
-        return callback();
-      }
-
-      var encryptedBody = cryptojs.AES.encrypt(marked(originalBody), password),
-          hmac = cryptojs.HmacSHA256(encryptedBody.toString(), cryptojs.SHA256(password).toString()).toString(),
-          encryptedFrontMatter = 'encrypted: ' + hmac + encryptedBody,
-          result = [ delimiter, frontMatter, '\n', encryptedFrontMatter, '\n', delimiter ];
-
-      file.contents = Buffer.from(result.join(''));
-      this.push(file);
-      return callback();
-    }
-  });
-}
 
 // Task che cancella la cartella _site
 gulp.task('clean:jekyll', function(callback) {
@@ -164,7 +117,6 @@ gulp.task('build:variables:set', function(callback) {
   callback();
 });
 
-//Task che compila i file SASS, li unisce con le gli altri CSS dei vendor (Leaflet, hightlight, ...) e li minimizza nel file paroparo.min.css
 gulp.task('build:styles:loader', function () {
   return gulp.src(paths._src.sass.app + "/loader.scss")
     .pipe(sassVars(colors))
@@ -173,7 +125,7 @@ gulp.task('build:styles:loader', function () {
       }))
     .pipe(cleanCSS())
     .pipe(autoprefixer())
-    .pipe(concat("loader.css"))
+    .pipe(gconcat("loader.css"))
     .pipe(rename({suffix: '.min'}))
     .pipe(browserSync.stream())
     .pipe(size({title: "build:styles:loader"}))
@@ -193,7 +145,7 @@ gulp.task('build:styles:paroparo', function () {
       gulp.src(paths._src.css.vendor + "/*.css")
     ).pipe(cleanCSS())
     .pipe(autoprefixer())
-    .pipe(concat("paroparo.css"))
+    .pipe(gconcat("paroparo.css"))
     .pipe(rename({suffix: '.min'}))
     .pipe(browserSync.stream())
     .pipe(size({title: "build:styles:paroparo"}))
@@ -211,7 +163,7 @@ gulp.task('build:styles:paroparo-dark', function () {
     ).on('error', sass.logError))
     .pipe(cleanCSS())
     .pipe(autoprefixer())
-    .pipe(concat("paroparo-dark.css"))
+    .pipe(gconcat("paroparo-dark.css"))
     .pipe(rename({suffix: '.min'}))
     .pipe(browserSync.stream())
     .pipe(size({title: "build:styles:paroparo-dark"}))
@@ -219,7 +171,23 @@ gulp.task('build:styles:paroparo-dark', function () {
     .pipe(gulp.dest(paths.assets.css.root));
 });
 
-gulp.task('build:styles',  function(callback) {runSequence(['build:variables:create', 'build:variables:set', 'build:styles:loader', 'build:styles:paroparo', 'build:styles:paroparo-dark'], callback)});
+gulp.task('build:styles:purge', function() {
+  var content = paths._src.js.critical.concat(paths._src.js.optional)
+  content = content.concat( paths._src.js.other)
+  content = content.concat(paths.assets.html.all)
+  return gulp.src(paths.assets.css.root + '/**/*.css')
+      .pipe(purgecss({
+          content: content,
+          dynamicAttributes: ["data-color-scheme"],
+          safelist: {
+            greedy: [/(leaflet[-a-z]*)/, /(pageclip[-a-z]*)/, /(hljs[-a-z]*)/]
+          } 
+      }))
+      .pipe(gulp.dest(paths._site.assets.css))
+      .pipe(gulp.dest(paths.assets.css.root));
+});
+
+gulp.task('build:styles',  function(callback) {runSequence('build:variables:create', 'build:variables:set', ['build:styles:paroparo', 'build:styles:paroparo-dark', 'build:styles:loader'], 'build:styles:purge', callback)});
 
 //Task che compila i file JS
 gulp.task('build:scripts:paroparo', function () {
@@ -227,9 +195,9 @@ gulp.task('build:scripts:paroparo', function () {
     .pipe(babel({ 
       presets: [["@babel/preset-env", { modules: false }]],
       compact: false  }))
-    .pipe(concat('paroparo.js'))
+    .pipe(gconcat('paroparo.js'))
     .pipe(rename({suffix: '.min'}))
-    .pipe(cache(uglify()))
+    .pipe(cache(uglify({compress: {defaults: false, dead_code: true, unused: true}})))
     .pipe(browserSync.reload({stream: true}))
     .pipe(size({title: "build:scripts:paroparo"}))
     .pipe(gulp.dest(paths._site.assets.js))
@@ -242,7 +210,7 @@ gulp.task('build:scripts:other', function () {
     .pipe(babel({ 
       presets: [["@babel/preset-env", { modules: false }]],
       compact: false  }))
-    .pipe(cache(uglify()))
+    .pipe(cache(uglify({compress: {defaults: false, dead_code: true, unused: true}})))
     .pipe(browserSync.reload({stream: true}))
     .pipe(size({title: "build:scripts:other"}))
     .pipe(gulp.dest(paths._site.assets.js))
@@ -255,9 +223,9 @@ gulp.task('build:scripts:switch', function () {
     .pipe(babel({ 
       presets: [["@babel/preset-env", { modules: false }]],
       compact: false  }))
-    .pipe(concat('switch.js'))
+    .pipe(gconcat('switch.js'))
     .pipe(rename({suffix: '.min'}))
-    .pipe(cache(uglify()))
+    .pipe(cache(uglify({compress: {defaults: false, dead_code: true, unused: true}})))
     .pipe(browserSync.reload({stream: true}))
     .pipe(size({title: "build:scripts:switch"}))
     .pipe(gulp.dest(paths._site.assets.js))
@@ -382,39 +350,17 @@ gulp.task('serve', gulp.series('build', function(callback) {
 }));
 
 // Task watch per taggare l'immagine docker e fare pubblicarla su github
-var tag_deploy, tag_build;
-gulp.task('docker:deploy:input', function () {
-  return gulp.src(paths.here)
-  .pipe(prompt.prompt({
-    type: 'input',
-    name: 'tag',
-    default: 'latest',
-    message: 'Di quale tag vuoi fare il deploy?'
-  }, (res) => {
-    tag_deploy = res.tag;
-  }));
-});
 
-gulp.task('docker:deploy', gulp.series('docker:deploy:input', function deploy(callback) {
+gulp.task('docker:deploy', function(callback) {
+  var tag_deploy = (argv.tag_deploy === undefined) ? 'latest' : argv.tag_deploy ;
   run('docker build --pull --rm -f "Dockerfile" -t paroparo:' + tag_deploy + '"."')();
   run('docker tag paroparo docker.pkg.github.com/iltruma/paroparo/paroparo:' + tag_deploy)();
   run('docker push docker.pkg.github.com/iltruma/paroparo/paroparo:' + tag_deploy)();
   callback();
-}));
-
-gulp.task('docker:build:input', function () {
-  return gulp.src(paths.here)
-  .pipe(prompt.prompt({
-    type: 'input',
-    name: 'tag',
-    default: 'latest',
-    message: 'Di quale tag vuoi fare il build?'
-  }, (res) => {
-    tag_build = res.tag;
-  }));
 });
 
-gulp.task('docker:build', gulp.series('docker:build:input', function deploy(callback) {
+gulp.task('docker:build',  function(callback) {
+  var tag_build = (argv.tag_build === undefined) ? 'latest' : argv.tag_build ;
   run('docker build --pull --rm -f "Dockerfile" -t paroparo:' + tag_build + '"."')();
   callback();
-}));
+});
