@@ -170,3 +170,10 @@ nav[data-overlay].navbar-toggled-show {
       background: $primary;
     }
 }
+
+@for $i from 0 through 4 {
+    $rotate: ($i*90);
+    .rotate-#{($i*90)} {
+        transform: rotate($rotate+deg);
+   }
+}
