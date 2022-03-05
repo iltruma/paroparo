@@ -39,9 +39,23 @@ layout: default
     <div class="container">
       <div class="row align-items-center justify-content-around">
         <div class="col-md-5 col-xl-6 mb-4 mb-md-0" data-aos="fade-right" data-aos-delay="100">
-          <a title="Mission Gallery" href="{{ '/assets/img/inner-2.webp' | relative_url }}" data-fancybox="Collage Gallery">
-            <img src="{{ '/assets/img/inner-2.webp' | relative_url }}" alt="Mission Image" class="rounded shadow-3d hover-shadow-3d layer-2" loading="lazy">
-          </a>
+          <div class="image-collage">
+            <a title="Mission Img 1" href="{{ '/assets/img/cosimo-bobine.webp' | relative_url }}" data-fancybox="Collage Gallery" >
+              <div data-jarallax-element="0 12">
+                <img src="{{ '/assets/img/cosimo-bobine.webp' | relative_url }}" alt="Mission Img 1" class="rounded" data-aos="fade-right" width="300px" loading="lazy">
+              </div>
+            </a>
+            <a title="Mission Img 2" href="{{ '/assets/img/tropical-6.webp' | relative_url }}" data-fancybox="Collage Gallery">
+              <div>
+                <img src="{{ '/assets/img/tropical-6.webp' | relative_url }}" alt="Mission Img 2" class="rounded" data-aos="fade-up" loading="lazy">
+              </div>
+            </a>
+            <a title="Mission Img 3" href="{{ '/assets/img/niccolo-bobine.webp' | relative_url }}" data-fancybox="Collage Gallery">
+              <div data-jarallax-element="0 -12">
+                <img src="{{ '/assets/img/niccolo-bobine.webp' | relative_url }}" alt="Mission Img 3" class="rounded" data-aos="fade-left" width="300px" loading="lazy">
+              </div>
+            </a>
+          </div>
           <div class="decorations-wrapper">
             <div class="decoration mt-6 top opacity-20 scale-2">
               <img class="bg-primary" src="{{ '/assets/img/decorations/deco-blob-10.svg' | relative_url }}" alt="deco-blob-2 decoration" data-inject-svg />
@@ -145,26 +159,15 @@ layout: default
           </div>
         </div>
         <div class="col-md-6 mb-3 mt-6 mt-md-0 mb-md-0">
-          <div class="image-collage">
-            <a title="Know-How Img 1" href="{{ '/assets/img/cowork-1.webp' | relative_url }}" data-fancybox="Collage Gallery" >
-              <div data-jarallax-element="0 12">
-                <img src="{{ '/assets/img/cowork-1.webp' | relative_url }}" alt="Know-How Img 1" class="rounded" data-aos="fade-right" loading="lazy">
-              </div>
-            </a>
-            <a title="Know-How Img 2" href="{{ '/assets/img/tropical-6.webp' | relative_url }}" data-fancybox="Collage Gallery">
-              <div>
-                <img src="{{ '/assets/img/tropical-6.webp' | relative_url }}" alt="Know-How Img 2" class="rounded" data-aos="fade-up" loading="lazy">
-              </div>
-            </a>
-            <a title="Know-How Img 3" href="{{ '/assets/img/article-3.webp' | relative_url }}" data-fancybox="Collage Gallery">
-              <div data-jarallax-element="0 -12">
-                <img src="{{ '/assets/img/article-3.webp' | relative_url }}" alt="Know-How Img 3" class="rounded" data-aos="fade-left" loading="lazy">
-              </div>
-            </a>
-          </div>
+          <a title="Know how Gallery" href="{{ '/assets/img/coppia-1.webp' | relative_url }}" data-fancybox="Collage Gallery">
+            <img src="{{ '/assets/img/coppia-1.webp' | relative_url }}" alt="Know how Image" class="rounded shadow-3d hover-shadow-3d layer-2" loading="lazy">
+          </a>
           <div class="decorations-wrapper">
             <div class="decoration middle-x top mt-6 opacity-80 scale-3">
               <img class="bg-primary" src="{{ '/assets/img/decorations/deco-dots-1.svg' | relative_url }}" alt="deco-dots-1 decoration" data-inject-svg />
+            </div>
+            <div class="decoration right bottom scale-3 opacity-80 rotate-90" >
+              <img class="bg-primary-2" src="assets/img/decorations/deco-dots-6.svg" alt="deco-dots-6 decoration" data-inject-svg />
             </div>
           </div>
         </div>
@@ -182,7 +185,7 @@ layout: default
           <div class="col-xl-3 col-md-6 layer-2" data-aos="fade-up" data-aos-delay="100">
             <div class="card card-lg card-body align-items-center shadow-3d hover-shadow-3d">
               <span class="badge badge-primary badge-top">Pappagallo Verde</span>
-              <img src="{{ '/assets/img/avatars/female-1.webp' | relative_url }}" alt="Niccolò Casini" class="avatar avatar-xlg mb-3" loading="lazy">
+              <img src="{{ '/assets/img/avatars/niccolo.webp' | relative_url }}" alt="Niccolò Casini" class="avatar avatar-xlg mb-3" loading="lazy">
               <p class="h5 mb-0">Niccolò Casini</h5>
               <p class="mb-0">Fondatore</p>
               <p>CEO</p>
@@ -191,7 +194,7 @@ layout: default
           <div class="col-xl-3 col-md-6 layer-2" data-aos="fade-up" data-aos-delay="200">
             <div class="card card-lg card-body align-items-center shadow-3d hover-shadow-3d">
               <span class="badge badge-primary-2 badge-top">Pappagallo Arancio</span>
-              <img src="{{ '/assets/img/avatars/male-2.webp' | relative_url }}" alt="Cosimo Casini" class="avatar avatar-xlg mb-3" loading="lazy">
+              <img src="{{ '/assets/img/avatars/cosimo.webp' | relative_url }}" alt="Cosimo Casini" class="avatar avatar-xlg mb-3" loading="lazy">
               <p class="h5 mb-0">Cosimo Casini</h5>
               <p class="mb-0">Fondatore</p>
               <p>CTO</p>
