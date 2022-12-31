@@ -12,7 +12,7 @@ city: "Firenze, Italia"
 locale: it_IT
 timezone: Europe/Rome
 environment: prod
-#version: "1.0"
+version: "1.0.0"
 
 # NAVIGATION
 navigation:
