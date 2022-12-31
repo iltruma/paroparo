@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name          = "paroparo"
-  spec.version       = "0.1.0"
+  spec.version       = "1.0.0"
   spec.authors       = ["iltruma"]
   spec.email         = ["cosimo@paroparo.it"]
 
@@ -14,6 +14,7 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency "jekyll", "~> 4.2"
   spec.add_runtime_dependency "jekyll-spaceship", "~> 0.9.7"
+  spec.add_runtime_dependency "jekyll-sass-converter", "~> 2.0"
   spec.add_runtime_dependency "jekyll-watch"
   spec.add_runtime_dependency "jekyll-get-json"
   spec.add_runtime_dependency "jekyll-seo-tag"
