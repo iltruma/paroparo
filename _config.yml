@@ -1,7 +1,7 @@
 # SITE CONFIGURATION
 title: Paroparo 
 author: iltruma
-description: "Paroparo description"
+description: "Modern problems require modern solutions. It's a Paroparo Philosophy."
 baseurl: ""
 url: "https://www.paroparo.it"
 email: info@paroparo.it
@@ -59,8 +59,6 @@ exclude:
 keep_files:
   - assets
 permalink: /:title/
-compress_html:
-  clippings: all
 collections:
   pages:
     output: true
@@ -88,3 +86,12 @@ plugins:
   - jekyll-feed
   - jekyll-paginate-v2
   - jekyll-email-protect
+
+compress_html:
+  clippings: all
+  comments: [""]
+  endings: [html, head, body, li, dt, dd, rt, rp, optgroup, option, colgroup, caption, thead, tbody, tfoot, tr, td, th]
+  profile: false
+  blanklines: false
+  ignore:
+    envs: []

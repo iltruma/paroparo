@@ -1,11 +1,11 @@
 # Paroparo 🦜
-![Version](https://img.shields.io/github/v/tag/iltruma/paroparo?label=version)
+[//]:![Version](https://img.shields.io/github/v/tag/iltruma/paroparo?label=version)
 [![License: MIT](https://img.shields.io/github/license/iltruma/paroparo?style=flat)](https://github.com/iltruma/paroparo/blob/master/LICENSE)
-[![Paroparo CI](https://img.shields.io/github/workflow/status/iltruma/paroparo/Paroparo%20CI?logo=github)](https://github.com/iltruma/paroparo/actions/workflows/paroparo.yml)
+[![Paroparo CI](https://img.shields.io/github/workflow/status/iltruma/paroparo/Paroparo%20Production%20CI?logo=github)](https://github.com/iltruma/paroparo/actions/workflows/paroparo_prod.yml)
 [![Parrots](https://img.shields.io/badge/parrots-2-%23186e64)](https://www.paroparo.it)
 [![Bevanda](https://img.shields.io/badge/cochina-bella%20fresca-%23fe101a)]()
 
-> paroparo description need to be inserted here
+> Modern problems require modern solutions. It's a Paroparo Philosophy.
 
 <p align="center">
     <img src="https://raw.githubusercontent.com/iltruma/paroparo/master/assets/img/gitpreview.webp" width="576">

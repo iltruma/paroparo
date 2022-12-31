@@ -1,7 +1,7 @@
 {
   "name": "paroparo",
   "version": "1.0.0",
-  "description": "![Version](https://img.shields.io/github/v/tag/iltruma/paroparo?label=version)\r [![Maintenance](https://img.shields.io/badge/maintained%3F-yes-green.svg?style=flat)](https://github.com/iltruma/paroparo/graphs/commit-activity)\r [![License: MIT](https://img.shields.io/github/license/iltruma/paroparo?style=flat)](https://github.com/iltruma/paroparo/blob/master/LICENSE)\r [![Paroparo CI](https://img.shields.io/github/workflow/status/iltruma/paroparo/Paroparo%20CI?logo=github)](https://github.com/iltruma/paroparo/actions/workflows/paroparo.yml)\r [![Parrots](https://img.shields.io/badge/parrots-2-%23186e64)](https://www.paroparo.it)\r [![Bevanda](https://img.shields.io/badge/cochina-bella%20fresca-%23fe101a)]()\r [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/S6S46WOAS)",
+  "description": "Modern problems require modern solutions. It's a Paroparo Philosophy.",
   "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/iltruma/paroparo#readme",
   "dependencies": {
+    "@babel/core": "^7.17.10",
     "@babel/preset-env": "^7.16.11",
     "browser-sync": "^2.27.5",
     "fs": "^0.0.1-security",
@@ -40,6 +41,7 @@
     "gulp-yaml": "^2.0.4",
     "gulp4-run-sequence": "^1.0.1",
     "merge2": "^1.4.1",
+    "package.json": "^2.0.1",
     "sass": "^1.49.7",
     "yargs": "^17.3.1"
   }
