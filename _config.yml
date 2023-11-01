@@ -16,7 +16,7 @@ version: "1.0.0"
 
 # NAVIGATION
 navigation:
-  - {name: 'Feed', link: '/feed'}
+  #- {name: 'Feed', link: '/feed'}
   - {name: 'Chi Siamo', link: '/chi-siamo'}
   - {name: 'Contatti', link: '/contatti'}
 
