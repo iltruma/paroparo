@@ -15,11 +15,10 @@ $(document).ready(function () {
   if($('#mapid').length) {
     var mymap = L.map('mapid').setView([43.598508, 11.468536], 13);
 
-    L.tileLayer('https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.{ext}', {
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 13,
-      attribution: '&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-      ext: 'png',
-      tileSize: 512,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      tileSize: 256,
       fillColor:  site.colors[0].primary,
       zoomOffset: -1
     }).addTo(mymap);
