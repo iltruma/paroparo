@@ -1,0 +1,177 @@
+@import "user-variables";
+
+
+#particles-js { 
+    position: fixed; 
+    width: 100%; 
+    height: 100%; 
+    z-index: 1;
+}  
+
+.navbar-dark {
+    background-color: #4c000d !important;
+	> a {
+		color: $white
+	}
+}
+
+.bg-ancora {
+    background-color: #4c000d;
+	color: $white !important;
+}
+
+@keyframes shake {
+	0%, 50%, 100% {
+	  transform-origin: 50% 100%;
+	  transform: translateX(-50%) translateY(-30%) rotate(0);
+	}
+	25% {
+	  transform-origin: 0 100%;
+	  transform: translateX(-50%) translateY(-30%) rotate(-5deg);
+	}
+	75% { 
+	  transform-origin: 100% 100%;
+	  transform: translateX(-50%) translateY(-30%) rotate(5deg);
+	}
+  }
+  
+  .canvas-present {
+	animation: shake 0.5s 2s 4 forwards;
+	width: 80vmin;
+	height: 80vmin;
+	position: relative;
+	top: -0%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-30%);
+  }
+
+  #box2023 {
+	animation: hide 1s 10s ease forwards;
+  }
+  
+  #ricetta2023 {
+	animation: unhide 1s 10s ease forwards;
+	opacity: 0; 
+	visibility: hidden; 
+	height:0;
+  }
+  
+  .canvas-present div,
+  .canvas-present div::before,
+  .canvas-present div::after {
+	position: absolute;
+	box-sizing: border-box;
+	display: block;
+  }
+  
+  @keyframes openBox {
+	0% { bottom: 0; }
+	100% { bottom: 50%; }
+  }
+  
+  @keyframes hide {
+	0% { opacity: 1; visibility: visible; }  
+	100% { opacity: 0; visibility: hidden; height:0;}
+  }
+
+  @keyframes unhide {
+	0% { opacity: 0; visibility: hidden; height:0;}  
+	100% { opacity: 1; visibility: visible; height:100%;}
+  }
+
+  .present {
+	animation: openBox 1s 5s 1 forwards;
+	width: 100%;
+	height: 100%;
+	bottom: 0%;
+	left: 0;
+	overflow: hidden;
+  }
+  
+  .box {
+	width: 60%;
+	height: 50%;
+	bottom: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	background:
+	  radial-gradient(circle, $white 20%, $primary 0) 10vmin 5vmin / 10vmin 10vmin,
+	  radial-gradient(circle, $white 20%, $primary 0) 0 0 / 10vmin 10vmin
+	  ;
+	background-color: $primary;
+	z-index: 2;
+	border-radius: 1vmin;
+  }
+  
+  @keyframes tiltCover {
+	0% {
+	  transform: translateX(-50%) rotate(0);
+	}
+	100% {
+	  transform: translateX(-75%) rotate(-18deg);
+	}
+  }
+  
+  .cover {
+	transform-origin: -50% 50%;
+	animation: tiltCover 2s 5s 1 forwards;
+	width: 62%;
+	height: 15%;
+	background:
+	  radial-gradient(circle, $white 20%, $primary-3 0) 10vmin 5vmin / 10vmin 10vmin,
+	  radial-gradient(circle, $white 20%, $primary-3 0) 0 0 / 10vmin 10vmin
+	  ;
+	background-color: $primary;
+	bottom: 40%;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 3;
+	border-radius: 1vmin;
+  }
+
+  .bow {
+	transform-origin: -50% 50%;
+	animation: tiltCover 2s 5s 1 forwards;
+	width: 62%;
+	height: 15%;
+	background: 
+	  radial-gradient(at 50% 100%, $danger 10%, #0000 0)
+	  ;
+	bottom: 55%;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 3;
+	border-radius: 0.5vmin;
+  }
+  
+  .bow::before,
+  .bow::after {
+	content: "";
+	width: 30%;
+	height: 50%;
+	border-radius: 100% / 100% 150% 50% 100%;
+	bottom: 2%;
+	left: 17%;
+	box-shadow: 
+	  inset 2vmin 3vmin 0 1vmin $danger,
+	  inset -1vmin -0.5vmin $danger
+	  ;
+	transform: rotate(10deg);
+  }
+  
+  .bow::after {
+	left: auto;
+	right: 16%;
+	height: 45%;
+	bottom: 3%;
+	transform: scaleX(-1) rotate(10deg);
+  }
+  
+  .animal {
+	width: 75%;
+	height: 75%;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%);
+  }
+  
