@@ -133,6 +133,23 @@ gulp.task('build:styles:loader', function () {
     .pipe(gulp.dest("_includes/loader"));
 });
 
+gulp.task('build:styles:present', function () {
+  return gulp.src(paths._src.sass.app + "/present.scss")
+    .pipe(sassVars(colors))
+    .pipe(sass.sync({
+        quietDeps: true
+      }))
+    .pipe(cleanCSS())
+    .pipe(autoprefixer())
+    .pipe(gconcat("present.css"))
+    .pipe(rename({suffix: '.min'}))
+    .pipe(browserSync.stream())
+    .pipe(size({title: "build:styles:present"}))
+    .pipe(gulp.dest(paths._site.assets.css))
+    .pipe(gulp.dest("_includes/present"));
+});
+
+
 //Task che compila i file SASS, li unisce con le gli altri CSS dei vendor (Leaflet, hightlight, ...) e li minimizza nel file paroparo.min.css
 gulp.task('build:styles:paroparo', function () {
   return merge(
@@ -187,7 +204,7 @@ gulp.task('build:styles:purge', function() {
       .pipe(gulp.dest(paths.assets.css.root));
 });
 
-gulp.task('build:styles',  function(callback) {runSequence('build:variables:create', 'build:variables:set', ['build:styles:paroparo', 'build:styles:paroparo-dark', 'build:styles:loader'], 'build:styles:purge', callback)});
+gulp.task('build:styles',  function(callback) {runSequence('build:variables:create', 'build:variables:set', ['build:styles:paroparo', 'build:styles:paroparo-dark', 'build:styles:loader', 'build:styles:present'], 'build:styles:purge', callback)});
 
 //Task che compila i file JS
 gulp.task('build:scripts:paroparo', function () {
