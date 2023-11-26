@@ -18,8 +18,10 @@ $(document).ready(function () {
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 13,
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-      tileSize: 256,
-      fillColor:  site.colors[0].primary
+      ext: 'png',
+      tileSize: 512,
+      fillColor:  site.colors[0].primary,
+      zoomOffset: -1
     }).addTo(mymap);
 
     var circle = L.circle([43.598508, 11.468536], {
