@@ -19,9 +19,7 @@ $(document).ready(function () {
       maxZoom: 13,
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       ext: 'png',
-      tileSize: 512,
-      fillColor:  site.colors[0].primary,
-      zoomOffset: -1
+      fillColor:  site.colors[0].primary
     }).addTo(mymap);
 
     var circle = L.circle([43.598508, 11.468536], {
