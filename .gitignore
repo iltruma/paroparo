@@ -1,8 +1,5 @@
 *.gem
 .bundle
-.tmp
 .jekyll-cache
-.sass-cache
 _site
-node_modules
 /vendor/

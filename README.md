@@ -1,7 +1,7 @@
 # Paroparo 🦜
 [//]:![Version](https://img.shields.io/github/v/tag/iltruma/paroparo?label=version)
 [![License: MIT](https://img.shields.io/github/license/iltruma/paroparo?style=flat)](https://github.com/iltruma/paroparo/blob/master/LICENSE)
-[![Paroparo CI](https://img.shields.io/github/workflow/status/iltruma/paroparo/Paroparo%20Production%20CI?logo=github)](https://github.com/iltruma/paroparo/actions/workflows/paroparo_prod.yml)
+[![Deploy site](https://github.com/iltruma/paroparo/actions/workflows/pages.yml/badge.svg?branch=develop)](https://github.com/iltruma/paroparo/actions/workflows/pages.yml)
 [![Parrots](https://img.shields.io/badge/parrots-2-%23186e64)](https://www.paroparo.it)
 [![Bevanda](https://img.shields.io/badge/cochina-bella%20fresca-%23fe101a)]()
 
@@ -14,6 +14,23 @@
     <a title="Homepage" href="https://www.paroparo.it">🏠 Homepage</a>
     <a title="Github" href="https://github.com/iltruma/paroparo#readme">:octocat: Github</a>
 </h3>
+
+## 🛠️ Sviluppo
+
+Requisiti: Ruby 3.3.
+
+```bash
+bundle install
+bundle exec jekyll serve
+```
+
+Build statica in `_site/`:
+
+```bash
+bundle exec jekyll build
+```
+
+Il deploy avviene su GitHub Pages dal branch `develop` con il workflow `.github/workflows/pages.yml`. CSS e JS in `assets/` sono committati e non richiedono una pipeline Node.
 
 ## ✒️ Autori
 
