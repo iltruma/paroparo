@@ -36,7 +36,14 @@
 
   <!-- CSS -->
   <link id="css-light" rel="stylesheet" href="{{ '/assets/css/paroparo.min.css' | relative_url }}" type="text/css">
-  <link id="css-dark"  rel="stylesheet" media="print" onload="this.media='(prefers-color-scheme: dark)'" href="{{ '/assets/css/paroparo-dark.min.css' | relative_url }}" type="text/css">
+  <link id="css-dark" rel="stylesheet" media="all" href="{{ '/assets/css/paroparo-dark.min.css' | relative_url }}" type="text/css">
+  <script>
+    try {
+      if (localStorage.getItem('paroparo-theme') === 'light') {
+        document.getElementById('css-dark').disabled = true;
+      }
+    } catch (e) {}
+  </script>
   
   {% seo %}
 </head>

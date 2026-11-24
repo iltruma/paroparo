@@ -5,7 +5,8 @@
 
   {% include head.html %}
 
-  <body>
+  <body data-color-scheme="dark">
+    {% include theme-init.html %}
     {% include navbar.html %}
     {{ content }}
     {% include footer.html %}
