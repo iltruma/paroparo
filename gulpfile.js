@@ -106,11 +106,11 @@ gulp.task('build:variables:create', function() {
   return gulp.src('./_config.yml')
   .pipe(yaml({ safe: true }))
   .pipe(rename({basename: 'site'}))
-  .pipe(gulp.dest(paths.assets.json.root));
+  .pipe(gulp.dest('.tmp'));
 });
 
 gulp.task('build:variables:set', function(callback) {
-  site = JSON.parse(fs.readFileSync(paths.assets.json.root + "/site.json"));
+  site = JSON.parse(fs.readFileSync('.tmp/site.json'));
   for (i in site.colors) {
     colors[Object.keys(site.colors[i])[0]] = Object.values(site.colors[i])[0];
   }

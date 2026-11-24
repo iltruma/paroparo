@@ -13,23 +13,26 @@ $(document).ready(function () {
 
   //Leaflet Map
   if($('#mapid').length) {
+    var mapData = document.getElementById('mapid').dataset;
+    var primary = mapData.primary;
+
     var mymap = L.map('mapid').setView([43.598508, 11.468536], 13);
 
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 13,
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       ext: 'png',
-      fillColor:  site.colors[0].primary
+      fillColor: primary
     }).addTo(mymap);
 
     var circle = L.circle([43.598508, 11.468536], {
-        color: site.colors[0].primary,
-        fillColor: site.colors[0].primary,
+        color: primary,
+        fillColor: primary,
         fillOpacity: 0.3,
         radius: 2000
     }).addTo(mymap);
-    circle.bindPopup('<div class="container"><div class="row"><div class="col-12"><h4>' + site.title + '</h4><p class="mt-0 mb-2">'
-    + site.description + '</p><p class="h6 mb-0">Indirizzo</p><address>' + site.address + '<br>' + site.city + '</address><a target="_blank" href="/">Sito Web</a></div></div></div>').openPopup();
+    circle.bindPopup('<div class="container"><div class="row"><div class="col-12"><h4>' + mapData.title + '</h4><p class="mt-0 mb-2">'
+    + mapData.description + '</p><p class="h6 mb-0">Indirizzo</p><address>' + mapData.address + '<br>' + mapData.city + '</address><a target="_blank" href="/">Sito Web</a></div></div></div>').openPopup();
   }
 
   //Pageclip form

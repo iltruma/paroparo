@@ -7,7 +7,6 @@ PATH
       jekyll-sass-converter (~> 2.0)
       jekyll-seo-tag
       jekyll-sitemap
-      jekyll-watch
 
 GEM
   remote: https://rubygems.org/

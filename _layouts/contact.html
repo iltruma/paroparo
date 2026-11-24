@@ -52,7 +52,12 @@ layout: default
     <div class="container">
       <div class="row">
         <div class="col">
-          <div class="min-vh-50 w-100 rounded shadow-3d" id="mapid">
+          <div class="min-vh-50 w-100 rounded shadow-3d" id="mapid"
+               data-title="{{ site.title | escape }}"
+               data-description="{{ site.description | escape }}"
+               data-address="{{ site.address | escape }}"
+               data-city="{{ site.city | escape }}"
+               data-primary="{{ site.colors[0].primary | escape }}">
           </div>
         </div>
       </div>

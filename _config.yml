@@ -3,7 +3,7 @@ title: Paroparo
 author: iltruma
 description: "Modern problems require modern solutions. It's a Paroparo Philosophy."
 baseurl: ""
-url: "https://www.paroparo.it"
+url: "https://paroparo.it"
 email: info@paroparo.it
 email_1: niccolo@paroparo.it
 email_2: cosimo@paroparo.it
@@ -11,7 +11,6 @@ address: "Foresta di Figline Valdarno"
 city: "Firenze, Italia"
 locale: it_IT
 timezone: Europe/Rome
-environment: prod
 version: "1.0.0"
 
 # NAVIGATION
@@ -46,34 +45,15 @@ defaults:
 markdown: kramdown
 exclude:
   - README.md
-  - node_modules
-  - script
-  - package*.json
   - Gemfile*
-  - npm-debug.log
-  - gulpfile.js
-  - Dockerfile*
   - paroparo.gemspec
-keep_files:
-  - assets
 permalink: /:title/
 collections:
   pages:
     output: true
     permalink: /:title/
 
-
 plugins:
-  - jekyll-watch
   - jekyll-seo-tag
   - jekyll-sitemap
   - jekyll-email-protect
-
-compress_html:
-  clippings: all
-  comments: [""]
-  endings: [html, head, body, li, dt, dd, rt, rp, optgroup, option, colgroup, caption, thead, tbody, tfoot, tr, td, th]
-  profile: false
-  blanklines: false
-  ignore:
-    envs: []
