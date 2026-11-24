@@ -16,7 +16,6 @@ version: "1.0.0"
 
 # NAVIGATION
 navigation:
-  #- {name: 'Feed', link: '/feed'}
   - {name: 'Chi Siamo', link: '/chi-siamo'}
   - {name: 'Contatti', link: '/contatti'}
 
@@ -45,7 +44,6 @@ defaults:
 
 # BUILD SETTINGS
 markdown: kramdown
-highlighter: rouge
 exclude:
   - README.md
   - node_modules
@@ -65,26 +63,10 @@ collections:
     permalink: /:title/
 
 
-#PAGINATION
-pagination:
-  enabled: true
-  per_page: 10
-  trail: 
-    before: 2 # The number of links before the current page
-    after: 2  # The number of links after the current page
-
-jekyll_get_json:
-  - data: feed
-    json: 'https://profilepageimages.usecue.com/images/paroparo.it/images.json'
-
 plugins:
-  - jekyll-spaceship
   - jekyll-watch
-  - jekyll-get-json
   - jekyll-seo-tag
   - jekyll-sitemap
-  - jekyll-feed
-  - jekyll-paginate-v2
   - jekyll-email-protect
 
 compress_html:

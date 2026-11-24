@@ -40,11 +40,6 @@ $(document).ready(function () {
       })
   }
 
-  //Hightlight
-  if(typeof hljs !== "undefined") {
-    hljs.highlightAll();
-  }
-
   $(window).scroll(function(){
     var btt_scroll_icon = $('.btt-scroll-icon');
     btt_scroll_icon.css('transform', "rotate(" + $(window).scrollTop()/4 + "deg)");
