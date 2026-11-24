@@ -5,5 +5,3 @@
 _site
 node_modules
 /vendor/
-_src/sass/vendor/bootstrap/*
-_src/sass/vendor/leap/*
