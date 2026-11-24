@@ -46,7 +46,6 @@ markdown: kramdown
 exclude:
   - README.md
   - Gemfile*
-  - paroparo.gemspec
 permalink: /:title/
 collections:
   pages:
