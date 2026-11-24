@@ -42,8 +42,8 @@ layout: default
             <span class="h4 m-0 mdi iconify text-primary" data-icon="mdi-bird"></span>
           </div>
           <p class="h2">Email dei Pappagalli</p>
-          <a title="{{site.email | encode_email}}" href="mailto:{{site.email_1 | encode_email}}" class="lead">{{site.email_1}}</a><br>
-          <a title="{{site.email | encode_email}}" href="mailto:{{site.email_2 | encode_email}}" class="lead text-primary-2">{{site.email_2}}</a>
+          <a title="{{site.email_1 | encode_email}}" href="mailto:{{site.email_1 | encode_email}}" class="lead">{{site.email_1}}</a><br>
+          <a title="{{site.email_2 | encode_email}}" href="mailto:{{site.email_2 | encode_email}}" class="lead text-primary-2">{{site.email_2}}</a>
         </div>
       </div>
     </div>
@@ -71,47 +71,50 @@ layout: default
             <p class="h1">Lasciaci un messaggio!</p>
             <p class="lead">Non essere timido, i pappagalli sono sempre disponibili con gli estranei. </p>
             <p class="small text-muted"><i>Il messaggio verrà inviato attraverso un pappagallo viaggiatore, non si rimborsano eventuali messaggi persi per strada </i></p>
-            </p>
+            <p class="small text-muted">Il progetto Paroparo non è più attivo, ma se vuoi scriverci il pappagallo viaggiatore è ancora disponibile.</p>
           </div>
-          <form action="https://send.pageclip.co/HyK0A8mzWVrDfTMxLFR0XudFA9FQHaCE/Contatti" class="pageclip-form" id="pageclip-form" method="post">
+          <form id="contact-form" data-email="{{ site.email | encode_email }}">
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
-                  <label>Nome Cognome *</label>
-                  <input name="nome" type="text" placeholder="Parrot Jones" class="form-control" required>
+                  <label for="contact-nome">Nome Cognome *</label>
+                  <input id="contact-nome" name="nome" type="text" placeholder="Parrot Jones" class="form-control" autocomplete="name" required>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label>Indirizzo Email *</label>
-                  <input name="email" type="email" placeholder="pjones@mail.come" class="form-control" required>
+                  <label for="contact-email">Indirizzo Email *</label>
+                  <input id="contact-email" name="email" type="email" placeholder="pjones@mail.come" class="form-control" autocomplete="email" required>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label>Nome Azienda</label>
-                  <input name="azienda" type="text" placeholder="Acme Corporation" class="form-control">
+                  <label for="contact-azienda">Nome Azienda</label>
+                  <input id="contact-azienda" name="azienda" type="text" placeholder="Acme Corporation" class="form-control" autocomplete="organization">
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label>Telefono</label>
-                  <input name="telefono" type="tel" placeholder="505-842-5662" class="form-control">
+                  <label for="contact-telefono">Telefono</label>
+                  <input id="contact-telefono" name="telefono" type="tel" placeholder="505-842-5662" class="form-control" autocomplete="tel">
                 </div>
               </div>
               <div class="col-12">
                 <div class="form-group">
-                  <label>Messaggio:</label>
-                  <textarea class="form-control" name="contact-message" rows="10" placeholder="Cosa vuoi scriverci?"></textarea>
+                  <label for="contact-message">Messaggio *</label>
+                  <textarea id="contact-message" class="form-control" name="contact-message" rows="10" placeholder="Cosa vuoi scriverci?" required></textarea>
                 </div>
-              </div>
-              <div class="col-12">
-                <div data-recaptcha data-sitekey="6Lf_baQaAAAAALU1DsTY2rz88lH_xRAIjPLnc_eQ"></div>
               </div>
               <div class="col text-center">
-                <button type="submit" class="btn btn-primary text-light btn-loading pageclip-form__submit" >
-                  <span>Invia il Messaggio</span><span class="ml-1 mdi iconify" data-icon="mdi-send"></span>
+                <button type="submit" class="btn btn-primary text-light">
+                  <span>Prepara l'email</span><span class="ml-1 mdi iconify" data-icon="mdi-send"></span>
                 </button>
+                <p id="contact-form-feedback" class="small text-muted mt-3" hidden>
+                  Si aprirà il tuo client di posta. Se non succede, <a id="contact-mailto-fallback" href="mailto:{{ site.email | encode_email }}">apri l'email</a>.
+                </p>
+                <noscript>
+                  <p class="small text-muted mt-3">Il form richiede JavaScript. Scrivici a <a href="mailto:{{ site.email | encode_email }}">{{ site.email }}</a>.</p>
+                </noscript>
               </div>
             </div>
           </form>
@@ -136,3 +139,4 @@ layout: default
   </section>
 
   <script defer type="text/javascript" src="{{ '/assets/js/leaflet.min.js' | relative_url }}"></script>
+  <script defer type="text/javascript" src="{{ '/assets/js/contact.js' | relative_url }}"></script>
