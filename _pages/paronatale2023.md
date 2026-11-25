@@ -3,5 +3,5 @@
 # To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 
 layout: paronatale2023
-title: paronatale2023
+title: ParoNatale 2023
 ---
