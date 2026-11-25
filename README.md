@@ -1,8 +1,7 @@
 # Paroparo 🦜
-[//]:![Version](https://img.shields.io/github/v/tag/iltruma/paroparo?label=version)
 [![License: MIT](https://img.shields.io/github/license/iltruma/paroparo?style=flat)](https://github.com/iltruma/paroparo/blob/master/LICENSE)
-[![Deploy site](https://github.com/iltruma/paroparo/actions/workflows/pages.yml/badge.svg?branch=develop)](https://github.com/iltruma/paroparo/actions/workflows/pages.yml)
-[![Parrots](https://img.shields.io/badge/parrots-2-%23186e64)](https://www.paroparo.it)
+[![Deploy site](https://github.com/iltruma/paroparo/actions/workflows/pages.yml/badge.svg?branch=master)](https://github.com/iltruma/paroparo/actions/workflows/pages.yml)
+[![Parrots](https://img.shields.io/badge/parrots-2-%23186e64)](https://paroparo.it)
 [![Bevanda](https://img.shields.io/badge/cochina-bella%20fresca-%23fe101a)]()
 
 > Modern problems require modern solutions. It's a Paroparo Philosophy.
@@ -11,7 +10,7 @@
     <img src="https://raw.githubusercontent.com/iltruma/paroparo/master/assets/img/gitpreview.webp" width="576">
 </p>
 <h3 align="center">
-    <a title="Homepage" href="https://www.paroparo.it">🏠 Homepage</a>
+    <a title="Homepage" href="https://paroparo.it">🏠 Homepage</a>
     <a title="Github" href="https://github.com/iltruma/paroparo#readme">:octocat: Github</a>
 </h3>
 
@@ -30,7 +29,7 @@ Build statica in `_site/`:
 bundle exec jekyll build
 ```
 
-Il deploy avviene su GitHub Pages dal branch `develop` con il workflow `.github/workflows/pages.yml`. CSS e JS in `assets/` sono committati e non richiedono una pipeline Node.
+Il deploy avviene su GitHub Pages dal branch `master` tramite `.github/workflows/pages.yml` (source Pages: GitHub Actions). Le modifiche si sviluppano su `develop` e arrivano su `master` con una PR. CSS e JS in `assets/` sono committati: nessuna pipeline Node/Gulp.
 
 ## ✒️ Autori
 
@@ -48,6 +47,6 @@ Se ti piace il nostro lavoro non dimenticarti di farci una donazione
 
 ## 📝 Licenza
 
-Copyright © 2022 [iltruma](https://github.com/iltruma). Tutti i diritti riservati
+Copyright © 2021 [iltruma](https://github.com/iltruma)
 
 Questo progetto è sotto licenza [MIT](https://github.com/iltruma/paroparo/blob/master/LICENSE).
