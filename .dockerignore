@@ -1,7 +1,0 @@
-node_modules
-Gemfile.lock
-Dockerfile
-.dockerignore
-_site
-.jekyll-cache
-.github

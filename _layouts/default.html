@@ -1,12 +1,16 @@
 ---
-layout: blank
 ---
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: 'it-IT' }}">
 
-{% if site.environment == "dev"%}
+  {% include head.html %}
+
+  <body data-color-scheme="dark">
+    {% include theme-init.html %}
     {% include navbar.html %}
     {{ content }}
     {% include footer.html %}
-{% elsif site.environment == "prod" %}
-    {% include coming-soon.html %}
-{% endif %}
+    {% include scripts.html %}
+  </body>
 
+</html>

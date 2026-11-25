@@ -1,0 +1,14 @@
+---
+---
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: 'it-IT' }}">
+
+  {% include head.html %}
+
+  <body data-color-scheme="dark">
+    {% include theme-init.html %}
+    {{ content }}
+    {% include scripts.html %}
+  </body>
+
+</html>

@@ -1,14 +1,12 @@
-{% include ajax.html ajax_url='/assets/json/site.json' var='site' %}
-
-<script defer type="text/javascript" src="{{ '/assets/js/switch.min.js' | relative_url }}"></script>
+<script defer type="text/javascript" src="{{ '/assets/js/theme.js' | relative_url }}"></script>
 
 <!-- Material Design Icons Script -->
-<script defer src="//code.iconify.design/1/1.0.6/iconify.min.js"></script>
+<script defer src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
 
 <!-- Paroparo scripts  -->
 <script defer type="text/javascript" src="{{ '/assets/js/paroparo.min.js' | relative_url }}"></script>
 
 <!-- Removes page load animation when window is finished loading -->
-<script type="text/javascript">
+<script defer type="text/javascript">
   window.addEventListener("load", function () {    document.querySelector('body').classList.add('loaded');  });
 </script>

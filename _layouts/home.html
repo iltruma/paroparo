@@ -6,11 +6,18 @@ layout: default
   <img src="{{ '/assets/img/sfondo.webp' | relative_url }}" alt="Sfondo Tropical" class="jarallax-img opacity-80">
     <div class="container">
       <div class="row align-items-center min-vh-0 min-vh-md-50">
+        <div class="decoration-wrapper">
+          <div class="decoration left mt-6 middle-y scale-3 opacity-40">
+            <img class="bg-primary-3" src="assets/img/decorations/deco-blob-3.svg" alt="deco-blob-3 decoration" data-inject-svg />
+          </div>
+          <div class="decoration right middle-y scale-3 opacity-80 rotate-90" >
+            <img class="bg-primary-2" src="assets/img/decorations/deco-dots-6.svg" alt="deco-dots-6 decoration" data-inject-svg />
+          </div>
+        </div>
         <div class="col-lg-8 text-center text-lg-left my-4 mb-lg-0" data-aos="fade-right" data-aos-delay="100">
-          <h1 class="display-4">Modern problems require modern solutions.</h1>
+          <p class="display-3">Modern problems require modern solutions</p>
           <div class="my-3">
-            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
+            <p class="lead">It's a Paroparo Philosophy.</p>
           </div>
           <a title="Mission" href="#mission" data-smooth-scroll class="btn btn-lg btn-primary-2">Scoprici</a>
         </div>
@@ -31,10 +38,24 @@ layout: default
     <div class="container">
       <div class="row align-items-center justify-content-around">
         <div class="col-md-5 col-xl-6 mb-4 mb-md-0" data-aos="fade-right" data-aos-delay="100">
-          <a title="Mission Gallery" href="{{ '/assets/img/inner-2.webp' | relative_url }}" data-fancybox="Collage Gallery">
-            <img src="{{ '/assets/img/inner-2.webp' | relative_url }}" alt="Mission Image" class="rounded shadow-3d hover-shadow-3d layer-2" loading="lazy">
-          </a>
-          <div class="decorations-wrapper d-lg-block">
+          <div class="image-collage">
+            <a title="Mission Img 1" href="{{ '/assets/img/cosimo-bobine.webp' | relative_url }}" data-fancybox="Collage Gallery" >
+              <div data-jarallax-element="0 12">
+                <img src="{{ '/assets/img/cosimo-bobine.webp' | relative_url }}" alt="Mission Img 1" class="rounded" data-aos="fade-right" width="300px" loading="lazy">
+              </div>
+            </a>
+            <a title="Mission Img 2" href="{{ '/assets/img/tropical-6.webp' | relative_url }}" data-fancybox="Collage Gallery">
+              <div>
+                <img src="{{ '/assets/img/tropical-6.webp' | relative_url }}" alt="Mission Img 2" class="rounded" data-aos="fade-up" loading="lazy">
+              </div>
+            </a>
+            <a title="Mission Img 3" href="{{ '/assets/img/niccolo-bobine.webp' | relative_url }}" data-fancybox="Collage Gallery">
+              <div data-jarallax-element="0 -12">
+                <img src="{{ '/assets/img/niccolo-bobine.webp' | relative_url }}" alt="Mission Img 3" class="rounded" data-aos="fade-left" width="300px" loading="lazy">
+              </div>
+            </a>
+          </div>
+          <div class="decorations-wrapper">
             <div class="decoration mt-6 top opacity-20 scale-2">
               <img class="bg-primary" src="{{ '/assets/img/decorations/deco-blob-10.svg' | relative_url }}" alt="deco-blob-2 decoration" data-inject-svg />
             </div>
@@ -50,7 +71,7 @@ layout: default
           <div class="row justify-content-center">
             <div class="col-xl-8">
               <span class="badge badge-primary">Our mission</span>
-              <h1 class="h1 my-3">Paro? Paro Paro!</h1>
+              <p class="h1 my-3">Paro? Paro Paro!</p>
               <p class="lead">Paroparo nasce come esperimento di due fratelli, ehm pappagalli. Gli <i>inseparabili</i> sono infatti una tipologia di piccoli pappagalli che rispecchiano il nostro carattere oltre che al legame che c'è tra di noi. </p>
               <p class="lead">  Il nome deriva infatti dalla ripetizione della parola <i>parrot</i>, e dal gioco di parole per cui qualsiasi cosa che ti viene in mente te la possiamo rifare <i>paro paro</i> </p>
               <p class="mb-0"><cite>Venendo teco sì a paro a paro.</cite></p>
@@ -66,7 +87,7 @@ layout: default
     <div class="container">
       <div class="row mb-3">
         <div class="col">
-          <h2 class="h1">Le nostre passioni smodate</h2>
+          <p class="h1">Le nostre passioni smodate</p>
         </div>
       </div>
       <div class="row justify-content-center">
@@ -75,7 +96,7 @@ layout: default
             <div class="icon-round mb-3 bg-primary">
               <span class="h4 m-0 mdi iconify text-primary" data-icon="mdi-printer-3d-nozzle"></span>
             </div>
-            <h4>Stampa 3D</h4>
+            <p class="h4">Stampa 3D</p>
             <p>
               Analisi, modellazione, stampa e raffinazione. Qualsiasi cosa che passa per la testa dei pappagalli può essere realizzato!
             </p>
@@ -86,7 +107,7 @@ layout: default
             <div class="icon-round mb-3 bg-primary-2">
               <span class="h4 m-0 mdi iconify text-primary-2"  data-icon="mdi-hammer-wrench"></span>
             </div>
-            <h4>Ingegneria</h4>
+            <p class="h4">Ingegneria</p>
             <p>
               Tutti i tipi di pappagalli hanno una passione particolare per una branca dell'Ingegneria. Sarà un caso?
             </p>
@@ -97,7 +118,7 @@ layout: default
             <div class="icon-round mb-3 bg-primary-3">
               <span class="h4 m-0 mdi iconify text-primary-3"  data-icon="mdi-chef-hat"></span>
             </div>
-            <h4>Cucina</h4>
+            <p class="h4">Cucina</p>
             <p>
               I pappagalli verdi hanno una predisposizione a preparare piatti squisiti e condividerli con i loro simili 
             </p>
@@ -108,7 +129,7 @@ layout: default
             <div class="icon-round mb-3 bg-primary-4">
               <span class="h4 m-0 mdi iconify text-primary-4"  data-icon="mdi-rocket-launch"></span>
             </div>
-            <h4>Spazio</h4>
+            <p class="h4">Spazio</p>
             <p>
               Qualsiasi oggetto che riesce a superare la linea di Karman è oggetto di interesse da parte dei pappagalli arancioni. <em>Per aspera ad astra!</em>
             </p>
@@ -128,35 +149,23 @@ layout: default
           <div class="row justify-content-center">
             <div class="col-xl-10">
               <span class="badge badge-primary-2">Company know-how</span>
-              <h3 class="display-4 my-3">Enthusiastic, Fast-paced, Disruptive.</h3>
+              <p class="h1 my-3">Enthusiastic, Fast-paced, Disruptive.</p>
               <p class="lead">Noi lavoriamo nella meccanica di precisione, tecnologie avanzate al servizio di progettazioni
-                particolari e specifiche, additive manufacturing, cioè creiamo dei supporti che poi serviranno per progettare grosse situazioni. 
+                particolari e specifiche, <i>additive manufacturing</i>, cioè creiamo dei supporti che poi serviranno per progettare grosse situazioni. 
                 Strumenti di precisione per una svolta futura, beh sì insomma stampiamo oggetti in plastica con la nostra stampante 3D</p>
-              <a title="Vai al nostro Feed" href="{{ '/feed' | relative_url}}" class="btn bg-primary btn-lg text-light hover-arrow my-3">Vai al nostro Feed!</a>
             </div>
           </div>
         </div>
         <div class="col-md-6 mb-3 mt-6 mt-md-0 mb-md-0">
-          <div class="image-collage">
-            <a title="Know-How Img 1" href="{{ '/assets/img/cowork-1.webp' | relative_url }}" data-fancybox="Collage Gallery" >
-              <div data-jarallax-element="0 12">
-                <img src="{{ '/assets/img/cowork-1.webp' | relative_url }}" alt="Know-How Img 1" class="rounded" data-aos="fade-right" loading="lazy">
-              </div>
-            </a>
-            <a title="Know-How Img 2" href="{{ '/assets/img/tropical-6.webp' | relative_url }}" data-fancybox="Collage Gallery">
-              <div>
-                <img src="{{ '/assets/img/tropical-6.webp' | relative_url }}" alt="Know-How Img 2" class="rounded" data-aos="fade-up" loading="lazy">
-              </div>
-            </a>
-            <a title="Know-How Img 3" href="{{ '/assets/img/article-3.webp' | relative_url }}" data-fancybox="Collage Gallery">
-              <div data-jarallax-element="0 -12">
-                <img src="{{ '/assets/img/article-3.webp' | relative_url }}" alt="Know-How Img 3" class="rounded" data-aos="fade-left" loading="lazy">
-              </div>
-            </a>
-          </div>
-          <div class="decorations-wrapper d-lg-block">
+          <a title="Know how Gallery" href="{{ '/assets/img/coppia-1.webp' | relative_url }}" data-fancybox="Collage Gallery">
+            <img src="{{ '/assets/img/coppia-1.webp' | relative_url }}" alt="Know how Image" class="rounded shadow-3d hover-shadow-3d layer-2" loading="lazy">
+          </a>
+          <div class="decorations-wrapper">
             <div class="decoration middle-x top mt-6 opacity-80 scale-3">
               <img class="bg-primary" src="{{ '/assets/img/decorations/deco-dots-1.svg' | relative_url }}" alt="deco-dots-1 decoration" data-inject-svg />
+            </div>
+            <div class="decoration right bottom scale-3 opacity-80 rotate-90" >
+              <img class="bg-primary-2" src="assets/img/decorations/deco-dots-6.svg" alt="deco-dots-6 decoration" data-inject-svg />
             </div>
           </div>
         </div>
@@ -167,29 +176,29 @@ layout: default
       <div class="container">
         <div class="row mb-3">
           <div class="col">
-            <h2 class="h1">Il team di Paroparo</h2>
+            <p class="h1">Il team di Paroparo</p>
           </div>
         </div>
         <div class="row my-6 justify-content-center">
           <div class="col-xl-3 col-md-6 layer-2" data-aos="fade-up" data-aos-delay="100">
             <div class="card card-lg card-body align-items-center shadow-3d hover-shadow-3d">
               <span class="badge badge-primary badge-top">Pappagallo Verde</span>
-              <img src="{{ '/assets/img/avatars/female-1.webp' | relative_url }}" alt="Niccolò Casini" class="avatar avatar-xlg mb-3" loading="lazy">
-              <h5 class="mb-0">Niccolò Casini</h5>
-              <span>Fondatore</span>
-              <span>CEO</span>
+              <img src="{{ '/assets/img/avatars/niccolo.webp' | relative_url }}" alt="Niccolò Casini" class="avatar avatar-xlg mb-3" loading="lazy">
+              <p class="h5 mb-0">Niccolò Casini</p>
+              <p class="mb-0">Fondatore</p>
+              <p>CEO</p>
             </div>
           </div>
           <div class="col-xl-3 col-md-6 layer-2" data-aos="fade-up" data-aos-delay="200">
             <div class="card card-lg card-body align-items-center shadow-3d hover-shadow-3d">
               <span class="badge badge-primary-2 badge-top">Pappagallo Arancio</span>
-              <img src="{{ '/assets/img/avatars/male-2.webp' | relative_url }}" alt="Cosimo Casini" class="avatar avatar-xlg mb-3" loading="lazy">
-              <h5 class="mb-0">Cosimo Casini</h5>
-              <span>Fondatore</span>
-              <span>CTO</span>
+              <img src="{{ '/assets/img/avatars/cosimo.webp' | relative_url }}" alt="Cosimo Casini" class="avatar avatar-xlg mb-3" loading="lazy">
+              <p class="h5 mb-0">Cosimo Casini</p>
+              <p class="mb-0">Fondatore</p>
+              <p>CTO</p>
             </div>
           </div>
-          <div class="decoration mt-6 opacity-20 scale-3 d-lg-block" data-aos-delay="300">
+          <div class="decoration mt-6 opacity-20 scale-3" data-aos-delay="300">
             <img class="bg-primary" src="{{ '/assets/img/decorations/deco-blob-6.svg' | relative_url }}" alt="deco-blob-6 decoration" data-inject-svg />
           </div>
         </div>
